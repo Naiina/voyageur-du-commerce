@@ -17,3 +17,18 @@ float Ville::dist(const Ville& v) const
 {
     return sqrt(pow(x-v.x,2)+pow(y-v.y,2));
 }
+
+int Ville::getIdVille()
+{
+    return idVille;
+}
+
+float Ville::getX()
+{
+    return x;
+}
+
+float Ville::getY()
+{
+    return y;
+}

@@ -14,7 +14,7 @@ Individu mutation(Individu I, float alpha) //alpha : pourcentage de mutation
 {
     Individu J = I; // on fait une copie de I
 
-    int d = I.dim;
+    int d = I.getDim;
 
     //choix de 2 éléments aléatoires
     int l = random()%d + 1; //pour pouvoir prendre l-1

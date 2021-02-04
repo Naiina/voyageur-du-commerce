@@ -2,19 +2,34 @@
 
 using namespace std;
 
-Chemin::Chemin(int n):taille(n),longueur(0)
+Chemin::Chemin(int n):dim(n),val(0)
 {
     //ctor
 
-    //tournee = new int[n];
+    val = new int[n];
 }
 
 void Chemin::calculerLongueur(const vector<Ville>& L)
 {
     longueur = 0;
-    for(int i(0);i<taille-1;i++)
+    for(int i(0);i<dim-1;i++)
     {
-        longueur += L[tournee[i]].dist(L[tournee[i+1]]);
+        longueur += L[val[i]].dist(L[val[i+1]]);
     }
-    longueur += L[tournee[taille-1]].dist(L[tournee[0]]);
+    longueur += L[val[dim-1]].dist(L[val[0]]);
+}
+
+int Chemin::getDim()
+{
+    return dim;
+}
+
+int getVal(int i)
+{
+    return val[i]
+}
+
+float Chemin::getEval()
+{
+    return eval;
 }

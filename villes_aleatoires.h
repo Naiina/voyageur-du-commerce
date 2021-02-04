@@ -3,7 +3,7 @@
 
 
 // Retourne un tableau de villes
-*Ville villes_aleatoires(int i);
+Ville* villes_aleatoires(int i);
 
 
 #endif // VILLES_ALEATOIRES_H_INCLUDED

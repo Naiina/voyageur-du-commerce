@@ -1,7 +1,16 @@
 #include "individu.h"
 
-Individu::Individu():val(0)
+int Chemin::getDim()
 {
-    //ctor
+    return dim;
 }
 
+int getVal(int i)
+{
+    return val[i]
+}
+
+float Chemin::getEval()
+{
+    return eval;
+}

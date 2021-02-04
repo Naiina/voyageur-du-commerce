@@ -10,9 +10,9 @@
 
 
 // Retourne un tableau de villes
-*Ville villes_aleatoires(int k)
+Ville* villes_aleatoires(int k)
 {
-    *Ville tab;
+    Ville* tab;
 
     constexpr int FLOAT_MIN = 0;
     constexpr int FLOAT_MAX = 100;
@@ -22,9 +22,8 @@
 
     for (int i = 0; i < k; i++)
     {
-        tab[i].nom = i;
-        tab[i].x = eng;
-        tab[i].y = eng;
+        Ville v(eng1,eng2);
+        tab[i] = v;
     }
 
     return tab;

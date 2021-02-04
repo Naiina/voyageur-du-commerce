@@ -5,14 +5,16 @@
 class Individu
 {
     public:
-        /** Default constructor */
-        Individu();
-
+        int getDim();
+        int getVal(int i);
+        float getEval();
 
     protected:
 
     private:
-        float val;
+        int dim;
+        int* val;
+        float eval;
 };
 
 #endif // INDIVIDU_H

@@ -11,6 +11,9 @@ class Ville
         Ville(std::string name="", float x=0, float y=0);
 
         float dist(const Ville& v) const;
+        int getIdVille();
+        float getX();
+        float getY();
 
     protected:
 
