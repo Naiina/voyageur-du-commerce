@@ -1,14 +1,9 @@
 #include "mutation.h"
-#include <stdlib.h>
-#include <ctime>
+#include <stdlib.h> // srand, rand
+#include <ctime> // time
 
-//mettre srand(time(0)) dans main
 
-// class Individu
-//  int *val  numéro des villes ? et pas coordonnées ?         ie vecteur des coordonnées des points du chemin
-//  int dim ?
-//  float val_chemin
-
+//mettre srand(time(0)) dans main : Initalisation de la graine alÃ©atoire
 
 Individu mutation(Individu I, float alpha) //alpha : pourcentage de mutation
 {
@@ -16,14 +11,14 @@ Individu mutation(Individu I, float alpha) //alpha : pourcentage de mutation
 
     int d = I.getDim;
 
-    //choix de 2 éléments aléatoires
-    int l = random()%d + 1; //pour pouvoir prendre l-1
+    //choix de 2 Ã©lÃ©ments alÃ©atoires
+    int l = rand()%d + 1; //pour pouvoir prendre l-1
     int k;
     do{
-        k = random()%d; // pour pouvoir prendre k+1
-    }while (k=l);
+        k = rand()%d; // pour pouvoir prendre k+1
+    }while (k==l);
 
-    // On fait la mutation que si la probabilité alpha (*100) est supérieure à test
+    // On fait la mutation seulement si la probabilitÃ© alpha (*100) est supÃ©rieure Ã  test
     int test = random()%101; //random()%99 +1;
     if (alpha*100 >= test) //on fait la mutation
     {
