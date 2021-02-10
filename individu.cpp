@@ -7,7 +7,7 @@ int Chemin::getDim()
 
 int getVal(int i)
 {
-    return val[i]
+    return val[i];
 }
 
 float Chemin::getEval()
