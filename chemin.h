@@ -18,9 +18,9 @@ class Chemin : public Individu
         int getVal(int i);
         float getEval();
 
-    protected:
+    //protected:
 
-    private:
+    //private:
         int dim;
         int* val;
         float eval;
