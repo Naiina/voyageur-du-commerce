@@ -10,9 +10,9 @@ class Population
         /** Default destructor */
         //~Population();
 
-    protected:
+    //protected:
 
-    private:
+    //private:
         int taille;
         Individu* parents;
         Individu* enfants;
