@@ -1,5 +1,6 @@
 #include "random_generator.hpp"
 #include "Graphe.hpp" 
+#include "Chemin.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -20,6 +21,14 @@ int main(int argc, char *argv[])
 	Graphe graphe;
 	graphe_aleatoires(villes, graphe);
 	cout<<graphe;
+
+	// test Chemin 
+	vector<int> v = {1, 2, 3};
+	Chemin chemin(v);
+	cout << "si chemin est valid? "<<chemin.isVaild(graphe)<<endl;
+	if(chemin.isVaild(graphe)){
+		cout<<"La distance totale est "<<chemin.getEval(graphe)<<endl;
+	}
 }
 
 /* Les affichages

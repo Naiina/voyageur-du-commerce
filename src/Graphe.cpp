@@ -30,6 +30,18 @@ map<pair<int, int>, float>::const_iterator Graphe::end() const{
     return graphe.end();
 }
 
+float Graphe::getDistance(const int u, const int v) const{
+    auto search = graphe.find({u,v});
+    if (search != graphe.end()){
+        return search->second;
+    }
+    search = graphe.find({v,u});
+    if (search != graphe.end()){
+        return search->second;
+    }
+    return -1;
+}
+
 /*
 * foctions de classe
 */
