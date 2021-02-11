@@ -10,6 +10,12 @@ Chemin::Chemin(const vector<int>& v){
     eval = 0.;
 }
 
+Chemin::Chemin(const Chemin& C)
+{
+    dim = C.dim;
+    for(int i=0;i<dim;i++) val.push_back(C.val[i]);
+}
+
 bool Chemin::isVaild(const Graphe & graphe) const {
     for (int i = 0; i < dim-1; i++)
     {
