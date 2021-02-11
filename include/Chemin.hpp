@@ -16,6 +16,8 @@ class Chemin : public Individu
         Chemin(int n=0, float ev=0.): dim(n), eval(ev), val(n){};
         // Constructor par un vecteur
         Chemin(const vector<int>& v);
+        // Constructor par copie
+        Chemin(const Chemin & C);   
 
         bool isVaild(const Graphe & graphe) const ; // si ce chemin est vaild
         
