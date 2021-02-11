@@ -1,5 +1,6 @@
 #ifndef POPULATION_H
 #define POPULATION_H
+#include "individu.h"
 
 
 class Population
@@ -9,10 +10,6 @@ class Population
         Population(int p);
         /** Default destructor */
         ~Population();
-
-    protected:
-
-    private:
         int taille;
         Individu* parents;
         Individu* enfants;

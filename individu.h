@@ -5,13 +5,9 @@
 class Individu
 {
     public:
-        int getDim();
-        int getVal(int i);
-        float getEval();
-
-    protected:
-
-    private:
+        int getDim() { return dim; }
+        int getVal(int i) { return val[i]; }
+        float getEval() { return eval; }
         int dim;
         int* val;
         float eval;

@@ -5,8 +5,9 @@
 
 class Ville
 {
-    static int nbVille;
+    
     public:
+        static int nbVille;
         /** Default constructor */
         Ville(std::string name="", float x=0, float y=0);
 
