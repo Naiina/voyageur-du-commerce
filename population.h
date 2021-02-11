@@ -8,7 +8,7 @@ class Population
         /** Default constructor */
         Population(int p);
         /** Default destructor */
-        ~Population();
+        //~Population();
 
     protected:
 
