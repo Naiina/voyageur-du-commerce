@@ -1,2 +1,0 @@
-#include "individu.h"
-
