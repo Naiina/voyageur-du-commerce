@@ -47,11 +47,11 @@ float Graphe::getDistance(const int u, const int v) const{
 */
 
 ostream& operator<<(ostream& os, const Graphe & graphe){
-    os<<"Graphe"<<endl;
+    os<<"Graphe{"<<endl;
     map<pair<int, int>, float>::const_iterator it;
     for ( it = graphe.begin(); it != graphe.end(); it++)
     {
         os<<it->first.first<<"---"<<it->first.second<<" : "<<it->second<<endl;
     }
-    return os;
+    return os<< "}"<<endl;
 }

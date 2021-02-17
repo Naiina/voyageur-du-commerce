@@ -1,4 +1,4 @@
-#include "mutation.h"
+#include "mutation.hpp"
 #include <stdlib.h>
 #include <ctime>
 
@@ -10,10 +10,9 @@ int modulo (int i, int j)
     return (i%j + j);
 }
 
-Chemin mutation(Chemin I, float alpha) // alpha : pourcentage de mutation
+Chemin mutation(const Chemin& I, float alpha) // alpha : pourcentage de mutation
 {
-    Chemin J = I;
-
+    Chemin J(I);
     int d = I.getDim();
 
     // Choix de 2 éléments aléatoires entre 0 et d-1

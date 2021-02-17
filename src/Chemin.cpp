@@ -7,13 +7,12 @@
 Chemin::Chemin(const vector<int>& v){
     dim = v.size();
     for(int id: v){val.push_back(id);}
-    eval = 0.;
 }
 
 Chemin::Chemin(const Chemin& C)
 {
-    dim = C.dim;
-    for(int i=0;i<dim;i++) val.push_back(C.val[i]);
+    dim = C.getDim();
+    for(int i=0;i<dim;i++) val.push_back(C.getVal(i));
 }
 
 bool Chemin::isVaild(const Graphe & graphe) const {
@@ -35,4 +34,25 @@ float Chemin::getEval(const Graphe & graphe){
     }
     eval += graphe.getDistance(val[dim-1], val[0]);
     return eval;
+}
+
+
+Chemin& Chemin::operator=(const Chemin& C){
+    dim = C.getDim();
+    for(int i=0;i<dim;i++) val.push_back(C.getVal(i));
+    return *this;
+}
+
+
+/*
+* foctions de classe
+*/
+
+ostream& operator<<(ostream& os, const Chemin & chemin){
+    os<<"Chemin("<<chemin.getDim()<<") [";
+    for ( int i=0; i< chemin.getDim(); i++)
+    {
+        os<<chemin.getVal(i)<<", ";
+    }
+    return os<< "]"<<endl;
 }

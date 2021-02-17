@@ -13,20 +13,30 @@ class Chemin : public Individu
         float eval; // la distance/ coût total de cette tournée
     public:
         /** Default constructor */
-        Chemin(int n=0, float ev=0.): dim(n), eval(ev), val(n){};
+        Chemin(int n=0): dim(n), val(n){};
         // Constructor par un vecteur
         Chemin(const vector<int>& v);
         // Constructor par copie
-        Chemin(const Chemin & C);   
-
+        Chemin(const Chemin & C); 
+        
         bool isVaild(const Graphe & graphe) const ; // si ce chemin est vaild
         
         // getters and setters
         int getDim() const {return dim;};
         int getVal(int i) const {return val[i];};
-        void setVal(int i, int j) {val[i] = j;};
         float getEval(const Graphe & graphe); // retourne le coût / distance totale du chemin
+        void setVal(int i, int v){ val[i] = v;}
+
+        // opérateur unitaire
+        Chemin& operator=(const Chemin& );
 
 };
+
+/*
+* fonctions de classe
+*/
+
+ostream& operator<<(ostream&, const Chemin &);
+
 
 #endif // CHEMIN_H
