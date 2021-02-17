@@ -24,3 +24,21 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
         graphe.addAnEdge(villes[v1], villes[v2]);
     }
 }
+
+// Generer un chemin de taille 3
+Chemin generer_chemin_3(int a,int b,int c){
+    Chemin chemin(3);
+    chemin.setVal(0, a);
+    chemin.setVal(1, b);
+    chemin.setVal(2, c);
+    return chemin;
+}
+
+// Generer un chemin de taille aléatoirement
+Chemin generer_chemin_aleatoire(int taille){
+    Chemin chemin(taille);
+    for(int i=0;i<taille;i++){
+        chemin.setVal(i, rand()%10);
+    }
+    return chemin;
+}

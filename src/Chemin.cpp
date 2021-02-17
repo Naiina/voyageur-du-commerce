@@ -50,9 +50,9 @@ Chemin& Chemin::operator=(const Chemin& C){
 
 ostream& operator<<(ostream& os, const Chemin & chemin){
     os<<"Chemin("<<chemin.getDim()<<") [";
-    for ( int i=0; i< chemin.getDim(); i++)
+    for ( int i=0; i< chemin.getDim()-1; i++)
     {
         os<<chemin.getVal(i)<<", ";
     }
-    return os<< "]"<<endl;
+    return os<<chemin.getVal(chemin.getDim()-1)<< "]"<<endl;
 }
