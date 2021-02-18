@@ -1,6 +1,9 @@
-#include "Chemin.hpp"
+#include "..\include\Chemin.hpp"
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-/*
+/**
 * fonctions membres
 */
 
@@ -15,7 +18,7 @@ Chemin::Chemin(const Chemin& C)
     for(int i=0;i<dim;i++) val.push_back(C.getVal(i));
 }
 
-bool Chemin::isVaild(const Graphe & graphe) const {
+bool Chemin::isValid(const Graphe & graphe) const {
     for (int i = 0; i < dim-1; i++)
     {
         if(!graphe.hasAnEdge(val[i], val[i+1])){ return false;}
@@ -24,8 +27,8 @@ bool Chemin::isVaild(const Graphe & graphe) const {
 }
 
 float Chemin::getEval(const Graphe & graphe){
-    // retourne -1 si ce chemin n'est pas valid
-    if(!isVaild(graphe)){return -1;}
+    /// retourne -1 si ce chemin n'est pas valid
+    if(!isValid(graphe)){return -1;}
 
     eval = 0.;
     for (int i = 0; i < dim-1; i++)
@@ -44,7 +47,7 @@ Chemin& Chemin::operator=(const Chemin& C){
 }
 
 
-/*
+/**
 * foctions de classe
 */
 

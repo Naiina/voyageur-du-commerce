@@ -16,17 +16,17 @@ class Population
         /** Default constructor */
         Population(int p):taille(p){parents.reserve(p); enfants.reserve(p);};
 
-        //getters and setters
+        ///getters and setters
         int getTaille() const {return taille;}
         const vector<Chemin>& getParents() const { return parents;}
         const vector<Chemin>& getEnfants() const { return enfants;}
 
-        //TODO si c change, est ce que parents va changer ?
-        void setParent(int i, Chemin c) {parents[i] = c;} 
+        ///TODO si c change, est ce que parents va changer ?
+        void setParent(int i, Chemin c) { cout << "inSetParent" << parents[i] << endl; parents[i] = c; cout << "finSetParent" << endl;}
         void setEnfant(int i, Chemin c) {enfants[i] = c;}
 };
 
-/*
+/**
 * fonctions de classe
 */
 

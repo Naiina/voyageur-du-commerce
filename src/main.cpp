@@ -1,6 +1,6 @@
-#include "random_generator.hpp"
-#include "mutation.hpp"
-#include "Population.cpp"
+#include "..\include\random_generator.hpp"
+#include "..\include\mutation.hpp"
+#include "..\include\Population.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -26,8 +26,8 @@ int main(int argc, char *argv[])
 	vector<int> v = {1, 2, 3};
 	Chemin chemin(v);
 	cout<<chemin;
-	cout << "si chemin est valid? "<<chemin.isVaild(graphe)<<endl;
-	if(chemin.isVaild(graphe)){
+	cout << "si chemin est valid? "<<chemin.isValid(graphe)<<endl;
+	if(chemin.isValid(graphe)){
 		cout<<"La distance totale est "<<chemin.getEval(graphe)<<endl;
 	}
 
@@ -35,16 +35,26 @@ int main(int argc, char *argv[])
 	cout<<"Après mutation 50%"<<endl;
 	Chemin c2 = mutation(chemin, 0.5);
 	cout<<c2;
-	cout << "si chemin est valid? "<<c2.isVaild(graphe)<<endl;
-	if(chemin.isVaild(graphe)){
+	cout << "si chemin est valid? "<<c2.isValid(graphe)<<endl;
+	if(chemin.isValid(graphe)){
 		cout<<"La distance totale est "<<c2.getEval(graphe)<<endl;
 	}
 
 	// test population
 	int popTaille = 2;
+    cout << "init pop" << endl;
     Population pop(popTaille);
-	pop.setParent(0, generer_chemin_3(1,2,3));
-	pop.setParent(1, generer_chemin_3(4,5,6));
+	cout << "genere P" << endl;
+	Chemin P = generer_chemin_3(1,2,3);
+	cout << P << endl;
+	cout << "ajoute P à pop" << endl;
+	pop.setParent(0,P);
+
+
+
+	cout << "genere P1" << endl;
+	Chemin P1 = generer_chemin_3(4,5,6);
+	pop.setParent(1, P1);
 	pop.setEnfant(0, generer_chemin_3(7, 8, 9));
 	pop.setEnfant(1, generer_chemin_aleatoire(3));
 	cout<<pop;
@@ -52,16 +62,16 @@ int main(int argc, char *argv[])
 
 /* Les affichages
 Hello world:)
-Ville: , id: 1 (76.2266, 12.8752) 
-Ville: , id: 2 (63.5805, 95.4515) 
-Ville: , id: 3 (83.391, 34.7346) 
-Ville: , id: 4 (88.4745, 83.6338) 
-Ville: , id: 5 (30.8323, 27.6529) 
-Ville: , id: 6 (89.1963, 30.1652) 
-Ville: , id: 7 (78.0856, 23.9113) 
-Ville: , id: 8 (22.7555, 90.1269) 
-Ville: , id: 9 (95.6605, 81.9239) 
-Ville: , id: 10 (47.4443, 64.9871) 
+Ville: , id: 1 (76.2266, 12.8752)
+Ville: , id: 2 (63.5805, 95.4515)
+Ville: , id: 3 (83.391, 34.7346)
+Ville: , id: 4 (88.4745, 83.6338)
+Ville: , id: 5 (30.8323, 27.6529)
+Ville: , id: 6 (89.1963, 30.1652)
+Ville: , id: 7 (78.0856, 23.9113)
+Ville: , id: 8 (22.7555, 90.1269)
+Ville: , id: 9 (95.6605, 81.9239)
+Ville: , id: 10 (47.4443, 64.9871)
 Graphe{
 1---5 : 47.739
 1---6 : 21.6139
