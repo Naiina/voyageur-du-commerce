@@ -2,6 +2,7 @@
 #define POPULATION_H
 #include "Chemin.hpp"
 
+
 class Population
 {
     private:
@@ -17,8 +18,8 @@ class Population
 
         //getters and setters
         int getTaille() const {return taille;}
-        const vector<Chemin>& getParents() const { return parents;}
-        const vector<Chemin>& getEnfants() const { return enfants;}
+        const Chemin& getParent(int i) const { return parents[i];}
+        const Chemin& getEnfant(int i) const { return enfants[i];}
 
         //TODO si c change, est ce que parents va changer ?
         void setParent(int i, Chemin c) {parents[i] = c;} 

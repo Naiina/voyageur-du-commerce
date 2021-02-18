@@ -43,11 +43,13 @@ int main(int argc, char *argv[])
 	// test population
 	int popTaille = 2;
     Population pop(popTaille);
+	
 	pop.setParent(0, generer_chemin_3(1,2,3));
 	pop.setParent(1, generer_chemin_3(4,5,6));
 	pop.setEnfant(0, generer_chemin_3(7, 8, 9));
 	pop.setEnfant(1, generer_chemin_aleatoire(3));
 	cout<<pop;
+	
 }
 
 /* Les affichages
