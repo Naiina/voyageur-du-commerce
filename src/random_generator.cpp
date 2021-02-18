@@ -1,10 +1,10 @@
-#include "..\include\random_generator.hpp"
+#include "random_generator.hpp"
 
-/// Retourne un tableau de n villes
+// Retourne un tableau de n villes
 void villes_aleatoires(int n, vector<Ville> & villes)
 {
     float X = 100.;
-    /// generate n coordonates bewteen 0. and 100.
+    // generate n coordonates bewteen 0. and 100.
     for (int i = 0; i < n; i++)
     {
         float r1 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/X));
@@ -25,7 +25,7 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
     }
 }
 
-/// Generer un chemin de taille 3
+// Generer un chemin de taille 3
 Chemin generer_chemin_3(int a,int b,int c){
     Chemin chemin(3);
     chemin.setVal(0, a);
@@ -34,7 +34,7 @@ Chemin generer_chemin_3(int a,int b,int c){
     return chemin;
 }
 
-/// Generer un chemin de taille n aléatoirement
+// Generer un chemin de taille aléatoirement
 Chemin generer_chemin_aleatoire(int taille){
     Chemin chemin(taille);
     for(int i=0;i<taille;i++){

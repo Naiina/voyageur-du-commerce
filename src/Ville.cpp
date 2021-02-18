@@ -1,4 +1,4 @@
-#include "..\include\Ville.hpp"
+#include "Ville.hpp"
 
 /*
 * fonctions membres
