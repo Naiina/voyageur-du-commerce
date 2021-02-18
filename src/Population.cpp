@@ -5,7 +5,7 @@
 */
 
 ostream& operator<<(ostream& os, const Population & p){
-    os<<"Population("<<p.getTaille()<<") {"<<endl<<"Parents: "<<endl;
+    os<< "Population("<< p.getTaille()<< ") {"<< endl<< "Parents: "<< endl;
 
     for(Chemin c:p.getParents()){ os<<c;}
 

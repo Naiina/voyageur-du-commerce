@@ -1,6 +1,6 @@
 #include "random_generator.hpp"
 #include "mutation.hpp"
-#include "Population.cpp"
+#include "Population.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -88,10 +88,14 @@ Graphe{
 9---10 : 51.1044
 10---6 : 54.3672
 }
-Chemin(3) [1, 2, 3, ]
+Chemin(3) [1, 2, 3]
 si chemin est valid? 0
 Après mutation 50%
-Chemin(3) [1, 2, 3, ]
+Chemin(3) [1, 3, 2]
 si chemin est valid? 0
+Population(2) {
+Parents: 
+Enfants:
+}
 
 */

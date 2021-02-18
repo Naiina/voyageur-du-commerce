@@ -13,7 +13,7 @@ class Chemin : public Individu
         float eval; // la distance/ coût total de cette tournée
     public:
         /** Default constructor */
-        Chemin(int n=0): dim(n), val(n){};
+        Chemin(int n=0): dim(n){val.reserve(n);};
         // Constructor par un vecteur
         Chemin(const vector<int>& v);
         // Constructor par copie

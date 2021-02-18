@@ -2,7 +2,6 @@
 #define POPULATION_H
 #include "Chemin.hpp"
 
-
 class Population
 {
     private:
