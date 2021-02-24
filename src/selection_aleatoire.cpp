@@ -12,12 +12,12 @@ Population selection_aleatoire(int q, Population & pop){ //q doit etre compris e
     int t=0;
     for(int i=0;i<q;i++){
         int k=rand()%taille_pop;
-        new_pop.setParent(t,pop.getParents()[k]);
+        new_pop.setParent(t,pop.getParent(k));
         t++;
     }
     for(int i=q;i<taille_pop;i++){
         int k=rand()%taille_pop;
-        new_pop.setParent(t,pop.getEnfants()[k]);
+        new_pop.setParent(t,pop.getEnfant(k));
         t++;
     }
     //valmin

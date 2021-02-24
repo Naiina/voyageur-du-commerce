@@ -1,11 +1,11 @@
 #ifndef SELECTION_ALEATOIRE_H
 #define SELECTION_ALEATOIRE_H
 
-#include "individu.h"
-#include "ville.h"
-#include "chemin.h"
-#include "population.h"
-#include "villes_aleatoires.h"
+#include "Individu.hpp"
+#include "Ville.hpp"
+#include "Chemin.hpp"
+#include "Population.hpp"
+#include "random_generator.hpp"
 #include <vector>
 
 Population selection_aleatoire(int q, Population & pop);
