@@ -12,14 +12,14 @@ void affiche_individu(const Chemin& indiv){
 }
 void affiche_population_parents(const Population& pop){
     std::cout<<"affiche population parents"<<std::endl;
-    for(int i=0;i<pop.getTaille();i++){
+    for(int i=1;i<=pop.getTaille();i++){
         affiche_individu(pop.getParent(i));
     }
 
 }
 void affiche_population_enfants(const Population& pop){
     std::cout<<"affiche population enfants"<<std::endl;
-    for(int i=0;i<pop.getTaille();i++){
+    for(int i=1;i<=pop.getTaille();i++){
         affiche_individu(pop.getEnfant(i));
     }
 }
