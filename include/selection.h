@@ -10,7 +10,10 @@
 
 Population selection_aleatoire(int q, Population & pop);
 Population selection_roulette(int q, Population & pop);
+Population selection_elitiste(int q, Population & pop);
 float somme_dist_parents(Population & pop);
 float somme_dist_enfants(Population & pop);
 Population selection(int ind,int q, Population & pop);
+vector<int> liste_triee_enfants(Population & pop);
+vector<int> liste_triee_parents(Population & pop);
 #endif

@@ -14,42 +14,39 @@ Population selection_roulette(int q, Population & pop){
     Population new_pop(taille_pop);
     for(int i=0;i<q;i++){
         float S=somme_dist_parents(pop);
-        //R aléatoire (pour l'instant R sera tj pris égale à S/2 pour simplifier)
-
         std::random_device rd;
         std::default_random_engine eng(rd());
         std::uniform_real_distribution<float> distr(0, S);
         setprecision(6);
         float r =distr(eng);
-        cout<<"S="<<S<<endl;
-        cout<<"r="<<r<<endl;
         float pas=0;
         int indice=0;
         while(pas<r){
             pas+=1/((pop.getParent(indice)).getEval_version1());
             indice+=1;
-            cout<<"pas="<<pas<<endl;
-            cout<<"indice="<<indice<<endl;
         }
+        indice-=1;
+        if(indice>taille_pop-1){indice=taille_pop-1;}
+        if(indice<0){indice=0;}
         new_pop.setParent(t,pop.getParent(indice));
         t++;
 
         } 
     for(int i=q;i<taille_pop;i++){
         float S=somme_dist_enfants(pop);
-            //R aléatoire (pour l'instant R sera tj pris égale à S/2 pour simplifier)
-            //constexpr int FLOAT_MIN=0;
-            //constexpt int FLOAT_MAX=S;
-            //random_device rd;
-            //default_random_engine eng(rd());
-            //uniform_real_distribution<float> distr(FLOAT_MIN,FLOAT_MAX)
-        float r=S/2;
+        random_device rd;
+        default_random_engine eng(rd());
+        uniform_real_distribution<float> distr(0,S);
+        float r=distr(eng);
         float pas=0;
         int indice=0;
         while(pas<r){
             pas+=1/((pop.getParent(indice)).getEval_version1());
             indice+=1;
         }
+        indice-=1;
+        if(indice>taille_pop-1){indice=taille_pop-1;}
+        if(indice<taille_pop-1){indice=0;}
         new_pop.setParent(t,pop.getParent(indice));
         t++;
 
