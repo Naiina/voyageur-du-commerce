@@ -5,6 +5,7 @@
 #include <vector>
 
 
+
 class Chemin : public Individu
 {
     private:
@@ -25,6 +26,7 @@ class Chemin : public Individu
         int getDim() const {return dim;};
         int getVal(int i) const {return val[i];};
         float getEval(const Graphe & graphe); // retourne le coût / distance totale du chemin
+        float getEval_version1() const;//une première fonction évaluation simple
         void setVal(int i, int v){ val[i] = v;}
 
         // opérateur unitaire

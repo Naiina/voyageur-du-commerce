@@ -1,4 +1,5 @@
 #include "Chemin.hpp"
+#include <stdlib.h>
 
 /*
 * fonctions membres
@@ -33,6 +34,13 @@ float Chemin::getEval(const Graphe & graphe){
         eval += graphe.getDistance(val[i], val[i+1]);
     }
     eval += graphe.getDistance(val[dim-1], val[0]);
+    return eval;
+}
+float Chemin::getEval_version1() const {
+    float eval=0;
+    for(int i=0;i<dim-1;i++){
+        eval+=abs(val[i]-val[i+1]);
+    }
     return eval;
 }
 
