@@ -1,31 +1,58 @@
 #include "cross_over.hpp"
 
+/**
+ * Hybridation sans doublons
+ */
+void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){
+    int dupli = 0, insert = l+1;
+
+    for (int i = l+1; i < n; i++){
+        int v = J.getVal(i);
+        if(IJ.contains(v, 0, l)) {
+            dupli++;
+        }else{
+            IJ.setVal(insert++, v);
+        }
+    }
+    for (int i = 0; i <=l && dupli>0; i++){
+        int v = J.getVal(i);
+        if(!IJ.contains(v, 0, l)) {
+            IJ.setVal(insert++, v);
+            dupli--;
+        }     
+    }
+}
+
+/**
+ * Do cross over until the two new hybrid paths are both vaild
+ */
 vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin & J){
-    vector<Chemin> deuxChemins;
-    if (I.getDim() != J.getDim())
-    {
+    if (I.getDim() != J.getDim()){
         cerr << "ERROR the length of two paths is not equal!"<<endl;
         exit(EXIT_FAILURE);
     }
+    if(!(I.isVaild(graphe) && J.isVaild(graphe))){
+        cerr << "ERROR the two input paths should be vaild!"<<endl;
+        exit(EXIT_FAILURE);
+    }
+    bool done = false;
+    vector<Chemin> deuxChemins;
     int n = I.getDim();
     Chemin IJ = I;
     Chemin JI = J;
-    vector<int> validIndic;
-    for(int i=0; i<n; i++){
-        if(graphe.hasAnEdge(I.getVal(i), J.getVal(i+1)) && graphe.hasAnEdge(J.getVal(i), I.getVal(i+1)))
-            validIndic.push_back(i);
-    }
-    // aucun indice valid possible, retourne vide
-    if(validIndic.size() == 0)
-        return deuxChemins;
 
-    int l = rand() % validIndic.size(); // entre 0 et nombre de indices valides-1
+    do{
+        int l = rand() % n; // indice aléatoire entre 0 et n-1
+        if (l==0 || l==n-1){
+            done = true;
+        }
+        hybrid_no_duplicates(IJ,J, l, n);
+        hybrid_no_duplicates(JI,I, l, n);
+        if(IJ.isVaild(graphe) && JI.isVaild(graphe)){
+            done = true;
+        }
+    }while (!done);
 
-    for (int i = l+1; i < n; i++)
-    {
-        IJ.setVal(i, J.getVal(i));
-        JI.setVal(i, I.getVal(i));
-    }
     deuxChemins.push_back(IJ);
     deuxChemins.push_back(JI);
     return deuxChemins;

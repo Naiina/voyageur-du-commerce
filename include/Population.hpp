@@ -21,7 +21,6 @@ class Population
         const Chemin& getParent(int i) const { return parents[i];}
         const Chemin& getEnfant(int i) const { return enfants[i];}
 
-
         //const vector<Chemin> getParents() const { return parents;}
         //const vector<Chemin> getEnfants() const { return enfants;}
 

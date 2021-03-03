@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
 	if(chemin.isVaild(graphe)){
 		cout<<"La distance totale est "<<chemin.getEval(graphe)<<endl;
 	}
+	cout<<"si ce chemin contien 3?"<<(chemin.contains(3, 0, chemin.getDim()-1)?" Yes!":"No!")<<endl;
 
 	// test mutation OK?
 	cout<<"Après mutation 50%"<<endl;
@@ -49,6 +50,7 @@ int main(int argc, char *argv[])
 	pop.setEnfant(0, generer_chemin_3(7, 8, 9));
 	pop.setEnfant(1, generer_chemin_aleatoire(3));
 	cout<<pop;
+
 	
 }
 
@@ -92,6 +94,7 @@ Graphe{
 }
 Chemin(3) [1, 2, 3]
 si chemin est valid? 0
+si ce chemin contien 3? Yes!
 Après mutation 50%
 Chemin(3) [1, 3, 2]
 si chemin est valid? 0

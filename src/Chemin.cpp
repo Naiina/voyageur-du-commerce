@@ -1,5 +1,4 @@
 #include "Chemin.hpp"
-#include <stdlib.h>
 
 /*
 * fonctions membres
@@ -36,12 +35,21 @@ float Chemin::getEval(const Graphe & graphe){
     eval += graphe.getDistance(val[dim-1], val[0]);
     return eval;
 }
-float Chemin::getEval_version1() const {
-    float eval=0;
-    for(int i=0;i<dim-1;i++){
-        eval+=abs(val[i]-val[i+1]);
+
+bool Chemin::contains(int v, int begin, int end) const{
+    if(end<=begin || begin<0 || end>dim-1){
+        cerr << "ERROR indic out of range!"<<endl;
+        exit(EXIT_FAILURE);
     }
-    return eval;
+    vector<int>::const_iterator it = val.begin()+begin;
+    for(; it <= val.begin()+end; it++){
+        if(*it==v){ return true;}
+    }
+    return false;
+}
+
+bool Chemin::contains(int v) const{
+    return contains(v, 0, dim-1);
 }
 
 
