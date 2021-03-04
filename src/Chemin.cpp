@@ -36,6 +36,14 @@ float Chemin::getEval(const Graphe & graphe){
     return eval;
 }
 
+float Chemin::getEval_version1() const {
+    float eval=0;
+    for(int i=0;i<dim-1;i++){
+        eval+=abs(val[i]-val[i+1]);
+    }
+    return eval;
+}
+
 bool Chemin::contains(int v, int begin, int end) const{
     if(end<=begin || begin<0 || end>dim-1){
         cerr << "ERROR indic out of range!"<<endl;
