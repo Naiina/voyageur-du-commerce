@@ -1,4 +1,4 @@
-#include "../include/random_generator.hpp"
+#include "random_generator.hpp"
 
 // Retourne un tableau de n villes
 void villes_aleatoires(int n, vector<Ville> & villes)
