@@ -1,4 +1,4 @@
-#include "Graphe.hpp"
+#include "../include/Graphe.hpp"
 /*
 * fonctions membres
 */

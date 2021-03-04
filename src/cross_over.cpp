@@ -1,4 +1,4 @@
-#include "cross_over.hpp"
+#include "../include/cross_over.hpp"
 
 /**
  * Hybridation sans doublons
@@ -19,7 +19,7 @@ void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){
         if(!IJ.contains(v, 0, l)) {
             IJ.setVal(insert++, v);
             dupli--;
-        }     
+        }
     }
 }
 

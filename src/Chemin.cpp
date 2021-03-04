@@ -1,4 +1,4 @@
-#include "Chemin.hpp"
+#include "../include/Chemin.hpp"
 
 /*
 * fonctions membres

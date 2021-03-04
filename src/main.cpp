@@ -1,6 +1,6 @@
-#include "random_generator.hpp"
-#include "mutation.hpp"
-#include "Population.hpp"
+#include "../include/random_generator.hpp"
+#include "../include/mutation.hpp"
+#include "../include/Population.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -44,28 +44,28 @@ int main(int argc, char *argv[])
 	// test population
 	int popTaille = 2;
     Population pop(popTaille);
-	
+
 	pop.setParent(0, generer_chemin_3(1,2,3));
 	pop.setParent(1, generer_chemin_3(4,5,6));
 	pop.setEnfant(0, generer_chemin_3(7, 8, 9));
 	pop.setEnfant(1, generer_chemin_aleatoire(3));
 	cout<<pop;
 
-	
+
 }
 
 /* Les affichages
 Hello world:)
-Ville: , id: 1 (76.2266, 12.8752) 
-Ville: , id: 2 (63.5805, 95.4515) 
-Ville: , id: 3 (83.391, 34.7346) 
-Ville: , id: 4 (88.4745, 83.6338) 
-Ville: , id: 5 (30.8323, 27.6529) 
-Ville: , id: 6 (89.1963, 30.1652) 
-Ville: , id: 7 (78.0856, 23.9113) 
-Ville: , id: 8 (22.7555, 90.1269) 
-Ville: , id: 9 (95.6605, 81.9239) 
-Ville: , id: 10 (47.4443, 64.9871) 
+Ville: , id: 1 (76.2266, 12.8752)
+Ville: , id: 2 (63.5805, 95.4515)
+Ville: , id: 3 (83.391, 34.7346)
+Ville: , id: 4 (88.4745, 83.6338)
+Ville: , id: 5 (30.8323, 27.6529)
+Ville: , id: 6 (89.1963, 30.1652)
+Ville: , id: 7 (78.0856, 23.9113)
+Ville: , id: 8 (22.7555, 90.1269)
+Ville: , id: 9 (95.6605, 81.9239)
+Ville: , id: 10 (47.4443, 64.9871)
 Graphe{
 1---5 : 47.739
 1---6 : 21.6139
@@ -99,7 +99,7 @@ Après mutation 50%
 Chemin(3) [1, 3, 2]
 si chemin est valid? 0
 Population(2) {
-Parents: 
+Parents:
 Chemin(3) [1, 2, 3]
 Chemin(3) [4, 5, 6]
 Enfants:

@@ -1,4 +1,4 @@
-#include "mutation.hpp"
+#include "../include/mutation.hpp"
 #include <stdlib.h>
 #include <ctime>
 
