@@ -10,7 +10,7 @@ int modulo (int i, int j)
     return (i%j + j);
 }
 
-Chemin mutation(const Chemin& I, float alpha) // alpha : pourcentage de mutation
+Chemin mutation(const Graphe& graphe, const Chemin& I, float alpha) // alpha : pourcentage de mutation
 {
     Chemin J(I);
     int d = I.getDim();
@@ -25,18 +25,25 @@ Chemin mutation(const Chemin& I, float alpha) // alpha : pourcentage de mutation
     // On fait la mutation seulement si la probabilité alpha (*100) est supérieure à test
     int test = rand()%101;
 
+    bool done = false;
+
     // On fait la mutation
     if (alpha*100 >= test)
     {
-        //On permute k et l
-        int tmp = J.getVal(k);
-        J.setVal(k,J.getVal(l));
-        J.setVal(l,tmp);
+        do{
+            //On permute k et l
+            int tmp = J.getVal(k);
+            J.setVal(k,J.getVal(l));
+            J.setVal(l,tmp);
 
-        // On permute k+1 et l-1
-        tmp = J.getVal(modulo(k+1,d));
-        J.setVal(modulo(k+1,d),J.getVal(modulo(l-1,d)));
-        J.setVal(modulo(l-1,d),tmp);
+            // On permute k+1 et l-1
+            tmp = J.getVal(modulo(k+1,d));
+            J.setVal(modulo(k+1,d),J.getVal(modulo(l-1,d)));
+            J.setVal(modulo(l-1,d),tmp);
+            if(J.isVaild(graphe)){
+                done = true;
+            }
+        }while (!done); //tant que J invalide, faire mutation
     }
     return J;
 }
