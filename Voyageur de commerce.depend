@@ -24,21 +24,21 @@
 1614845942 source:d:\voyageur-du-commerce\src\individu.cpp
 	"../include/Individu.hpp"
 
-1614846010 source:d:\voyageur-du-commerce\src\mutation.cpp
+1614855003 source:d:\voyageur-du-commerce\src\mutation.cpp
 	"../include/mutation.hpp"
 	<stdlib.h>
 	<ctime>
 
-1613646288 d:\voyageur-du-commerce\include\mutation.hpp
+1614854892 d:\voyageur-du-commerce\include\mutation.hpp
 	"Chemin.hpp"
 
-1614846020 source:d:\voyageur-du-commerce\src\population.cpp
+1614853001 source:d:\voyageur-du-commerce\src\population.cpp
 	"../include/Population.hpp"
 
 1614845158 d:\voyageur-du-commerce\include\population.hpp
 	"Chemin.hpp"
 
-1614846078 source:d:\voyageur-du-commerce\src\random_generator.cpp
+1614852898 source:d:\voyageur-du-commerce\src\random_generator.cpp
 	"../include/random_generator.hpp"
 
 1613646288 d:\voyageur-du-commerce\include\random_generator.hpp
@@ -68,4 +68,9 @@
 	<vector>
 	<cstdlib>
 	<iostream>
+
+1614855472 source:d:\voyageur-du-commerce\src\lecture_tour.cpp
+	<iostream>
+	<fstream>
+	<string>
 
