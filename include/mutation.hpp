@@ -6,6 +6,6 @@
 // Car en C++ (-1)%5 = -1 et pas 4
 int modulo (int i, int j);
 
-Chemin mutation(const Chemin& I, float alpha);
+Chemin mutation(const Graphe& graphe, const Chemin& I, float alpha);
 
 #endif // MUTATION_H_INCLUDED
