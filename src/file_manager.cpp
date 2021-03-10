@@ -85,6 +85,8 @@ void ecriture_resultat(const Chemin& chs){
         for(uint i = 0; i < chs.getDim(); i++){
             fichier << chs.getVal(i) << endl;
         }
+        fichier << "-1" << endl;
+        fichier << eof << endl;
     }else{
         cerr << "Impossible d'ouvrir le fichier !" << endl;
         exit(-1);
