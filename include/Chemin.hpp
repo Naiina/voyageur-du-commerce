@@ -4,30 +4,33 @@
 #include "Individu.hpp"
 #include <vector>
 
+typedef unsigned int uint;
 
 class Chemin : public Individu
 {
     private:
-        int dim; // la taille de l'individu
+        uint dim; // la taille de l'individu
         vector<int> val; // un vecteur int repésante une tournée
         float eval; // la distance/ coût total de cette tournée
+        string name;
     public:
         /** Default constructor */
-        Chemin(int n=0): dim(n){val.reserve(n);};
+        Chemin(uint n=0, string name = string()): dim(n), name(name){val.reserve(n);};
         // Constructor par un vecteur
-        Chemin(const vector<int>& v);
+        Chemin(const vector<int>& v, string name = string());
         // Constructor par copie
-        Chemin(const Chemin & C); 
-        
+        Chemin(const Chemin & C);
+
         bool isVaild(const Graphe & graphe) const ; // si ce chemin est vaild
         bool contains(int v) const; // si ce chemin contient la ville v
-        bool contains(int v, int begin, int end) const; // si ce chemin contient la ville v entre les indices begin et end
-        
+        bool contains(int v, uint begin, uint end) const; // si ce chemin contient la ville v entre les indices begin et end
+
         // getters and setters
-        int getDim() const {return dim;};
+        uint getDim() const {return dim;};
         int getVal(int i) const {return val[i];};
         float getEval(const Graphe & graphe); // retourne le coût / distance totale du chemin
         float getEval_version1() const; // une première fonction évaluation simple
+        string getName()const{return name;};
         void setVal(int i, int v){ val[i] = v;}
 
         // opérateur unitaire

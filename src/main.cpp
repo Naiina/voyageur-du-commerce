@@ -1,7 +1,7 @@
 #include "../include/random_generator.hpp"
 #include "../include/mutation.hpp"
 #include "../include/Population.hpp"
-#include "../include/lecture_tour.hpp"
+#include "../include/file_manager.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -12,10 +12,18 @@ int main(int argc, char *argv[])
 {
 	cout << "Hello world:)" << endl;
 
-	//Test lecture_tour OK
+	//Test lecture_ville OK
 	cout<<"Test lecture_tour" <<endl;
-	vector<Ville> listeVilles = lecture_tour("D:/voyageur-du-commerce/test/berlin52.tsp");
+	vector<Ville> listeVilles;
+	lecture_villes("test/berlin52.tsp",&listeVilles);
     cout << listeVilles << endl;
+    Graphe graphe0(listeVilles);
+    cout << "graphe0:" << graphe0 << endl;
+
+    //Test lecture_tour
+    cout << "Test lecture_tour" << endl;
+    Chemin chs = lecture_tour("test/berlin52.opt.tour");
+    cout << "dim = " << chs.getDim() << ":" << chs << endl;
 
 	srand (static_cast <unsigned> (time(0)));
 
@@ -43,6 +51,11 @@ int main(int argc, char *argv[])
 	}
 	cout<<"si ce chemin contien 3?"<<(chemin.contains(3, 0, chemin.getDim()-1)?" Yes!":"No!")<<endl;
 
+    // Test ecriture_resultat
+    ecriture_resultat(chemin);
+
+    return 0;
+
 	// test mutation OK?
 	cout<<"Après mutation 50%"<<endl;
 	Chemin c2 = mutation(graphe,chemin, 0.5);
@@ -52,15 +65,16 @@ int main(int argc, char *argv[])
 		cout<<"La distance totale est "<<c2.getEval(graphe)<<endl;
 	}
 
-	// test population
+    // test population
 	int popTaille = 2;
     Population pop(popTaille);
 
-	//pop.setParent(0, generer_chemin_3(1,2,3));
-	//pop.setParent(1, generer_chemin_3(4,5,6));
-	//pop.setEnfant(0, generer_chemin_3(7, 8, 9));
-	//pop.setEnfant(1, generer_chemin_aleatoire(3));
-    //cout<<pop;
+	pop.setParent(0, generer_chemin_3(1,2,3));
+	pop.setParent(1, generer_chemin_3(4,5,6));
+	pop.setEnfant(0, generer_chemin_3(7, 8, 9));
+	pop.setEnfant(1, generer_chemin_aleatoire(3));
+    cout<<pop;
+
 
 }
 

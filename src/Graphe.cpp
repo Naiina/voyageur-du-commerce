@@ -3,8 +3,17 @@
 * fonctions membres
 */
 
-Graphe::Graphe()
-{
+Graphe::Graphe(string name_){
+    name = name_;
+}
+
+Graphe::Graphe(vector<Ville> listeVilles, string name_){
+    name = name_;
+    for(unsigned int i = 0; i < listeVilles.size(); i++){
+        for(unsigned int j = i; j < listeVilles.size(); j++){
+            addAnEdge(listeVilles[i],listeVilles[j]);
+        }
+    }
 }
 
 bool Graphe::hasAnEdge(const int u, const int v) const{
