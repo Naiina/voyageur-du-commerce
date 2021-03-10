@@ -9,7 +9,7 @@ void villes_aleatoires(int n, vector<Ville> & villes)
     {
         float r1 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/X));
         float r2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/X));
-        villes.push_back(Ville("",r1,r2));
+        villes.push_back(Ville(r1,r2));
     }
 }
 
