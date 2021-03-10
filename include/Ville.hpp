@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 class Ville
@@ -17,7 +18,10 @@ class Ville
     public:
         static int nbVille;
         /** Default constructor */
-        Ville(string name=string(), float x=0., float y=0.):name(name), x(x), y(y){idVille = ++nbVille;};
+        Ville(float x=0., float y=0.,string name=string()):name(name), x(x), y(y)
+        {
+            idVille = ++nbVille;
+        };
 
         // les getters
         int getIdVille() const;
@@ -34,7 +38,8 @@ class Ville
 float dist(const Ville& v1, const Ville& v2);
 
 // affichage
-ostream& operator<<(ostream& , const Ville&);
+ostream& operator<<(ostream&, const Ville&);
+ostream& operator<<(ostream&, const vector<Ville>&);
 
 //opérateurs binaires
 bool operator==(const Ville&, const Ville& );
