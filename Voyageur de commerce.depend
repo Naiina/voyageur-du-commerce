@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1614845977 source:d:\voyageur-du-commerce\src\chemin.cpp
+1614856783 source:d:\voyageur-du-commerce\src\chemin.cpp
 	"../include/Chemin.hpp"
 
-1614845158 d:\voyageur-du-commerce\include\chemin.hpp
+1614856783 d:\voyageur-du-commerce\include\chemin.hpp
 	"Individu.hpp"
 	<vector>
 
@@ -13,10 +13,11 @@
 	"Ville.hpp"
 	<map>
 
-1613646288 d:\voyageur-du-commerce\include\ville.hpp
+1615390317 d:\voyageur-du-commerce\include\ville.hpp
 	<string>
 	<iostream>
 	<cmath>
+	<vector>
 
 1614845999 source:d:\voyageur-du-commerce\src\graphe.cpp
 	"../include/Graphe.hpp"
@@ -38,7 +39,7 @@
 1614845158 d:\voyageur-du-commerce\include\population.hpp
 	"Chemin.hpp"
 
-1614852898 source:d:\voyageur-du-commerce\src\random_generator.cpp
+1615389031 source:d:\voyageur-du-commerce\src\random_generator.cpp
 	"../include/random_generator.hpp"
 
 1613646288 d:\voyageur-du-commerce\include\random_generator.hpp
@@ -51,14 +52,17 @@
 	"Graphe.hpp"
 	"Chemin.hpp"
 
-1614846042 source:d:\voyageur-du-commerce\src\ville.cpp
+1615390367 source:d:\voyageur-du-commerce\src\ville.cpp
 	"../include/Ville.hpp"
 
-1614846109 source:d:\voyageur-du-commerce\src\main.cpp
+1615389677 source:d:\voyageur-du-commerce\src\main.cpp
 	"../include/random_generator.hpp"
 	"../include/mutation.hpp"
 	"../include/Population.hpp"
+	"../include/lecture_tour.hpp"
 	<iostream>
+	<fstream>
+	<string>
 
 1614845957 source:d:\voyageur-du-commerce\src\cross_over.cpp
 	"../include/cross_over.hpp"
@@ -69,8 +73,15 @@
 	<cstdlib>
 	<iostream>
 
-1614855472 source:d:\voyageur-du-commerce\src\lecture_tour.cpp
+1615389523 source:d:\voyageur-du-commerce\src\lecture_tour.cpp
 	<iostream>
 	<fstream>
 	<string>
+	<vector>
+	"../include/lecture_tour.hpp"
+	"../include/Ville.hpp"
+
+1615389293 d:\voyageur-du-commerce\include\lecture_tour.hpp
+	<string>
+	"../include/Ville.hpp"
 

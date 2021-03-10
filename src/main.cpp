@@ -1,16 +1,27 @@
 #include "../include/random_generator.hpp"
 #include "../include/mutation.hpp"
 #include "../include/Population.hpp"
+#include "../include/lecture_tour.hpp"
 #include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
 
 int main(int argc, char *argv[])
 {
 	cout << "Hello world:)" << endl;
+
+	//Test lecture_tour OK
+	cout<<"Test lecture_tour" <<endl;
+	vector<Ville> listeVilles = lecture_tour("D:/voyageur-du-commerce/test/berlin52.tsp");
+    cout << listeVilles << endl;
+
 	srand (static_cast <unsigned> (time(0)));
 
 	// test classe Ville OK
-	//Ville v1 = Ville("Paris", 2.21, 48.51); // °est, °nord
-	//cout<<v1<<endl;
+	Ville v1 = Ville(2.21, 48.51,"Paris"); // °est, °nord
+	cout<<v1<<endl;
 
 	// test random_generator + classe Graphe OK
 	const int n = 10;
@@ -34,7 +45,7 @@ int main(int argc, char *argv[])
 
 	// test mutation OK?
 	cout<<"Après mutation 50%"<<endl;
-	Chemin c2 = mutation(chemin, 0.5);
+	Chemin c2 = mutation(graphe,chemin, 0.5);
 	cout<<c2;
 	cout << "si chemin est valid? "<<c2.isVaild(graphe)<<endl;
 	if(chemin.isVaild(graphe)){
@@ -45,17 +56,70 @@ int main(int argc, char *argv[])
 	int popTaille = 2;
     Population pop(popTaille);
 
-	pop.setParent(0, generer_chemin_3(1,2,3));
-	pop.setParent(1, generer_chemin_3(4,5,6));
-	pop.setEnfant(0, generer_chemin_3(7, 8, 9));
-	pop.setEnfant(1, generer_chemin_aleatoire(3));
-	cout<<pop;
-
+	//pop.setParent(0, generer_chemin_3(1,2,3));
+	//pop.setParent(1, generer_chemin_3(4,5,6));
+	//pop.setEnfant(0, generer_chemin_3(7, 8, 9));
+	//pop.setEnfant(1, generer_chemin_aleatoire(3));
+    //cout<<pop;
 
 }
 
 /* Les affichages
 Hello world:)
+Test lecture_tour
+Liste de 52villes:
+1: (565,575)
+2: (25,185)
+3: (345,750)
+4: (945,685)
+5: (845,655)
+6: (880,660)
+7: (25,230)
+8: (525,1000)
+9: (580,1175)
+10: (650,1130)
+11: (1605,620)
+12: (1220,580)
+13: (1465,200)
+14: (1530,5)
+15: (845,680)
+16: (725,370)
+17: (145,665)
+18: (415,635)
+19: (510,875)
+20: (560,365)
+21: (300,465)
+22: (520,585)
+23: (480,415)
+24: (835,625)
+25: (975,580)
+26: (1215,245)
+27: (1320,315)
+28: (1250,400)
+29: (660,180)
+30: (410,250)
+31: (420,555)
+32: (575,665)
+33: (1150,1160)
+34: (700,580)
+35: (685,595)
+36: (685,610)
+37: (770,610)
+38: (795,645)
+39: (720,635)
+40: (760,650)
+41: (475,960)
+42: (95,260)
+43: (875,920)
+44: (700,500)
+45: (555,815)
+46: (830,485)
+47: (1170,65)
+48: (830,610)
+49: (605,625)
+50: (595,360)
+51: (1340,725)
+52: (1740,245)
 Ville: , id: 1 (76.2266, 12.8752)
 Ville: , id: 2 (63.5805, 95.4515)
 Ville: , id: 3 (83.391, 34.7346)
