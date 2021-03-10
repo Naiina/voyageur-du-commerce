@@ -31,7 +31,7 @@ vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin &
         cerr << "ERROR the length of two paths is not equal!"<<endl;
         exit(EXIT_FAILURE);
     }
-    if(!(I.isVaild(graphe) && J.isVaild(graphe))){
+    if(!(I.isValid(graphe) && J.isValid(graphe))){
         cerr << "ERROR the two input paths should be vaild!"<<endl;
         exit(EXIT_FAILURE);
     }
@@ -48,7 +48,7 @@ vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin &
         }
         hybrid_no_duplicates(IJ,J, l, n);
         hybrid_no_duplicates(JI,I, l, n);
-        if(IJ.isVaild(graphe) && JI.isVaild(graphe)){
+        if(IJ.isValid(graphe) && JI.isValid(graphe)){
             done = true;
         }
     }while (!done);

@@ -40,7 +40,7 @@ Chemin mutation(const Graphe& graphe, const Chemin& I, float alpha) // alpha : p
             tmp = J.getVal(modulo(k+1,d));
             J.setVal(modulo(k+1,d),J.getVal(modulo(l-1,d)));
             J.setVal(modulo(l-1,d),tmp);
-            if(J.isVaild(graphe)){
+            if(J.isValid(graphe)){
                 done = true;
             }
         }while (!done); //tant que J invalide, faire mutation

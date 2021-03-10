@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
 	vector<int> v = {1, 2, 3};
 	Chemin chemin(v);
 	cout<<chemin;
-	cout << "si chemin est valid? "<<chemin.isVaild(graphe)<<endl;
-	if(chemin.isVaild(graphe)){
+	cout << "si chemin est valid? "<<chemin.isValid(graphe)<<endl;
+	if(chemin.isValid(graphe)){
 		cout<<"La distance totale est "<<chemin.getEval(graphe)<<endl;
 	}
 	cout<<"si ce chemin contien 3?"<<(chemin.contains(3, 0, chemin.getDim()-1)?" Yes!":"No!")<<endl;
@@ -60,8 +60,8 @@ int main(int argc, char *argv[])
 	cout<<"Après mutation 50%"<<endl;
 	Chemin c2 = mutation(graphe,chemin, 0.5);
 	cout<<c2;
-	cout << "si chemin est valid? "<<c2.isVaild(graphe)<<endl;
-	if(chemin.isVaild(graphe)){
+	cout << "si chemin est valid? "<<c2.isValid(graphe)<<endl;
+	if(chemin.isValid(graphe)){
 		cout<<"La distance totale est "<<c2.getEval(graphe)<<endl;
 	}
 

@@ -3,6 +3,7 @@
 
 #include "Individu.hpp"
 #include <vector>
+#include <cassert>
 
 typedef unsigned int uint;
 
@@ -21,7 +22,7 @@ class Chemin : public Individu
         // Constructor par copie
         Chemin(const Chemin & C);
 
-        bool isVaild(const Graphe & graphe) const ; // si ce chemin est vaild
+        bool isValid(const Graphe & graphe) const ; // si ce chemin est vaild
         bool contains(int v) const; // si ce chemin contient la ville v
         bool contains(int v, uint begin, uint end) const; // si ce chemin contient la ville v entre les indices begin et end
 
@@ -35,6 +36,7 @@ class Chemin : public Individu
 
         // opérateur unitaire
         Chemin& operator=(const Chemin& );
+        int operator[](uint i);
 
 };
 

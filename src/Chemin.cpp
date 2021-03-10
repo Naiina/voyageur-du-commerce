@@ -20,7 +20,7 @@ Chemin::Chemin(const Chemin& C)
     }
 }
 
-bool Chemin::isVaild(const Graphe & graphe) const {
+bool Chemin::isValid(const Graphe & graphe) const {
     for (uint i = 0; i < dim-1; i++)
     {
         if(!graphe.hasAnEdge(val[i], val[i+1])){
@@ -32,7 +32,7 @@ bool Chemin::isVaild(const Graphe & graphe) const {
 
 float Chemin::getEval(const Graphe & graphe){
     // retourne -1 si ce chemin n'est pas valid
-    if(!isVaild(graphe)){return -1;}
+    if(!isValid(graphe)){return -1;}
 
     eval = 0.;
     for(uint i = 0; i < dim-1; i++)
@@ -75,6 +75,10 @@ Chemin& Chemin::operator=(const Chemin& C){
     return *this;
 }
 
+int Chemin::operator[](uint i){
+    assert(i < val.size());
+    return val[i];
+}
 
 /*
 * foctions de classe

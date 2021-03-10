@@ -2,9 +2,10 @@
 1615401080 source:d:\voyageur-du-commerce\src\chemin.cpp
 	"../include/Chemin.hpp"
 
-1615401116 d:\voyageur-du-commerce\include\chemin.hpp
+1615402494 d:\voyageur-du-commerce\include\chemin.hpp
 	"Individu.hpp"
 	<vector>
+	<cassert>
 
 1613646288 d:\voyageur-du-commerce\include\individu.hpp
 	"Graphe.hpp"
@@ -85,7 +86,7 @@
 	<string>
 	"../include/Ville.hpp"
 
-1615400869 source:d:\voyageur-du-commerce\src\file_manager.cpp
+1615401735 source:d:\voyageur-du-commerce\src\file_manager.cpp
 	<iostream>
 	<fstream>
 	<string>

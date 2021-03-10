@@ -38,7 +38,7 @@
 		<Unit filename="include/Individu.hpp" />
 		<Unit filename="include/Population.hpp" />
 		<Unit filename="include/Ville.hpp" />
-		<Unit filename="include/lecture_tour.hpp" />
+		<Unit filename="include/file_manager.hpp" />
 		<Unit filename="include/mutation.hpp" />
 		<Unit filename="include/random_generator.hpp" />
 		<Unit filename="src/Chemin.cpp" />
@@ -47,7 +47,7 @@
 		<Unit filename="src/Population.cpp" />
 		<Unit filename="src/Ville.cpp" />
 		<Unit filename="src/cross_over.cpp" />
-		<Unit filename="src/lecture_tour.cpp" />
+		<Unit filename="src/file_manager.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/mutation.cpp" />
 		<Unit filename="src/random_generator.cpp" />
