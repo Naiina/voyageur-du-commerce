@@ -32,14 +32,14 @@ Chemin mutation(const Graphe& graphe, const Chemin& I, float alpha) // alpha : p
     {
         do{
             //On permute k et l
-            int tmp = J.getVal(k);
-            J.setVal(k,J.getVal(l));
-            J.setVal(l,tmp);
+            int tmp = J[k];
+            J[k] = J[l];
+            J[l] = tmp;
 
             // On permute k+1 et l-1
-            tmp = J.getVal(modulo(k+1,d));
-            J.setVal(modulo(k+1,d),J.getVal(modulo(l-1,d)));
-            J.setVal(modulo(l-1,d),tmp);
+            tmp = J[modulo(k+1,d)];
+            J[modulo(k+1,d)] = J[modulo(l-1,d)];
+            J[modulo(l-1,d)] = tmp;
             if(J.isValid(graphe)){
                 done = true;
             }

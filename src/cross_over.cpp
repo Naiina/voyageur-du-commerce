@@ -7,7 +7,7 @@ void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){
     int dupli = 0, insert = l+1;
 
     for (int i = l+1; i < n; i++){
-        int v = J.getVal(i);
+        int v = J[i];
         if(IJ.contains(v, 0, l)) {
             dupli++;
         }else{
@@ -15,7 +15,7 @@ void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){
         }
     }
     for (int i = 0; i <=l && dupli>0; i++){
-        int v = J.getVal(i);
+        int v = J[i];
         if(!IJ.contains(v, 0, l)) {
             IJ.setVal(insert++, v);
             dupli--;

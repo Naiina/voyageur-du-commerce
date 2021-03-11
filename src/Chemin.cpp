@@ -16,7 +16,7 @@ Chemin::Chemin(const Chemin& C)
     name = C.name;
     dim = C.getDim();
     for(uint i=0;i<dim;i++){
-        val.push_back(C.getVal(i));
+        val.push_back(C.val[i]);
     }
 }
 
@@ -71,11 +71,18 @@ bool Chemin::contains(int v) const{
 Chemin& Chemin::operator=(const Chemin& C){
     dim = C.getDim();
     val.resize(0);
-    for(uint i=0;i<dim;i++) val.push_back(C.getVal(i));
+    for(uint i=0;i<dim;i++){
+        val.push_back(C.val[i]);
+    }
     return *this;
 }
 
-int Chemin::operator[](uint i){
+int Chemin::operator[](uint i) const{
+    assert(i < val.size());
+    return val[i];
+}
+
+int& Chemin::operator[](uint i){
     assert(i < val.size());
     return val[i];
 }
@@ -88,10 +95,10 @@ ostream& operator<<(ostream& os, const Chemin& chemin){
     os<<"Chemin("<<chemin.getDim()<<") [";
     for (uint i=0; i< chemin.getDim()-1; i++)
     {
-        os<<chemin.getVal(i)<<", ";
+        os<<chemin[i]<<", ";
     }
     if(chemin.getDim()!=0)
-        os<<chemin.getVal(chemin.getDim()-1)<< "]";
+        os<<chemin[chemin.getDim()-1]<< "]";
     else
         os<<"]";
     os<<endl;

@@ -36,7 +36,8 @@ class Chemin : public Individu
 
         // opérateur unitaire
         Chemin& operator=(const Chemin& );
-        int operator[](uint i);
+        int operator[](uint i) const; ///lecture
+        int& operator[](uint i); ///écriture
 
 };
 
