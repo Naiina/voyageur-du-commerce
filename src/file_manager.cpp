@@ -45,6 +45,26 @@ void lecture_villes(string nomFichier, vector<Ville>* listeVilles)
     }
 }
 
+void ecriture_villes(vector<Ville> liste_villes, string nomTour, string comment){
+    string nomFichier = nomTour + to_string(liste_villes.size()) + ".tsp";
+    ofstream fichier("test/" + nomFichier);
+    if(fichier.is_open()){
+        fichier << "NAME : " << nomFichier << endl;
+        fichier << "TYPE : " << "TSP" << endl;
+        fichier << "DIMENSION : " << liste_villes.size() << endl;
+        fichier << "COMMENT : " << comment << endl;
+        fichier << "EDGE_WEIGHT_TYPE : " << "EUC_2D" << endl;
+        fichier << "NODE_COORD_SECTION" << endl;
+        for(uint i = 0; i < liste_villes.size(); i++){
+            fichier << liste_villes[i] << endl;
+        }
+        fichier << eof << endl;
+    }else{
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+        exit(-1);
+    }
+}
+
 Chemin lecture_tour(std::string nomFichier){
     vector<int> val;
     /// on ouvre le fichier en lecture
