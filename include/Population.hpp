@@ -27,6 +27,9 @@ class Population
         //TODO si c change, est ce que parents va changer ?
         void setParent(int i, Chemin c) {parents[i] = c;} 
         void setEnfant(int i, Chemin c) {enfants[i] = c;}
+    
+        //Savoir s'il y a des enfants
+        bool isEmpty() const;
 };
 
 /*
