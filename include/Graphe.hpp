@@ -17,6 +17,7 @@ public:
     map<pair<int, int>, float>::const_iterator begin() const;
     map<pair<int, int>, float>::const_iterator end() const;
     float getDistance(const int u, const int v) const; // retourne la distance entre u et v, sinon -1 en cas de n'existe pas
+    string getName(){return name;};
 };
 
 /*
