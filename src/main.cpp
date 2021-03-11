@@ -128,8 +128,8 @@ int main(int argc, char *argv[])
     cout<<pop;
 	
 	//test chemin généré aléatoirement 
-	cout<<"test chemin aleatoire"<<endl;
-    Chemin ch1 = generer_chemin_graphe(listeVilles);
+    cout<<"test chemin aleatoire"<<endl;
+    Chemin ch1 = generer_chemin_listeVille(listeVilles);
     cout<<ch1;
 
     // test population aleatoire
