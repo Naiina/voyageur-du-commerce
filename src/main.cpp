@@ -2,6 +2,7 @@
 #include "../include/mutation.hpp"
 #include "../include/Population.hpp"
 #include "../include/file_manager.hpp"
+#include "../include/creation_graphe.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -98,7 +99,10 @@ int main(int argc, char *argv[])
     cout << "graphe " << graphe10Ligne.getName() << " : " << endl;
     cout << graphe10Ligne << endl;
 
-
+    ///Test creation_graphe()
+    Graphe grapheTest;
+    grapheTest = creation_graphe(n, "ROND", "Test");
+    cout << grapheTest << endl;
 
     return 0;
 
