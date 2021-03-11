@@ -14,7 +14,7 @@ class Population
 
     public:
         /** Default constructor */
-        Population(int p):taille(p){parents.reserve(p); enfants.reserve(p);};
+        Population(int p):taille(p){parents.resize(p); enfants.resize(p);};
 
         //getters and setters
         int getTaille() const {return taille;}
