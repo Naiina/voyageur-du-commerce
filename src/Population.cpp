@@ -1,27 +1,26 @@
 #include "../include/Population.hpp"
 
+bool Population::isEmpty() const{
+    if (enfants.empty())
+    {
+        return true;
+    }
+    return false;
+}
+
 /*
-* foctions de classe
+* fonctions de classe
 */
 
 ostream& operator<<(ostream& os, const Population & p){
     os<< "Population("<< p.getTaille()<< ") {"<< endl<< "Parents: "<< endl;
 
-    for(int i=1; i<p.getTaille(); i++ ){ os<< p.getParent(i);}
-    /*
-    vector<Chemin> chemins(p.getParents());
-    cout<<chemins.size()<<endl;
-    cout <<"copier"<<endl;
+    for(int i=0; i<p.getTaille(); i++ ){ os<< p.getParent(i);}
 
-    for (int i = 0; i < chemins.size(); i++)
-    {
-        cout << chemins[i];
+    if (p.isEmpty()){
+        os<<"Enfants:"<<endl;
+        for(int i=0; i<p.getTaille(); i++ ){ os<< p.getEnfant(i);}
     }
-    */
-
-    os<<"Enfants:"<<endl;
-
-    for(int i=0; i<p.getTaille(); i++ ){ os<< p.getEnfant(i);}
 
     return os<<"}"<<endl;
 }
