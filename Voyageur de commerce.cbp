@@ -38,6 +38,7 @@
 		<Unit filename="include/Individu.hpp" />
 		<Unit filename="include/Population.hpp" />
 		<Unit filename="include/Ville.hpp" />
+		<Unit filename="include/creation_graphe.hpp" />
 		<Unit filename="include/file_manager.hpp" />
 		<Unit filename="include/mutation.hpp" />
 		<Unit filename="include/random_generator.hpp" />
@@ -46,6 +47,7 @@
 		<Unit filename="src/Individu.cpp" />
 		<Unit filename="src/Population.cpp" />
 		<Unit filename="src/Ville.cpp" />
+		<Unit filename="src/creation_graphe.cpp" />
 		<Unit filename="src/cross_over.cpp" />
 		<Unit filename="src/file_manager.cpp" />
 		<Unit filename="src/main.cpp" />

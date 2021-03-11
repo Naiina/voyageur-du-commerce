@@ -1,5 +1,5 @@
-#ifndef CREATION_VILLE.H
-#define CREATION_VILLE.H
+#ifndef CREATION_GRAPHE.H
+#define CREATION_GRAPHE.H
 
 #include "../include/Graphe.hpp"
 
@@ -9,4 +9,4 @@ typedef unsigned int uint;
 
 Graphe creation_graphe(uint n, string type, string name);
 
-#endif // CREATION_VILLE
+#endif
