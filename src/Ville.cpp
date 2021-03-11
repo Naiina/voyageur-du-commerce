@@ -39,7 +39,7 @@ ostream& operator<<(ostream& os, const Ville& v){
 }
 
 ostream& operator<<(ostream& os, const vector<Ville>& listeVilles){
-    os << "Liste de " << listeVilles.size() << "villes:" << endl;
+    os << "Liste de " << listeVilles.size() << " villes:" << endl;
     for(unsigned int i = 0; i<listeVilles.size(); i++){
         os << listeVilles[i].getIdVille() << ": (" << listeVilles[i].getX() << "," << listeVilles[i].getY() << ")" << endl;
     }

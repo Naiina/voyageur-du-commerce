@@ -65,7 +65,6 @@ int main(int argc, char *argv[])
     ///Création de 10 villes en rond
     cout << endl << "creation 10 villes en rond" << endl;
     Ville::nbVille = 0; ///initialisation à 0 du nbre de villes
-    cout << "nbVille = " << Ville::nbVille << endl;
     float r = 10;
     float angleMin(0);
     float angleMax(2*PI);
@@ -81,6 +80,24 @@ int main(int argc, char *argv[])
     Graphe graphe10Rond(liste_villes,"Rond");
     cout << "graphe " << graphe10Rond.getName() << " : " << endl;
     cout << graphe10Rond << endl;
+
+    ///Création de 10 villes en ligne
+    cout << endl << "Création de 10 villes en ligne" << endl;
+    Ville::nbVille = 0; ///initialisation à 0 du nbre de villes
+    vector<Ville> liste_villes1;
+    float xMin(0);
+    float xMax(10);
+    float dX( (xMax-xMin)/n );
+    for(uint i=0 ; i < n ; i ++){
+        float x = i*dX;
+        Ville v(x,0);
+        liste_villes1.push_back(v);
+    }
+    cout << liste_villes1 << endl;
+    Graphe graphe10Ligne(liste_villes1,"Ligne");
+    cout << "graphe " << graphe10Ligne.getName() << " : " << endl;
+    cout << graphe10Ligne << endl;
+
 
 
     return 0;
