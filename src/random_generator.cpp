@@ -42,3 +42,30 @@ Chemin generer_chemin_aleatoire(int taille){
     }
     return chemin;
 }
+
+int myrandom(int i){
+    return rand()%i;
+}
+
+Chemin generer_chemin_listeVille(const vector<Ville>& ville){
+    Chemin chemin(ville.size());
+    vector<int> vectIdVille;
+    for(int i=0; i<ville.size();i++)
+    {
+        vectIdVille.push_back(ville[i].getIdVille());
+    }
+    random_shuffle(vectIdVille.begin(), vectIdVille.end(), myrandom);
+    for(int i=0;i<ville.size();i++){
+        chemin.setVal(i, vectIdVille[i]);
+    }
+    return chemin;
+}
+
+Population generer_pop_aleatoire(const vector<Ville>& ville){
+    int taillePop = 1+rand()%10;
+    Population pop(taillePop);
+    for(int i=0;i<taillePop;i++){
+        pop.setParent(i,generer_chemin_listeVille(ville));
+    }
+    return pop;
+}
