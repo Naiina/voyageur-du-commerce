@@ -6,6 +6,8 @@
 #include <random>
 #include <cstdlib>
 #include <vector>
+#include <algorithm> //random_shuffle
+
 #include "Ville.hpp"
 #include "Graphe.hpp"
 #include "Chemin.hpp"
