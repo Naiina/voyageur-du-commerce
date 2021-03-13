@@ -2,13 +2,20 @@
 #define POPULATION_H
 #include "Chemin.hpp"
 #include <assert.h>
+#include <queue>
 
+// sert à priority_queue
+struct cmp
+{
+bool operator()(const Chemin& c1, const Chemin& c2){ return c1.getEval()> c2.getEval();}
+};
 
 
 class Population
 {
     private:
         vector<Chemin> individus;
+        //priority_queue<Chemin, vector<Chemin>, cmp> individus;
         Chemin cheminMin;
 
     public:
@@ -31,8 +38,6 @@ class Population
         const Chemin getCheminMin() const {return cheminMin;}
         const double getMinDistance() const {return cheminMin.getEval();}
         void update(const Graphe& graphe);
-
-
 };
 
 /*
