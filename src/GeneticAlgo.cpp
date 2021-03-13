@@ -23,6 +23,7 @@ void permutation(const Population& population, const Graphe& graphe, Population&
             vector<Chemin> deuxChemins = cross_over(graphe, I, J);
             for(Chemin c: deuxChemins){ 
                 c.mutation(graphe);
+                c.setEval(graphe);
                 individus.push_back(c);
             }
         } 
