@@ -29,10 +29,10 @@ int main(int argc, char const *argv[])
     geneticAlgo(population, graphe, choix);
     cout<<"here end"<<endl;
     
-    
-    
     return 0;
 }
+
+
 
 /*
 int main(int argc, char *argv[])

@@ -17,7 +17,6 @@ int series(int n)
 // cross over + mutation
 void permutation(const Population& population, const Graphe& graphe, Population& reproducteurNext){
     //priority_queue<Chemin, vector<Chemin>, cmp> sortedIndiv; // sort in order of distance with operator>
-    cout<<"permutation"<<endl;
     vector<Chemin> individus;
     int p = population.getTaille();
 
@@ -25,19 +24,16 @@ void permutation(const Population& population, const Graphe& graphe, Population&
     {
         for (int j = i+1; j < p; j++)
         {
-            cout<<"permutation i: "<<i<<", j: "<<j<<endl;
             Chemin I = population[i];
             Chemin J = population[j];
-            cout<<"I"<<I<<endl;
-            cout<<"J"<<J<<endl;
             vector<Chemin> deuxChemins = cross_over(graphe, I, J);
-            for(Chemin c: deuxChemins){ individus.push_back(c);}
+            for(Chemin c: deuxChemins){ 
+                c.mutation(graphe);
+                individus.push_back(c);
+            }
         } 
     }
-    for(Chemin c: individus){ c.mutation(graphe);}
-
     reproducteurNext.setIndividus(individus);
-    reproducteurNext.update(graphe);
 }
 
 //TODO population taille combien ? paire ?
@@ -58,6 +54,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         // generate population enfants
         Population populationNextTmp(series(p-1)*2); 
         permutation(reproducteur, graphe, populationNextTmp);
+        populationNextTmp.update(graphe);
         cout << "populationNextTmp"<<endl << populationNextTmp<<endl;
 
         // selection population enfants finale

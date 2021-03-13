@@ -150,7 +150,6 @@ ostream& operator<<(ostream& os, const Chemin& chemin){
 
 void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){
     int dupli = 0, insert = l+1;
-
     for (int i = l+1; i < n; i++){
         int v = J[i];
         if(IJ.contains(v, 0, l)) {
@@ -180,7 +179,6 @@ vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin &
         cerr << "ERROR the two input paths should be vaild!"<<endl;
         exit(EXIT_FAILURE);
     }
-    bool done = false;
     vector<Chemin> deuxChemins;
     int n = I.getDim();
     Chemin IJ = I;
@@ -189,14 +187,14 @@ vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin &
     do{
         int l = rand() % n; // indice aléatoire entre 0 et n-1
         if (l==0 || l==n-1){
-            done = true;
+            break;
         }
         hybrid_no_duplicates(IJ,J, l, n);
         hybrid_no_duplicates(JI,I, l, n);
         if(IJ.isValid(graphe) && JI.isValid(graphe)){
-            done = true;
+            break;
         }
-    }while (!done);
+    }while (true);
 
     deuxChemins.push_back(IJ);
     deuxChemins.push_back(JI);

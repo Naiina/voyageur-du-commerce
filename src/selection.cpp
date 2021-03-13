@@ -15,23 +15,6 @@ double somme_dist_individus(const Population & pop){
     return sum;
 }
 
-vector<int> liste_triee_individus(const Population & pop){
-    int taille=pop.getTaille();
-    //initialisation
-    vector<pair<double, int> > to_sort;
-    for(int k=0;k<taille;k++){
-        int index=k;
-        double valeur =pop[k].getEval();
-        to_sort.push_back(pair<double, int>(valeur, index));
-    }
-
-    std::sort(to_sort.begin(), to_sort.end());
-    vector<int> v_int(taille);
-    for(int k=0;k<taille;k++){
-        v_int[k]=to_sort[k].second;
-    }
-    return v_int;
-}
 
 Population selection(Choix choix,int q, const Population & pop){
 // ind=3 selection par tournoi
@@ -72,30 +55,31 @@ Population selection_elitiste(int q, const Population & popParent, const Populat
     if(popEnfant.getTaille() < n-q){
         q += n-q-popEnfant.getTaille();
     }
+    cout<<"n: "<<n<<", q:"<<q<<", n-q: "<<n-q<<endl;
     // q parents
-    vector<int> v_int_parents=liste_triee_individus(popParent);
     for(int i=0;i<q;i++){
-        int l=v_int_parents[i];
-        newpop.setIndividu(i, popParent[l]);
+        newpop.setIndividu(i, popParent[i]);
     }
     // n-q enfants
-    vector<int> v_int_enfants=liste_triee_individus(popEnfant);
     for(int i=0;i<n-q;i++){
-        int l=v_int_enfants[i];
-        newpop.setIndividu(i,popEnfant[l]);
+        newpop.setIndividu(i+q,popEnfant[i]);
     }
     return newpop;
 }
 
-// return a population of size random
+// return a population of size at least 2
 Population selection_roulette(int q, const Population & pop){
     double S = somme_dist_individus(pop);
-    double r = static_cast <double> (rand()) / (static_cast <double> (RAND_MAX/S)); // r between 0 et S
-    double pas=0;
-    int indice=0;
+    int indice = 0;
 
-    for (; pas < r; indice++){
-        pas += pop[indice].getEval();
+    while(indice < 2){
+        double r = static_cast <double> (rand()) / (static_cast <double> (RAND_MAX/S)); // r between 0 et S
+        double pas=0;
+        indice=0;
+
+        for (; pas < r; indice++){
+            pas += pop[indice].getEval();
+        }
     }
 
     Population new_pop(indice);
