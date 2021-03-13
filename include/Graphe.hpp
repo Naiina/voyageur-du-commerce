@@ -11,7 +11,7 @@ private:
     string name;
 public:
     Graphe(string name_ = string());
-    Graphe(vector<Ville> listeVilles,string name_ = string());
+    Graphe(vector<Ville> listeVilles,string name_ = string()); // generate graph complete
     bool hasAnEdge(const int u, const int v) const; // on considère (u,v),(v,u) sont équivalentes
     void addAnEdge(const Ville &, const Ville &); // ajout arrête a---b avec la distance entre a et b
     map<pair<int, int>, float>::const_iterator begin() const;

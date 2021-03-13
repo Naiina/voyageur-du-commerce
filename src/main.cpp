@@ -2,6 +2,7 @@
 #include "../include/Population.hpp"
 #include "../include/file_manager.hpp"
 #include "../include/creation_graphe.hpp"
+#include "GeneticAlgo.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -11,10 +12,29 @@
 
 using namespace std;
 
+int main(int argc, char const *argv[])
+{
+    srand (static_cast <unsigned> (time(0)));
+
+    // initialisation liste des villes et graphe complet
+    vector<Ville> listeVilles;
+	lecture_villes("test/berlin52.tsp",&listeVilles);
+    Graphe graphe(listeVilles);
+
+    // initialisation population initiale
+    Population population = generer_pop_aleatoire(listeVilles, graphe);
+    Choix choix = ROULETTE;
+
+    geneticAlgo(population, graphe, choix);
+    
+    return 0;
+}
+
+/*
 int main(int argc, char *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
-/*
+
 	cout << "Hello world:)" << endl;
 
 	///Test lecture_ville OK
@@ -24,7 +44,7 @@ int main(int argc, char *argv[])
     cout << listeVilles << endl;
     Graphe graphe0(listeVilles);
 
-    ///Test lecture_tour
+    ///Test lecture_tour optimal
     cout << "Test lecture_tour" << endl;
     Chemin chs = lecture_tour("test/berlin52.opt.tour");
     cout << "dim = " << chs.getDim() << ":" << chs << endl;
@@ -119,9 +139,9 @@ int main(int argc, char *argv[])
     int popAleaTaille = 52; //taille de berlin52
     Population popAlea = generer_pop_aleatoire(listeVilles);
     cout<<popAlea;
-    */
 
 }
+*/
 
 /* Les affichages
 Hello world:)

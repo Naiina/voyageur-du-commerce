@@ -42,8 +42,8 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     {   
         Population reproducteur = selection(choix, q, population);
         Population reproducteurNext(p);
-        permutation( p, reproducteur, graphe,reproducteurNext);
-        Population populationNext = selection(ELITISTE, q, reproducteurNext);
+        permutation( p, reproducteur, graphe, reproducteurNext);
+        Population populationNext = selection_elitiste(q, population, reproducteurNext);
 
         if(populationNext.getMinDistance() >= population.getMinDistance()){
             count--;
@@ -56,7 +56,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         // test d'arrêt
         if(k>=MAXIT){ break;}
         if(count<=0) { break;}
-
+        // otherwise we continue
         population = populationNext;
     }
     

@@ -19,17 +19,12 @@ void villes_aleatoires(int n, vector<Ville> & villes);
 // Retourne un graphe aléatoires
 void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe);
 
-// Generer un chemin de taille 3
-Chemin generer_chemin_3(int a,int b,int c);
-// Generer un chemin de taille aléatoirement
-Chemin generer_chemin_aleatoire(int taille);
-
 int myrandom(int i);
 
 // Generer un chemin aleatoire à partir d'une liste de villes
-Chemin generer_chemin_listeVille(const vector<Ville>& ville);
+Chemin generer_chemin_listeVille(const vector<Ville>& ville, const Graphe& graphe);
 
 // Generer une population aléatoire à partir d'une liste de villes
-Population generer_pop_aleatoire(const vector<Ville>& ville);
+Population generer_pop_aleatoire(const vector<Ville>& ville, const Graphe& graphe);
 
 #endif // RANDOM_GENERATOR_H

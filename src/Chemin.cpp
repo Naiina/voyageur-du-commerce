@@ -30,9 +30,9 @@ bool Chemin::isValid(const Graphe & graphe) const {
     return graphe.hasAnEdge(val[dim-1], val[0]);
 }
 
-float Chemin::getEval(const Graphe & graphe){
-    // retourne -1 si ce chemin n'est pas valid
-    if(!isValid(graphe)){return -1;}
+void Chemin::setEval(const Graphe & graphe){
+    // distance total equals -1 si ce chemin n'est pas valid
+    if(!isValid(graphe)){eval = -1; return;}
 
     eval = 0.;
     for(uint i = 0; i < dim-1; i++)
@@ -40,7 +40,6 @@ float Chemin::getEval(const Graphe & graphe){
         eval += graphe.getDistance(val[i], val[i+1]);
     }
     eval += graphe.getDistance(val[dim-1], val[0]);
-    return eval;
 }
 
 bool Chemin::contains(int v, uint begin, uint end) const{

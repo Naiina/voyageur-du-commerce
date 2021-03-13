@@ -31,7 +31,7 @@ class Chemin : public Individu
         // getters and setters
         uint getDim() const {return dim;};
         int getVal(int i) const {return val[i];};
-        float getEval(const Graphe & graphe); // retourne le coût / distance totale du chemin
+        void setEval(const Graphe & graphe); // retourne le coût / distance totale du chemin
         float getEval() const {return eval;}; // une première fonction évaluation simple
         string getName()const{return name;};
         void setVal(int i, int v){ val[i] = v;}

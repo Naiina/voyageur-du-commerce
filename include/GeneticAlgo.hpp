@@ -29,7 +29,7 @@ public:
 */
 
 // the main algorithm runs with the given initial population and a graph complete
-void geneticAlgo(const Population& population, const Graphe& graphe, const Choix choix);
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix);
 
 // 
 void permutation(int p, const Population& reproducteur, const Graphe& graphe, Population& reproducteurNext);

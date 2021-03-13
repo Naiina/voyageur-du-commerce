@@ -8,6 +8,16 @@ void Population::setIndividus(const vector<Chemin>& c){
     
 }
 
+void Population::initCheminMin(){
+    cheminMin = individus[0];
+    for (int i = 1; i < taille; i++)
+    {
+        if(individus[i].getEval() < cheminMin.getEval()){
+            cheminMin = individus[i];
+        }
+    }
+}
+
 /*
 * foctions de classe
 */

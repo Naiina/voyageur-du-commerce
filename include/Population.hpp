@@ -22,6 +22,7 @@ class Population
         void setIndividu(int i, const Chemin& c) {individus[i] = c;}
         void setIndividus(const vector<Chemin>& c);
         void setCheminMin(const Chemin& c) {cheminMin = c;}
+        void initCheminMin();
         Chemin getCheminMin() {return cheminMin;}
         float getMinDistance() {return cheminMin.getEval();}
 
