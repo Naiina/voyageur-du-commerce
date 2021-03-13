@@ -94,11 +94,12 @@ Chemin lecture_tour(std::string nomFichier){
     return chs;
 }
 
-void ecriture_resultat(const Chemin& chs){
+void ecriture_resultat(const Chemin& chs, string comment){
     string nomFichier = chs.getName() + to_string(chs.getDim()) + ".opt.tour";
     ofstream fichier("test/" + nomFichier);
     if(fichier.is_open()){
         fichier << "NAME : " << nomFichier << endl;
+        fichier << "COMMENT : " << comment << endl;
         fichier << "TYPE : " << "TOUR" << endl;
         fichier << "DIMENSION : " << chs.getDim() << endl;
         fichier << "TOUR_SECTION" << endl;

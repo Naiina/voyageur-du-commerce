@@ -1,4 +1,4 @@
-#include "GeneticAlgo.hpp"
+#include "../include/GeneticAlgo.hpp"
 
 // sert à priority_queue
 struct cmp
@@ -37,10 +37,14 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     int count = EVOLUTION;
     int q = population.getTaille()/2;
     int p = population.getTaille();
-    
+
     while (++k)
+<<<<<<< Updated upstream
     {   
         cout<<"ite: "<<k<<endl;
+=======
+    {
+>>>>>>> Stashed changes
         Population reproducteur = selection(choix, q, population);
         cout<< "reproducteur: "<<endl<<reproducteur<<endl;
         Population reproducteurNext(p);
@@ -61,5 +65,5 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         // otherwise we continue
         population = populationNext;
     }
-    
+
 }

@@ -3,6 +3,7 @@
 // Retourne un tableau de n villes
 void villes_aleatoires(int n, vector<Ville> & villes)
 {
+    Ville::nbVille = 0; // On remet le compteur à 0
     float X = 100.;
     // generate n coordonates bewteen 0. and 100.
     for (int i = 0; i < n; i++)
@@ -25,6 +26,20 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
     }
 }
 
+<<<<<<< Updated upstream
+=======
+// Generer un chemin de taille 3
+Chemin generer_chemin_3(int a,int b,int c){
+    Chemin chemin(3);
+
+    chemin.setVal(0, a);
+    chemin.setVal(1, b);
+    chemin.setVal(2, c);
+
+    return chemin;
+}
+
+>>>>>>> Stashed changes
 // Generer un chemin de taille aléatoirement
 Chemin generer_chemin_aleatoire(int taille){
     Chemin chemin(taille);
@@ -41,12 +56,12 @@ int myrandom(int i){
 Chemin generer_chemin_listeVille(const vector<Ville>& ville, const Graphe& graphe){
     Chemin chemin(ville.size());
     vector<int> vectIdVille;
-    for(int i=0; i<ville.size();i++)
+    for(uint i=0; i<ville.size();i++)
     {
         vectIdVille.push_back(ville[i].getIdVille());
     }
     random_shuffle(vectIdVille.begin(), vectIdVille.end(), myrandom);
-    for(int i=0;i<ville.size();i++){
+    for(uint i=0;i<ville.size();i++){
         chemin.setVal(i, vectIdVille[i]);
     }
     chemin.setEval(graphe);

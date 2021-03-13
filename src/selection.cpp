@@ -1,9 +1,11 @@
+#include "../include/Population.hpp"
+#include "../include/selection.hpp"
+
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Population.hpp"
 #include <algorithm>
-#include "selection.hpp"
+
 
 //TODO check
 
@@ -43,7 +45,7 @@ Population selection(Choix choix,int q, const Population & pop){
         return selection_roulette(q,pop);
     }
     return NULL;
- 
+
 }
 
 Population selection_aleatoire(int q, const Population & pop){ //q doit etre compris entre 0 et taille_pop
@@ -107,7 +109,7 @@ Population selection_roulette(int q, const Population & pop){
         if(indice<0){indice=0;}
         new_pop.setIndividu(t,pop.getIndividu(indice));
         t++;
-        } 
+        }
 
     return new_pop;
 }

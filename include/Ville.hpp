@@ -5,7 +5,10 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+
 using namespace std;
+typedef unsigned int uint;
+#define PI 3.14
 
 class Ville
 {

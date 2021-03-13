@@ -1,25 +1,28 @@
 #ifndef CHEMIN_H
 #define CHEMIN_H
 
-#include "Individu.hpp"
+#include "../include/Graphe.hpp"
+#include "../include/Individu.hpp"
+
 #include <vector>
+#include <string>
 #include <cassert>
 #include <cstdlib>
 
 typedef unsigned int uint;
+using namespace std;
 
 class Chemin : public Individu
 {
     private:
-        uint dim; // la taille de l'individu
-        vector<int> val; // un vecteur int repésante une tournée
+        vector<int> val; // une tournée
         float eval; // la distance/ coût total de cette tournée
         string name;
         int alpha = 2; // pourcentage de mutation
-    
+
     public:
         /** Default constructor */
-        Chemin(uint n=0, string name = string()): dim(n), name(name){val.reserve(n);};
+        Chemin(uint n=0, string name_ = string());
         // Constructor par un vecteur
         Chemin(const vector<int>& v, string name = string());
         // Constructor par copie
@@ -30,9 +33,15 @@ class Chemin : public Individu
         bool contains(int v, uint begin, uint end) const; // si ce chemin contient la ville v entre les indices begin et end
 
         // getters and setters
+<<<<<<< Updated upstream
         uint getDim() const {return dim;};
         int getVal(int i) const {return val[i];};
         void setEval(const Graphe & graphe); // retourne le coût / distance totale du chemin
+=======
+        int getDim() const {return val.size();};
+        int getVal(int i) const;
+        float getEval(const Graphe & graphe); // retourne le coût / distance totale du chemin
+>>>>>>> Stashed changes
         float getEval() const {return eval;}; // une première fonction évaluation simple
         string getName()const{return name;};
         void setVal(int i, int v){ val[i] = v;}
@@ -41,7 +50,7 @@ class Chemin : public Individu
         Chemin& operator=(const Chemin& );
         int operator[](uint i) const; ///lecture
         int& operator[](uint i); ///écriture
-        void mutation(const Graphe& graphe); 
+        void mutation(const Graphe& graphe);
 
 };
 

@@ -4,16 +4,40 @@
 */
 
 Graphe::Graphe(string name_){
+    Ville::nbVille = 0;
     name = name_;
 }
 
 Graphe::Graphe(vector<Ville> listeVilles, string name_){
-    name = name_;
-    for(unsigned int i = 0; i < listeVilles.size(); i++){
-        for(unsigned int j = i; j < listeVilles.size(); j++){
-            addAnEdge(listeVilles[i],listeVilles[j]);
+    Ville::nbVille = 0;
+    name = name_ + to_string(listeVilles.size());
+    creation_graphe(listeVilles);
+}
+
+Graphe::Graphe(uint n, string type, string name_){
+    cout << "creation graphe complet: " << n << " villes en " << type << endl;
+    Ville::nbVille = 0; //initialisation à 0 du nbre de villes
+    name = name_+ to_string(n) + type;
+    vector<Ville> liste_villes;
+    if(type == "ROND"){
+        float r = 10; //rayon du cercle
+        float dd = 2*PI/n; //écart entre deux angles
+        for(uint i = 0; i < n; i++){
+            float x = r*cos(i*dd);
+            float y = r*sin(i*dd);
+            Ville v(x,y);
+            liste_villes.push_back(v);
         }
     }
+    else if(type == "LIGNE"){
+        float dd = n;
+        for(uint i = 0; i < n; i++){
+            float x = i*dd;
+            Ville v(x,0);
+            liste_villes.push_back(v);
+        }
+    }
+    creation_graphe(liste_villes);
 }
 
 bool Graphe::hasAnEdge(const int u, const int v) const{
@@ -29,6 +53,14 @@ void Graphe::addAnEdge(const Ville & v1, const Ville & v2){
 
     // sinon on ajoute {a,b}->distance
     graphe.insert({{v1.getIdVille(), v2.getIdVille()}, dist(v1, v2)});
+}
+
+void Graphe::creation_graphe(vector<Ville> liste_villes){
+    for(uint i = 0; i < liste_villes.size(); i++){
+        for(uint j = i; j < liste_villes.size(); j++){
+            addAnEdge(liste_villes[i],liste_villes[j]);
+        }
+    }
 }
 
 map<pair<int, int>, float>::const_iterator Graphe::begin() const{

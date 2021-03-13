@@ -1,8 +1,11 @@
 #include "../include/random_generator.hpp"
 #include "../include/Population.hpp"
 #include "../include/file_manager.hpp"
+<<<<<<< Updated upstream
 #include "../include/creation_graphe.hpp"
 #include "GeneticAlgo.hpp"
+=======
+>>>>>>> Stashed changes
 
 #include <iostream>
 #include <fstream>
@@ -16,6 +19,7 @@ int main(int argc, char const *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
 
+<<<<<<< Updated upstream
     // initialisation liste des villes et graphe complet
     vector<Ville> listeVilles;
 	lecture_villes("test/berlin52.tsp",&listeVilles);
@@ -42,111 +46,82 @@ int main(int argc, char *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
 
+=======
+>>>>>>> Stashed changes
 	cout << "Hello world:)" << endl;
 
-	///Test lecture_ville OK
-	cout<<"Test lecture_tour" <<endl;
+	///cout << "Test lecture_ville OK" << endl;
 	vector<Ville> listeVilles;
 	lecture_villes("test/berlin52.tsp",&listeVilles);
-    cout << listeVilles << endl;
-    Graphe graphe0(listeVilles);
+    Graphe graphe0(listeVilles,"graphe0");
 
+<<<<<<< Updated upstream
     ///Test lecture_tour optimal
     cout << "Test lecture_tour" << endl;
+=======
+    /// cout << "Test lecture_tour OK" << endl;
+>>>>>>> Stashed changes
     Chemin chs = lecture_tour("test/berlin52.opt.tour");
     cout << "dim = " << chs.getDim() << ":" << chs << endl;
 
-	/// test classe Ville OK
-	cout << "Test Ville" << endl;
+	/// cout << "Test Ville" << endl;
 	Ville v1 = Ville(2.21, 48.51,"Paris"); // °est, °nord
-	cout<<v1<<endl;
 
-	/// test random_generator + classe Graphe OK
-	cout << "test random_generator" << endl;
+    /// cout << "test random_generator OK" << endl;
 	const uint n = 10;
 	vector<Ville> villes;
 	villes_aleatoires(n, villes);
-	for(Ville v: villes){cout<<v<<endl; }
 
-	Graphe graphe;
+	Graphe graphe("graphe");
 	graphe_aleatoires(villes, graphe);
-	cout<<graphe;
 
-	/// test Chemin OK
 	cout << "test Chemin" << endl;
 	vector<int> v = {1, 2, 3};
 	Chemin chemin(v);
-	cout<<chemin;
-	cout << "si chemin est valid? "<<chemin.isValid(graphe)<<endl;
+	//cout << "si chemin est valid? "<<chemin.isValid(graphe)<<endl;
 	if(chemin.isValid(graphe)){
-		cout<<"La distance totale est "<<chemin.getEval(graphe)<<endl;
+		//cout<<"La distance totale est "<<chemin.getEval(graphe)<<endl;
 	}
-	cout<<"si ce chemin contien 3?"<<(chemin.contains(3, 0, chemin.getDim()-1)?" Yes!":"No!")<<endl;
+	//cout<<"si ce chemin contient 3?"<<(chemin.contains(3, 0, chemin.getDim()-1)?" Yes!":"No!")<<endl;
 
-    /// Test ecriture_resultat
-    cout << "test ecriture_resultat" << endl;
-    ecriture_resultat(chemin);
+    /// cout << "test ecriture_resultat OK" << endl;
+    ecriture_resultat(chemin,"");
 
-    ///Création de 10 villes en rond
-    cout << endl << "creation 10 villes en rond" << endl;
-    Ville::nbVille = 0; ///initialisation à 0 du nbre de villes
-    float r = 10;
-    float angleMin(0);
-    float angleMax(2*PI);
-    float dtheta( (angleMax-angleMin)/n );
-    vector<Ville> liste_villes;
-    for(uint i=0 ; i < n ; i ++){
-        float x = r*cos(i*dtheta);
-        float y = r*sin(i*dtheta);
-        Ville v(x,y);
-        liste_villes.push_back(v);
-    }
-    cout << liste_villes << endl;
-    Graphe graphe10Rond(liste_villes,"Rond");
-    cout << "graphe " << graphe10Rond.getName() << " : " << endl;
-    cout << graphe10Rond << endl;
+    /// cout << "Test Graphe(n,type,name)" << endl;
+    Graphe graphe10Rond(n,"ROND","Test");
+    Graphe graphe10Ligne(n,"LIGNE","Test");
 
-    ///Création de 10 villes en ligne
-    cout << endl << "Création de 10 villes en ligne" << endl;
-    Ville::nbVille = 0; ///initialisation à 0 du nbre de villes
-    vector<Ville> liste_villes1;
-    float xMin(0);
-    float xMax(10);
-    float dX( (xMax-xMin)/n );
-    for(uint i=0 ; i < n ; i ++){
-        float x = i*dX;
-        Ville v(x,0);
-        liste_villes1.push_back(v);
-    }
-    cout << liste_villes1 << endl;
-    Graphe graphe10Ligne(liste_villes1,"Ligne");
-    cout << "graphe " << graphe10Ligne.getName() << " : " << endl;
-    cout << graphe10Ligne << endl;
+    Chemin test;
+    cout << "teste chemin nulle  = "<< test <<endl;
 
-    ///Test creation_graphe()
-    Graphe grapheTest;
-    grapheTest = creation_graphe(n, "ROND", "Test");
-    cout << grapheTest << endl;
+    cout << "Test Population" << endl;
 
-    // test population
 	int popTaille = 2;
     Population pop(popTaille);
+    //cout << "pop[0] = " << pop[0] << endl;
+    Chemin ch = generer_chemin_3(1,2,3);
+	cout << "ch = " << ch << endl;
+	pop[0] = ch;
 
-	pop.setIndividu(0, generer_chemin_3(1,2,3));
+    cout << "pop[0] = " << pop[0] << endl;
 	pop.setIndividu(1, generer_chemin_3(4,5,6));
     cout<<pop;
-	
-	//test chemin généré aléatoirement 
+/*
+	//test chemin généré aléatoirement
     cout<<"test chemin aleatoire"<<endl;
-    Chemin ch1 = generer_chemin_listeVille(listeVilles);
+    Chemin ch1 = generer_chemin_listeVille(villes);
     cout<<ch1;
 
     // test population aleatoire
     cout<<"test pop aleatoire" <<endl;
-    int popAleaTaille = 52; //taille de berlin52
-    Population popAlea = generer_pop_aleatoire(listeVilles);
+    Population popAlea = generer_pop_aleatoire(villes);
     cout<<popAlea;
+<<<<<<< Updated upstream
 
+=======
+*/
+    return 0;
+>>>>>>> Stashed changes
 }
 */
 
