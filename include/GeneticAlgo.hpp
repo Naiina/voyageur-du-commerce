@@ -31,5 +31,5 @@ public:
 void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix);
 
 // 
-void permutation(const int p, const Population& reproducteur, const Graphe& graphe, Population& reproducteurNext);
+void permutation(const Population& reproducteur, const Graphe& graphe, Population& reproducteurNext);
 #endif

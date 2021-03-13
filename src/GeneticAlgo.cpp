@@ -5,7 +5,7 @@ struct cmp
 {
 bool operator()(const Chemin& c1, const Chemin& c2){ return c1.getEval()> c2.getEval();}
 };
-/*
+
 int series(int n)
 {
     if(n > 1)
@@ -13,18 +13,19 @@ int series(int n)
     else
         return 1;
 }
-*/
-
 
 // cross over + mutation
-void permutation(const int p, const Population& population, const Graphe& graphe, Population& reproducteurNext){
+void permutation(const Population& population, const Graphe& graphe, Population& reproducteurNext){
     //priority_queue<Chemin, vector<Chemin>, cmp> sortedIndiv; // sort in order of distance with operator>
+    cout<<"permutation"<<endl;
+
     vector<Chemin> individus;
+    int p = population.getTaille();
     for (int i = 0; i < p-1; i++)
     {
         for (int j = i+1; j < p; j++)
         {
-            //cout<<"permutation i: "<<i<<", j: "<<j<<endl;
+            cout<<"permutation i: "<<i<<", j: "<<j<<endl;
             Chemin I = population[i];
             Chemin J = population[j];
             //cout<<"I"<<I<<endl;
@@ -51,13 +52,17 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
         Population reproducteur = selection(choix, n/2, population);
+        reproducteur.update(graphe);
         cout<<"reproducteur: "<<reproducteur<<endl;
+
         int p = reproducteur.getTaille();
 
         // generate population enfants
-        Population populationNextTmp(p*(p-1)); 
-        permutation( p, reproducteur, graphe, populationNextTmp);
-        //cout << "populationNext"<<endl << populationNextTmp<<endl;
+        cout<<"init"<<endl;
+        Population populationNextTmp(series(p-1)*2); 
+        cout<<"init"<<endl;
+        permutation(reproducteur, graphe, populationNextTmp);
+        cout << "populationNext"<<endl << populationNextTmp<<endl;
 
         // selection population enfants finale
         Population populationNext = selection_elitiste(n/2, population, populationNextTmp);
