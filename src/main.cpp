@@ -17,8 +17,15 @@ int main(int argc, char const *argv[])
 
     // initialisation liste des villes et graphe complet
     vector<Ville> listeVilles;
+
+    // test with dataset
+    //lecture_villes("test/berlin52.tsp",&listeVilles);
+
+    //tets with 10 villes aléatoires
     villes_aleatoires(10, listeVilles);
-    Graphe graphe(listeVilles); //complete graph
+
+    Graphe graphe(listeVilles); //complete graph OK!!!
+    //cout<<"graphe"<<graphe<<endl;
 
     // initialisation population initiale
     Population population = generer_pop_aleatoire(listeVilles, graphe);
@@ -26,13 +33,12 @@ int main(int argc, char const *argv[])
 
     Choix choix = ROULETTE;
     cout<<"here1"<<endl;
+    cout<<"tour init: "<<population.getCheminMin()<<endl;
     geneticAlgo(population, graphe, choix);
     cout<<"here end"<<endl;
-    
+    cout<<"tour optimal:"<<population.getCheminMin()<<endl;
     return 0;
 }
-
-
 
 /*
 int main(int argc, char *argv[])

@@ -36,6 +36,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     int k=0;
     int count = EVOLUTION;
     const int n = population.getTaille(); // taille initiale
+    cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
 
     while (++k)
     {   
@@ -61,8 +62,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
             count--;
             populationNext.setIndividu(n-1, population.getCheminMin());
             populationNext.update(graphe);
-        }else
-        {
+        }else{
             count = EVOLUTION;
         }
 
@@ -71,6 +71,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         if(count<=0) { break;}
         // otherwise we continue
         population = populationNext;
+        cout<<"k: "<<k<<", dist: "<<populationNext.getMinDistance()<<endl;
     }
     
 }

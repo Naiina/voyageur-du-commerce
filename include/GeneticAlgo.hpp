@@ -5,8 +5,8 @@
 #include "Chemin.hpp"
 #include <queue>
 
-#define MAXIT 1000
-#define EVOLUTION 10
+#define MAXIT 10000
+#define EVOLUTION 20
 
 /*
 class GeneticAlgo

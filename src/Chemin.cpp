@@ -102,28 +102,25 @@ void Chemin::mutation(const Graphe& graphe) // alpha : pourcentage de mutation
         k = rand()%d;
     }while (k == l);
 
-    // On fait la mutation seulement si la probabilité alpha est supérieure à test
-    int test = rand()%101;
-    bool done = false;
-
     // On fait la mutation
-    if (alpha >= test)
-    {
-        do{
-            //On permute k et l
-            int tmp = val[k];
-            val[k] = val[l];
-            val[l] = tmp;
+    do{
+        //On permute k et l
+        int tmp = val[k];
+        val[k] = val[l];
+        val[l] = tmp;
+        // On permute k+1 et l-1
+        tmp = val[modulo(k+1,d)];
+        val[modulo(k+1,d)] = val[modulo(l-1,d)];
+        val[modulo(l-1,d)] = tmp;
+        // On permute k-1 et l+1
+        tmp = val[modulo(k-1,d)];
+        val[modulo(k-1,d)] = val[modulo(l+1,d)];
+        val[modulo(l+1,d)] = tmp;
 
-            // On permute k+1 et l-1
-            tmp = val[modulo(k+1,d)];
-            val[modulo(k+1,d)] = val[modulo(l-1,d)];
-            val[modulo(l-1,d)] = tmp;
-            if(isValid(graphe)){
-                done = true;
-            }
-        }while (!done); //tant que J invalide, faire mutation
-    }
+        if(isValid(graphe)){
+            break;
+        }
+    }while (true); //tant que J invalide, faire mutation
 }
 
 /*
