@@ -34,28 +34,18 @@ int Chemin::getVal(int i) const {
     assert(i<val.size());
     return val[i];
 }
-<<<<<<< Updated upstream
+
 
 void Chemin::setEval(const Graphe & graphe){
     // distance total equals -1 si ce chemin n'est pas valid
     if(!isValid(graphe)){eval = -1; return;}
-=======
-float Chemin::getEval(const Graphe & graphe){
-    // retourne -1 si ce chemin n'est pas valid
-    if(!isValid(graphe)){return -1;}
->>>>>>> Stashed changes
 
     eval = 0.;
     for(uint i = 0; i < val.size()-1; i++)
     {
         eval += graphe.getDistance(val[i], val[i+1]);
     }
-<<<<<<< Updated upstream
-    eval += graphe.getDistance(val[dim-1], val[0]);
-=======
     eval += graphe.getDistance(val[val.size()-1], val[0]);
-    return eval;
->>>>>>> Stashed changes
 }
 
 bool Chemin::contains(int v, uint begin, uint end) const{

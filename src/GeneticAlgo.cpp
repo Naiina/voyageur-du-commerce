@@ -39,12 +39,9 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     int p = population.getTaille();
 
     while (++k)
-<<<<<<< Updated upstream
-    {   
-        cout<<"ite: "<<k<<endl;
-=======
     {
->>>>>>> Stashed changes
+        cout<<"ite: "<<k<<endl;
+
         Population reproducteur = selection(choix, q, population);
         cout<< "reproducteur: "<<endl<<reproducteur<<endl;
         Population reproducteurNext(p);

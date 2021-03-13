@@ -1,11 +1,8 @@
 #include "../include/random_generator.hpp"
 #include "../include/Population.hpp"
 #include "../include/file_manager.hpp"
-<<<<<<< Updated upstream
-#include "../include/creation_graphe.hpp"
-#include "GeneticAlgo.hpp"
-=======
->>>>>>> Stashed changes
+#include "../include/GeneticAlgo.hpp"
+
 
 #include <iostream>
 #include <fstream>
@@ -19,7 +16,6 @@ int main(int argc, char const *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
 
-<<<<<<< Updated upstream
     // initialisation liste des villes et graphe complet
     vector<Ville> listeVilles;
 	lecture_villes("test/berlin52.tsp",&listeVilles);
@@ -32,35 +28,22 @@ int main(int argc, char const *argv[])
     {
         cout<<"i: "<<i<<"taille: "<<population.getIndividu(i).getDim()<<endl;
     }
-    
+
     Choix choix = ROULETTE;
     cout<<"here1"<<endl;
     geneticAlgo(population, graphe, choix);
     cout<<"here end"<<endl;
-    
+
     return 0;
-}
-
 /*
-int main(int argc, char *argv[])
-{
-    srand (static_cast <unsigned> (time(0)));
-
-=======
->>>>>>> Stashed changes
-	cout << "Hello world:)" << endl;
-
 	///cout << "Test lecture_ville OK" << endl;
 	vector<Ville> listeVilles;
 	lecture_villes("test/berlin52.tsp",&listeVilles);
     Graphe graphe0(listeVilles,"graphe0");
 
-<<<<<<< Updated upstream
-    ///Test lecture_tour optimal
-    cout << "Test lecture_tour" << endl;
-=======
+
     /// cout << "Test lecture_tour OK" << endl;
->>>>>>> Stashed changes
+
     Chemin chs = lecture_tour("test/berlin52.opt.tour");
     cout << "dim = " << chs.getDim() << ":" << chs << endl;
 
@@ -106,7 +89,7 @@ int main(int argc, char *argv[])
     cout << "pop[0] = " << pop[0] << endl;
 	pop.setIndividu(1, generer_chemin_3(4,5,6));
     cout<<pop;
-/*
+
 	//test chemin généré aléatoirement
     cout<<"test chemin aleatoire"<<endl;
     Chemin ch1 = generer_chemin_listeVille(villes);
@@ -116,14 +99,11 @@ int main(int argc, char *argv[])
     cout<<"test pop aleatoire" <<endl;
     Population popAlea = generer_pop_aleatoire(villes);
     cout<<popAlea;
-<<<<<<< Updated upstream
 
-=======
 */
-    return 0;
->>>>>>> Stashed changes
+
 }
-*/
+
 
 /* Les affichages
 Hello world:)

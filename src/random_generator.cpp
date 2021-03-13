@@ -26,20 +26,6 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
     }
 }
 
-<<<<<<< Updated upstream
-=======
-// Generer un chemin de taille 3
-Chemin generer_chemin_3(int a,int b,int c){
-    Chemin chemin(3);
-
-    chemin.setVal(0, a);
-    chemin.setVal(1, b);
-    chemin.setVal(2, c);
-
-    return chemin;
-}
-
->>>>>>> Stashed changes
 // Generer un chemin de taille aléatoirement
 Chemin generer_chemin_aleatoire(int taille){
     Chemin chemin(taille);

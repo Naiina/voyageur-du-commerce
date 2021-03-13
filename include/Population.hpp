@@ -28,16 +28,11 @@ class Population
         void setIndividu(uint i, const Chemin& c);
         void setIndividus(const vector<Chemin>& c);
         void setCheminMin(const Chemin& c) {cheminMin = c;}
-<<<<<<< Updated upstream
+
         void initCheminMin();
         const Chemin getCheminMin() const {return cheminMin;}
         const float getMinDistance() const {return cheminMin.getEval();}
 
-
-=======
-        Chemin getCheminMin() {return cheminMin;}
-        float getMinDistance() {return cheminMin.getEval();}
->>>>>>> Stashed changes
 };
 
 /*

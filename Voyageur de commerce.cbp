@@ -39,7 +39,6 @@
 		<Unit filename="include/Individu.hpp" />
 		<Unit filename="include/Population.hpp" />
 		<Unit filename="include/Ville.hpp" />
-		<Unit filename="include/cross_over.hpp" />
 		<Unit filename="include/file_manager.hpp" />
 		<Unit filename="include/random_generator.hpp" />
 		<Unit filename="include/selection.hpp" />
@@ -49,7 +48,6 @@
 		<Unit filename="src/Individu.cpp" />
 		<Unit filename="src/Population.cpp" />
 		<Unit filename="src/Ville.cpp" />
-		<Unit filename="src/cross_over.cpp" />
 		<Unit filename="src/file_manager.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/random_generator.cpp" />

@@ -13,12 +13,9 @@ private:
     string name;
 public:
     Graphe(string name_ = string());
-<<<<<<< Updated upstream
     Graphe(vector<Ville> listeVilles,string name_ = string()); // generate graph complete
-=======
-    Graphe(vector<Ville> listeVilles,string name_ = string());
     Graphe(uint n, string type, string name_ = string());
->>>>>>> Stashed changes
+
     bool hasAnEdge(const int u, const int v) const; // on considère (u,v),(v,u) sont équivalentes
     void addAnEdge(const Ville &, const Ville &); // ajout arrête a---b avec la distance entre a et b
     void creation_graphe(vector<Ville> liste_villes);

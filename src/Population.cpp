@@ -17,23 +17,19 @@ void Population::setIndividu(uint i, const Chemin& c) {
     individus[i] = c;
 }
 void Population::setIndividus(const vector<Chemin>& c){
-<<<<<<< Updated upstream
-    if(c.size() != taille){
+    if(c.size() != individus.size()){
         cerr<< "ERROR the given individus' length cannot be accepted by this population"<<endl;
         exit(EXIT_FAILURE);
     }
-    for (int i=0; i < taille ; i++)
+    for (int i=0; i < individus.size() ; i++)
     {
-=======
-    for (uint i=0; i < individus.size() ; i++){
->>>>>>> Stashed changes
         individus[i] = c[i];
     }
 }
 
 void Population::initCheminMin(){
     cheminMin = individus[0];
-    for (int i = 1; i < taille; i++)
+    for (int i = 1; i < individus.size(); i++)
     {
         if(individus[i].getEval() < cheminMin.getEval()){
             cheminMin = individus[i];
@@ -46,14 +42,7 @@ void Population::initCheminMin(){
 */
 
 ostream& operator<<(ostream& os, const Population & p){
-<<<<<<< Updated upstream
     os<< "Population("<< p.getTaille()<< ") {"<< endl;
-
-    for(int i=0; i<p.getTaille(); i++ ){ os<< p.getIndividu(i);}
-=======
-    os<< "Population(" << p.getTaille()<< ") {"<< endl;
->>>>>>> Stashed changes
-
     for(int i=0; i<p.getTaille(); i++ ){
         os<< p[i];
     }
