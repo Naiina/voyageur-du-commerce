@@ -67,15 +67,20 @@ Population selection_aleatoire(int q, const Population & pop){
 
 
 Population selection_elitiste(int q, const Population & popParent, const Population& popEnfant){
-    int taille=popParent.getTaille();
-    Population newpop(taille);
+    int n = popParent.getTaille();
+    Population newpop(n);
+    if(popEnfant.getTaille() < n-q){
+        q += n-q-popEnfant.getTaille();
+    }
+    // q parents
     vector<int> v_int_parents=liste_triee_individus(popParent);
     for(int i=0;i<q;i++){
         int l=v_int_parents[i];
         newpop.setIndividu(i, popParent[l]);
     }
+    // n-q enfants
     vector<int> v_int_enfants=liste_triee_individus(popEnfant);
-    for(int i=q;i<taille;i++){
+    for(int i=0;i<n-q;i++){
         int l=v_int_enfants[i];
         newpop.setIndividu(i,popEnfant[l]);
     }

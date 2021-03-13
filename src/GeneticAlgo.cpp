@@ -18,9 +18,9 @@ int series(int n)
 void permutation(const Population& population, const Graphe& graphe, Population& reproducteurNext){
     //priority_queue<Chemin, vector<Chemin>, cmp> sortedIndiv; // sort in order of distance with operator>
     cout<<"permutation"<<endl;
-
     vector<Chemin> individus;
     int p = population.getTaille();
+
     for (int i = 0; i < p-1; i++)
     {
         for (int j = i+1; j < p; j++)
@@ -28,12 +28,11 @@ void permutation(const Population& population, const Graphe& graphe, Population&
             cout<<"permutation i: "<<i<<", j: "<<j<<endl;
             Chemin I = population[i];
             Chemin J = population[j];
-            //cout<<"I"<<I<<endl;
-            //cout<<"J"<<J<<endl;
+            cout<<"I"<<I<<endl;
+            cout<<"J"<<J<<endl;
             vector<Chemin> deuxChemins = cross_over(graphe, I, J);
             for(Chemin c: deuxChemins){ individus.push_back(c);}
-        }
-        
+        } 
     }
     for(Chemin c: individus){ c.mutation(graphe);}
 
@@ -54,22 +53,22 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         Population reproducteur = selection(choix, n/2, population);
         reproducteur.update(graphe);
         cout<<"reproducteur: "<<reproducteur<<endl;
-
         int p = reproducteur.getTaille();
 
         // generate population enfants
-        cout<<"init"<<endl;
         Population populationNextTmp(series(p-1)*2); 
-        cout<<"init"<<endl;
         permutation(reproducteur, graphe, populationNextTmp);
-        cout << "populationNext"<<endl << populationNextTmp<<endl;
+        cout << "populationNextTmp"<<endl << populationNextTmp<<endl;
 
         // selection population enfants finale
         Population populationNext = selection_elitiste(n/2, population, populationNextTmp);
+        populationNext.update(graphe);
+        cout<<"selection_elitiste populationNext "<<populationNext<<endl;
 
         if(populationNext.getMinDistance() >= population.getMinDistance()){
             count--;
-            populationNext.setIndividu(p-1, population.getCheminMin());
+            populationNext.setIndividu(n-1, population.getCheminMin());
+            populationNext.update(graphe);
         }else
         {
             count = EVOLUTION;
