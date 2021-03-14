@@ -1,0 +1,10 @@
+Population Pk: p individus
+
+Reproducteurs P~k = Pk
+
+croisement de toute la population (2 parmi p)
+	(2 parmi p) = p(p-1)/2  hybridations: I,J --> IJ, JI -- il y a p(p-1) enfants (P^k+1)
+		mutations: IJ,JI --> IJ, JI -- il y a p(p-1) enfants (P^k+1)
+		
+selection : on choisit q dans la pop Pk et p-q dans la pop P^k+1
+	
