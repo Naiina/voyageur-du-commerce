@@ -40,5 +40,3 @@ int main(int argc, char const *argv[])
         ecriture_resultat(population.getCheminMin(), fname[i]);
     }
 }
-
-*/
