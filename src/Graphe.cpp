@@ -3,20 +3,17 @@
 * fonctions membres
 */
 
-Graphe::Graphe(string name_){
-    Ville::nbVille = 0;
+Graphe::Graphe(const string& name_){
     name = name_;
 }
 
-Graphe::Graphe(vector<Ville> listeVilles, string name_){
-    Ville::nbVille = 0;
+Graphe::Graphe(const vector<Ville>& listeVilles, const string& name_){
     name = name_ + to_string(listeVilles.size());
     creation_graphe(listeVilles);
 }
 
-Graphe::Graphe(uint n, Type type, string name_){
-    cout << "creation graphe complet: " << n << " villes en ";
-    Ville::nbVille = 0; //initialisation à 0 du nbre de villes
+//TODO 
+Graphe::Graphe(uint n, Type type, const string& name_){
     name = name_+ to_string(n);
     vector<Ville> liste_villes;
     float dd;
@@ -54,7 +51,7 @@ Graphe::Graphe(uint n, Type type, string name_){
     cout << *this << endl;
 }
 
-void Graphe::creation_graphe(vector<Ville> liste_villes){
+void Graphe::creation_graphe(const vector<Ville>& liste_villes){
     for(uint i = 0; i < liste_villes.size(); i++){
         for(uint j = i; j < liste_villes.size(); j++){
             addAnEdge(liste_villes[i],liste_villes[j]);

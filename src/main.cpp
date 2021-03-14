@@ -14,77 +14,30 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
-
-    // initialisation liste des villes et graphe complet
-    vector<Ville> listeVilles;
-
-    // test with dataset
-    //lecture_villes("test/berlin52.tsp",&listeVilles);
-
-    //tets with 10 villes aléatoires
-    villes_aleatoires(10, listeVilles);
-
-    Graphe graphe(listeVilles); //complete graph OK!!!
-    //cout<<"graphe"<<graphe<<endl;
-
-    // initialisation population initiale
-    Population population = generer_pop_aleatoire(listeVilles, graphe);
-    cout<<population<<endl;
-
+    const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
     Choix choix = ROULETTE;
-    cout<<"here1"<<endl;
-    cout<<"tour init: "<<population.getCheminMin()<<endl;
-    geneticAlgo(population, graphe, choix);
-    cout<<"here end"<<endl;
-    cout<<"tour optimal:"<<population.getCheminMin()<<endl;
+
+    for (int i = 0; i < 4; i++)
+    {
+        // initialisation liste des villes et graphe complet
+        vector<Ville> listeVilles;
+        if(i==0){ //tets with 10 villes aléatoires
+            villes_aleatoires(10, listeVilles);
+        }else{
+            lecture_villes("test/" + fname[i]+ ".tsp", &listeVilles);
+        }
+        //init complete graph
+        Graphe graphe(listeVilles, fname[i]); 
+        // initialisation population initiale
+        Population population = generer_pop_aleatoire(listeVilles, graphe);
+        geneticAlgo(population, graphe, choix);
+    }
     return 0;
 }
 
 /*
 int main(int argc, char *argv[])
 {
-    srand (static_cast <unsigned> (time(0)));
-
-	cout << "Hello world:)" << endl;
-
-	///Test lecture_ville OK
-	cout<<"Test lecture_tour" <<endl;
-	vector<Ville> listeVilles;
-	lecture_villes("test/berlin52.tsp",&listeVilles);
-    cout << listeVilles << endl;
-    Graphe graphe0(listeVilles);
-
-    ///Test lecture_tour optimal
-    cout << "Test lecture_tour" << endl;
-    Chemin chs = lecture_tour("test/berlin52.opt.tour");
-    cout << "dim = " << chs.getDim() << ":" << chs << endl;
-
-	/// test classe Ville OK
-	cout << "Test Ville" << endl;
-	Ville v1 = Ville(2.21, 48.51,"Paris"); // °est, °nord
-	cout<<v1<<endl;
-
-	/// test random_generator + classe Graphe OK
-	cout << "test random_generator" << endl;
-	const uint n = 10;
-	vector<Ville> villes;
-	villes_aleatoires(n, villes);
-	for(Ville v: villes){cout<<v<<endl; }
-
-	Graphe graphe;
-	graphe_aleatoires(villes, graphe);
-	cout<<graphe;
-
-	/// test Chemin OK
-	cout << "test Chemin" << endl;
-	vector<int> v = {1, 2, 3};
-	Chemin chemin(v);
-	cout<<chemin;
-	cout << "si chemin est valid? "<<chemin.isValid(graphe)<<endl;
-	if(chemin.isValid(graphe)){
-		cout<<"La distance totale est "<<chemin.getEval(graphe)<<endl;
-	}
-	cout<<"si ce chemin contien 3?"<<(chemin.contains(3, 0, chemin.getDim()-1)?" Yes!":"No!")<<endl;
 
     /// Test ecriture_resultat
     cout << "test ecriture_resultat" << endl;
@@ -130,25 +83,6 @@ int main(int argc, char *argv[])
     Graphe grapheTest;
     grapheTest = creation_graphe(n, "ROND", "Test");
     cout << grapheTest << endl;
-
-    // test population
-	int popTaille = 2;
-    Population pop(popTaille);
-
-	pop.setIndividu(0, generer_chemin_3(1,2,3));
-	pop.setIndividu(1, generer_chemin_3(4,5,6));
-    cout<<pop;
-	
-	//test chemin généré aléatoirement 
-    cout<<"test chemin aleatoire"<<endl;
-    Chemin ch1 = generer_chemin_listeVille(listeVilles);
-    cout<<ch1;
-
-    // test population aleatoire
-    cout<<"test pop aleatoire" <<endl;
-    int popAleaTaille = 52; //taille de berlin52
-    Population popAlea = generer_pop_aleatoire(listeVilles);
-    cout<<popAlea;
 
 }
 */
