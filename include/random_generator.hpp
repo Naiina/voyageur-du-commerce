@@ -10,7 +10,6 @@
 
 #include "Ville.hpp"
 #include "Graphe.hpp"
-#include "Chemin.hpp"
 #include "Population.hpp"
 
 // Retourne un tableau de n villes

@@ -1,5 +1,5 @@
 #include "../include/random_generator.hpp"
-#include "../include/GeneticAlgo.hpp"
+#include "GeneticAlgo.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
     const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
-    Choix choix = ROULETTE;
+    Choix choix = ROULETTE; // EUGENISME the worst; or ROULETTE 
 
     // initialisation graphe10ligne
 
@@ -40,3 +40,5 @@ int main(int argc, char const *argv[])
         ecriture_resultat(population.getCheminMin(), fname[i]);
     }
 }
+
+*/
