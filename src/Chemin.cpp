@@ -3,12 +3,12 @@
 /*
 * fonctions membres
 */
-Chemin::Chemin(uint n, string name_): name(name_)
+Chemin::Chemin(uint n, string name_): name(name_), eval(0)
 {
     val.resize(n);
 }
 
-Chemin::Chemin(const vector<int>& v, string name_):name(name_){
+Chemin::Chemin(const vector<int>& v, string name_):name(name_), eval(0){
     val.resize(0);
     for(uint id = 0; id < v.size(); id++){
         val.push_back(v[id]);
@@ -127,18 +127,6 @@ void Chemin::mutation(const Graphe& graphe) // alpha : pourcentage de mutation
 * foctions de classe
 */
 
-ostream& operator<<(ostream& os, const Chemin& chemin){
-    os<<"Chemin("<<chemin.getDim()<<") [";
-    for (uint i=0; i< chemin.getDim()-1; i++)
-    {
-        os<<chemin[i]<<", ";
-    }
-    if(chemin.getDim()!=0)
-        os<<chemin[chemin.getDim()-1]<< "]";
-    else
-        os<<"]";
-    return os<<" dist: "<<chemin.getEval()<<endl;
-}
 
 
 /**
@@ -196,4 +184,18 @@ vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin &
     deuxChemins.push_back(IJ);
     deuxChemins.push_back(JI);
     return deuxChemins;
+}
+
+
+
+ostream& operator<<(ostream& os, const Chemin& chemin){
+    os<<"Chemin("<<chemin.getDim()<<") [";
+    for (int i=0; i< chemin.getDim(); i++)
+    {
+        os<<chemin[i];
+        if( i < chemin.getDim()-1)
+            os << ", ";
+    }
+    os<<"]"<<" dist: "<<chemin.getEval()<<endl;
+    return os;
 }
