@@ -66,7 +66,7 @@ void ecriture_villes(vector<Ville> liste_villes, string nomTour, string comment)
 }
 
 Chemin lecture_tour(std::string nomFichier){
-    vector<int> val;
+    vector<int> tournee;
     /// on ouvre le fichier en lecture
     ifstream fichier(nomFichier, ios::in);
     if(fichier.is_open())  /// si l'ouverture a r�ussi
@@ -80,7 +80,7 @@ Chemin lecture_tour(std::string nomFichier){
 
         fichier >> word; ///word = idVille1
         while(word != "-1"){
-            val.push_back(stoi(word));
+            tournee.push_back(stoi(word));
             fichier >> word;
         }
         fichier.close();  /// on ferme le fichier
@@ -90,7 +90,7 @@ Chemin lecture_tour(std::string nomFichier){
         cerr << "Impossible d'ouvrir le fichier !" << endl;
         exit(-1);
     }
-    Chemin chs(val);
+    Chemin chs(tournee);
     return chs;
 }
 

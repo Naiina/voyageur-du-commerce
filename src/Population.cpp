@@ -9,6 +9,13 @@ Population::Population(const Population& P){
     cheminMin = P.getCheminMin();
 }
 
+double Population::somme_dist_individus() const{
+    double sum=0;
+    for(int i=0;i<getTaille();i++){
+        sum += individus[i].getDistance();
+    }
+    return sum;
+}
 
 Chemin Population::operator[](int i) const{
     assert(i<individus.size());
@@ -37,7 +44,7 @@ void Population::initCheminMin(){
     cheminMin = individus[0];
     for (int i = 1; i < getTaille(); i++)
     {
-        if(individus[i].getEval() < cheminMin.getEval()){
+        if(individus[i].getDistance() < cheminMin.getDistance()){
             cheminMin = individus[i];
         }
     }
@@ -45,7 +52,7 @@ void Population::initCheminMin(){
 
 void Population::update(const Graphe& graphe){
     for(Chemin c: individus){
-        c.setEval(graphe);
+        c.setDistance(graphe);
     }
     initCheminMin();
 }

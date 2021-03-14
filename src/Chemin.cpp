@@ -3,25 +3,25 @@
 /*
 * fonctions membres
 */
-Chemin::Chemin(uint n, string name_): name(name_), eval(0)
+Chemin::Chemin(uint n, string name_): name(name_), distance(0)
 {
-    val.resize(n);
+    tournee.resize(n);
 }
 
-Chemin::Chemin(const vector<int>& v, string name_):name(name_), eval(0){
-    val.resize(0);
+Chemin::Chemin(const vector<int>& v, string name_):name(name_), distance(0){
+    tournee.resize(0);
     for(uint id = 0; id < v.size(); id++){
-        val.push_back(v[id]);
+        tournee.push_back(v[id]);
     }
 }
 
 Chemin::Chemin(const Chemin& C)
 {
     name = C.name;
-    val.resize(0);
-    eval = C.getEval();
+    tournee.resize(0);
+    distance = C.getDistance();
     for(uint i=0;i<C.getDim();i++){
-        val.push_back(C[i]);
+        tournee.push_back(C[i]);
     }
 }
 
@@ -29,24 +29,24 @@ Chemin::Chemin(const Chemin& C)
 bool Chemin::isValid(const Graphe & graphe) const {
     for (uint i = 0; i < getDim() -1; i++)
     {
-        if(!graphe.hasAnEdge(val[i], val[i+1])){
+        if(!graphe.hasAnEdge(tournee[i], tournee[i+1])){
             return false;
         }
     }
-    return graphe.hasAnEdge(val[getDim()-1], val[0]);
+    return graphe.hasAnEdge(tournee[getDim()-1], tournee[0]);
 }
 
 
-void Chemin::setEval(const Graphe & graphe){
-    // distance total equals -1 si ce chemin n'est pas valid
-    if(!isValid(graphe)){eval = -1; return;}
+void Chemin::setDistance(const Graphe & graphe){
+    // distance total equals -1 si ce chemin n'est pas tourneeid
+    if(!isValid(graphe)){distance = -1; return;}
 
-    eval = 0.;
+    distance = 0.;
     for(uint i = 0; i < getDim()-1; i++)
     {
-        eval += graphe.getDistance(val[i], val[i+1]);
+        distance += graphe.getDistance(tournee[i], tournee[i+1]);
     }
-    eval += graphe.getDistance(val[getDim()-1], val[0]);
+    distance += graphe.getDistance(tournee[getDim()-1], tournee[0]);
 }
 
 bool Chemin::contains(int v, uint begin, uint end) const{
@@ -54,8 +54,8 @@ bool Chemin::contains(int v, uint begin, uint end) const{
         cerr << "ERROR indic out of range! begin "<<begin<<", end "<<end<<endl;
         exit(EXIT_FAILURE);
     }
-    vector<int>::const_iterator it = val.begin()+begin;
-    for(; it <= val.begin()+end; it++){
+    vector<int>::const_iterator it = tournee.begin()+begin;
+    for(; it <= tournee.begin()+end; it++){
         if(*it==v){ return true;}
     }
     return false;
@@ -67,23 +67,23 @@ bool Chemin::contains(int v) const{
 
 
 Chemin& Chemin::operator=(const Chemin& C){
-    val.resize(0);
-    eval = C.getEval();
+    tournee.resize(0);
+    distance = C.getDistance();
     name = C.getName();
     for(uint i=0;i<C.getDim();i++){
-        val.push_back(C[i]);
+        tournee.push_back(C[i]);
     }
     return *this;
 }
 
 int Chemin::operator[](uint i) const{
-    assert(i < val.size());
-    return val[i];
+    assert(i < tournee.size());
+    return tournee[i];
 }
 
 int& Chemin::operator[](uint i){
-    assert(i < val.size());
-    return val[i];
+    assert(i < tournee.size());
+    return tournee[i];
 }
 
 int modulo (int i, int j)
@@ -105,22 +105,22 @@ void Chemin::mutation(const Graphe& graphe) // alpha : pourcentage de mutation
     // On fait la mutation
     do{
         //On permute k et l
-        int tmp = val[k];
-        val[k] = val[l];
-        val[l] = tmp;
+        int tmp = tournee[k];
+        tournee[k] = tournee[l];
+        tournee[l] = tmp;
         // On permute k+1 et l-1
-        tmp = val[modulo(k+1,d)];
-        val[modulo(k+1,d)] = val[modulo(l-1,d)];
-        val[modulo(l-1,d)] = tmp;
+        tmp = tournee[modulo(k+1,d)];
+        tournee[modulo(k+1,d)] = tournee[modulo(l-1,d)];
+        tournee[modulo(l-1,d)] = tmp;
         // On permute k-1 et l+1
-        tmp = val[modulo(k-1,d)];
-        val[modulo(k-1,d)] = val[modulo(l+1,d)];
-        val[modulo(l+1,d)] = tmp;
+        tmp = tournee[modulo(k-1,d)];
+        tournee[modulo(k-1,d)] = tournee[modulo(l+1,d)];
+        tournee[modulo(l+1,d)] = tmp;
 
         if(isValid(graphe)){
             break;
         }
-    }while (true); //tant que J invalide, faire mutation
+    }while (true); //tant que J intourneeide, faire mutation
 }
 
 /*
@@ -196,6 +196,6 @@ ostream& operator<<(ostream& os, const Chemin& chemin){
         if( i < chemin.getDim()-1)
             os << ", ";
     }
-    os<<"]"<<" dist: "<<chemin.getEval()<<endl;
+    os<<"]"<<" dist: "<<chemin.getDistance()<<endl;
     return os;
 }

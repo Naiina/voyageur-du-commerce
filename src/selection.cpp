@@ -9,13 +9,7 @@
 
 //TODO check
 
-double somme_dist_individus(const Population & pop){
-    double sum=0;
-    for(int i=0;i<pop.getTaille();i++){
-        sum += pop[i].getEval();
-    }
-    return sum;
-}
+
 
 vector<int> liste_triee_individus(const Population & pop){
     int taille=pop.getTaille();
@@ -23,8 +17,8 @@ vector<int> liste_triee_individus(const Population & pop){
     vector<pair<float, int> > to_sort;
     for(int k=0;k<taille;k++){
         int index=k;
-        float valeur =pop[k].getEval();
-        to_sort.push_back(pair<float, int>(valeur, index));
+        float tourneeeur =pop[k].getDistance();
+        to_sort.push_back(pair<float, int>(tourneeeur, index));
     }
 
     std::sort(to_sort.begin(), to_sort.end());
@@ -64,7 +58,7 @@ Population selection_aleatoire(int q, const Population & pop){
         new_pop.setIndividu(t,pop[k]);
         t++;
     }
-    //valmin
+    //tourneemin
     return new_pop;
 }
 
@@ -90,7 +84,7 @@ Population selection_elitiste(int q, const Population & popParent, const Populat
 
 // return a population of size at least 2
 Population selection_roulette(int q, const Population & pop){
-    double S = somme_dist_individus(pop);
+    double S = pop.somme_dist_individus();
     int indice = 0;
 
     while(indice < 2){
@@ -99,7 +93,7 @@ Population selection_roulette(int q, const Population & pop){
         indice=0;
 
         for (; pas < r; indice++){
-            pas += pop[indice].getEval();
+            pas += pop[indice].getDistance();
         }
     }
 

@@ -16,8 +16,8 @@ public:
     Graphe(vector<Ville> listeVilles,string name_ = string()); // generate graph complete
     Graphe(uint n, Type type, string name_ = string());
 
-    bool hasAnEdge(const int u, const int v) const; // on considÃ¨re (u,v),(v,u) sont Ã©quivalentes
-    void addAnEdge(const Ville &, const Ville &); // ajout arrÃªte a---b avec la distance entre a et b
+    bool hasAnEdge(const int u, const int v) const; // on considère (u,v),(v,u) sont équitourneeentes
+    void addAnEdge(const Ville &, const Ville &); // ajout arrête a---b avec la distance entre a et b
     void creation_graphe(vector<Ville> liste_villes);
 
     map<pair<int, int>, double>::const_iterator begin() const;

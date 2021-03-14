@@ -21,12 +21,12 @@ void permutation(const Population& population, const Graphe& graphe, Population&
             Chemin I = population[i];
             Chemin J = population[j];
             vector<Chemin> deuxChemins = cross_over(graphe, I, J);
-            for(Chemin c: deuxChemins){ 
+            for(Chemin c: deuxChemins){
                 c.mutation(graphe);
-                c.setEval(graphe);
+                c.setDistance(graphe);
                 individus.push_back(c);
             }
-        } 
+        }
     }
     reproducteurNext.setIndividus(individus);
 }
@@ -39,7 +39,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
 
     while (++k)
-    {   
+    {
         cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
         Population reproducteur = selection(choix, n/2, population);
@@ -48,7 +48,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         int p = reproducteur.getTaille();
 
         // generate population enfants
-        Population populationNextTmp(series(p-1)*2); 
+        Population populationNextTmp(series(p-1)*2);
         permutation(reproducteur, graphe, populationNextTmp);
         populationNextTmp.update(graphe);
         cout << "populationNextTmp"<<endl << populationNextTmp<<endl;
@@ -73,5 +73,5 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         population = populationNext;
         cout<<"k: "<<k<<", dist: "<<populationNext.getMinDistance()<<endl;
     }
-    
+
 }

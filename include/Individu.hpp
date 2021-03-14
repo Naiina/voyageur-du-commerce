@@ -9,15 +9,15 @@ class Individu
 {
     /*
     private:
-        vector<int> val; // un tableau int repésante une tournée
-        float eval; // la distance/ coût total de cette tournée
+        vector<int> tournee; // un tableau int repésante une tournée
+        float distance; // la distance/ coût total de cette tournée
     public:
         // defaut constructor
-        Individu(int n=0, float ev=0.): eval(ev){ val.resize(n);};
+        Individu(int n=0, float ev=0.): distance(ev){ tournee.resize(n);};
         // getters and setters
-        virtual int getDim() const {return val.size();};
+        virtual int getDim() const {return tournee.size();};
         virtual int getVal(int i) const;
-        virtual float getEval(const Graphe graphe) = 0; // pure virtual class
+        virtual float getDistance(const Graphe graphe) = 0; // pure virtual class
         */
 };
 
