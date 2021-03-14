@@ -34,7 +34,7 @@ void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles)
 
 // write file *.tsp (for our small random test) OK!
 void ecriture_villes(const vector<Ville>& liste_villes, const string& fname, const string& comment){
-    string nomFichier = "test/" + fname + to_string(liste_villes.size()) + ".tsp";
+    string nomFichier = "test/" + fname + ".tsp";
     ofstream fichier(nomFichier);
     if(fichier.is_open()){
         fichier << "NAME : " << fname << endl;
