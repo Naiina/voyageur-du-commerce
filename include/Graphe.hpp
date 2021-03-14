@@ -4,6 +4,8 @@
 #include "Ville.hpp"
 #include <map>
 
+enum Type {ROND,LIGNE};
+
 class Graphe
 {
 private:
@@ -12,12 +14,12 @@ private:
 public:
     Graphe(string name_ = string());
     Graphe(vector<Ville> listeVilles,string name_ = string()); // generate graph complete
-    Graphe(uint n, string type, string name_ = string());
+    Graphe(uint n, Type type, string name_ = string());
 
     bool hasAnEdge(const int u, const int v) const; // on considère (u,v),(v,u) sont équivalentes
     void addAnEdge(const Ville &, const Ville &); // ajout arrête a---b avec la distance entre a et b
     void creation_graphe(vector<Ville> liste_villes);
- 
+
     map<pair<int, int>, double>::const_iterator begin() const;
     map<pair<int, int>, double>::const_iterator end() const;
     double getDistance(const int u, const int v) const; // retourne la distance entre u et v, sinon -1 en cas de n'existe pas
