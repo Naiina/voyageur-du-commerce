@@ -42,7 +42,7 @@ bool Chemin::isValid(const Graphe & graphe) const {
         }
     }
 
-    if(!vaild && !graphe.hasAnEdge(tournee[getDim()-1], tournee[0])){
+    if(!vaild || !graphe.hasAnEdge(tournee[getDim()-1], tournee[0])){
         cerr << "ERROR this path cannot exist in our graph!"<<endl;
         exit(EXIT_FAILURE);
     }else{

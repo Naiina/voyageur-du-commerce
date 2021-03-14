@@ -25,29 +25,13 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
     }
 }
 
-// Generer un chemin de taille al�atoirement
-Chemin generer_chemin_aleatoire(int taille){
-    Chemin chemin(taille);
-    for(int i=0;i<taille;i++){
-        chemin.setVal(i, rand()%10);
-    }
-    return chemin;
-}
-
-int myrandom(int i){
-    return rand()%i;
-}
-
 Chemin generer_chemin_listeVille(const vector<Ville>& ville, const Graphe& graphe){
-    Chemin chemin(ville.size());
     vector<int> vectIdVille;
     for(int i=0; i<ville.size();i++){
         vectIdVille.push_back(ville[i].getIdVille());
     }
-    random_shuffle(vectIdVille.begin(), vectIdVille.end());//, myrandom);
-    for(uint i=0;i<ville.size();i++){
-        chemin.setVal(i, vectIdVille[i]);
-    }
+    random_shuffle(vectIdVille.begin(), vectIdVille.end());
+    Chemin chemin(vectIdVille);
     chemin.setDistance(graphe);
     return chemin;
 }

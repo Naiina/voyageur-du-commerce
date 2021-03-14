@@ -17,6 +17,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < 4; i++)
     {
+        Ville::nbVille = 0;
         // initialisation liste des villes
         vector<Ville> listeVilles;
         if(i==0){ //tets with 10 villes aléatoires
@@ -43,7 +44,6 @@ int main(int argc, char *argv[])
 
     ///Création de 10 villes en rond
     cout << endl << "creation 10 villes en rond" << endl;
-    Ville::nbVille = 0; ///initialisation à 0 du nbre de villes
     float r = 10;
     float angleMin(0);
     float angleMax(2*PI);
@@ -62,7 +62,6 @@ int main(int argc, char *argv[])
 
     ///Création de 10 villes en ligne
     cout << endl << "Création de 10 villes en ligne" << endl;
-    Ville::nbVille = 0; ///initialisation à 0 du nbre de villes
     vector<Ville> liste_villes1;
     float xMin(0);
     float xMax(10);
