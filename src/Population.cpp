@@ -1,4 +1,4 @@
-#include "Population.hpp"
+#include "../include/Population.hpp"
 
 Population::Population(const Population& P){
     individus.resize(P.getTaille());
@@ -30,7 +30,7 @@ void Population::setIndividus(const vector<Chemin>& c){
     {
         individus[i] = c[i];
     }
-    
+
 }
 
 void Population::initCheminMin(){
