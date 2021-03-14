@@ -9,7 +9,7 @@ using namespace std;
 #include "../include/file_manager.hpp"
 #include "../include/Ville.hpp"
 
-void lecture_villes(string nomFichier, vector<Ville>* listeVilles)
+void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles)
 {
     /// on ouvre le fichier en lecture
     ifstream fichier(nomFichier, ios::in);
@@ -21,10 +21,8 @@ void lecture_villes(string nomFichier, vector<Ville>* listeVilles)
             fichier >> word;
         }
         /// word = "NODE_COORD_SECTION"
-
         double x;
         double y;
-
         fichier >> word;
         /// word = id_ville1;
         while(word != eof){
@@ -33,23 +31,21 @@ void lecture_villes(string nomFichier, vector<Ville>* listeVilles)
 
             Ville ville(x,y);
             listeVilles->push_back(ville);
-
             fichier >> word;
         }
         fichier.close();  /// on ferme le fichier
-    }
-    else  // sinon
-    {
+    }else{
         cerr << "Impossible d'ouvrir le fichier !" << endl;
         exit(-1);
     }
 }
 
-void ecriture_villes(vector<Ville> liste_villes, string nomTour, string comment){
-    string nomFichier = nomTour + to_string(liste_villes.size()) + ".tsp";
-    ofstream fichier("test/" + nomFichier);
+// write file *.tsp (for our small random test)
+void ecriture_villes(const vector<Ville>& liste_villes, const string& fname, const string& comment){
+    string nomFichier = "test/" + fname + to_string(liste_villes.size()) + ".tsp";
+    ofstream fichier(nomFichier);
     if(fichier.is_open()){
-        fichier << "NAME : " << nomFichier << endl;
+        fichier << "NAME : " << fname << endl;
         fichier << "TYPE : " << "TSP" << endl;
         fichier << "DIMENSION : " << liste_villes.size() << endl;
         fichier << "COMMENT : " << comment << endl;
@@ -63,9 +59,11 @@ void ecriture_villes(vector<Ville> liste_villes, string nomTour, string comment)
         cerr << "Impossible d'ouvrir le fichier !" << endl;
         exit(-1);
     }
+    fichier.close();
 }
 
-Chemin lecture_tour(std::string nomFichier){
+// read a tour
+Chemin lecture_tour(const string& nomFichier){
     vector<int> tournee;
     /// on ouvre le fichier en lecture
     ifstream fichier(nomFichier, ios::in);
@@ -94,6 +92,7 @@ Chemin lecture_tour(std::string nomFichier){
     return chs;
 }
 
+// write result tour OK!
 void ecriture_resultat(const Chemin& chs, const string& fname){
     string nomFichier = "test/" + fname + ".algo.tour";
     ofstream fichier(nomFichier);
@@ -111,5 +110,6 @@ void ecriture_resultat(const Chemin& chs, const string& fname){
         cerr << "Impossible d'ouvrir le fichier !" << endl;
         exit(-1);
     }
+    fichier.close();
 }
 

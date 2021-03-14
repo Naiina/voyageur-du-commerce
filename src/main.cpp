@@ -23,6 +23,7 @@ int main(int argc, char const *argv[])
         vector<Ville> listeVilles;
         if(i==0){ //tets with 10 villes aléatoires
             villes_aleatoires(10, listeVilles);
+            ecriture_villes(listeVilles, fname[i], "");
         }else{
             lecture_villes("test/" + fname[i]+ ".tsp", &listeVilles);
         }
