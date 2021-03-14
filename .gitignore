@@ -1,8 +1,3 @@
-
-*.o
-*.exe
-*.docx
-4_vdc.pdf
 Diagramme algo genetique.odt
 Sans_nom_1.odg
 Untitled Diagram.pdf
@@ -25,3 +20,4 @@ Debug/voyageur_du_commerce.vcxproj.FileListAbsolute.txt
 *.filters
 *.vcxproj
 *.user
+Debug/voyageur_du_commerce.exe
