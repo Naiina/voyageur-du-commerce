@@ -6,6 +6,7 @@
 #include <string>
 #include <cassert>
 #include <cstdlib>
+#include <set>
 
 typedef unsigned int uint;
 using namespace std;
@@ -17,7 +18,6 @@ class Chemin : public Individu
         vector<int> tournee; // une tournée
         float distance; // la distance/ coût total de cette tournée
         string name;
-        int alpha = 2; // pourcentage de mutation
 
     public:
         /** Default constructor */
@@ -27,7 +27,7 @@ class Chemin : public Individu
         // Constructor par copie
         Chemin(const Chemin & C);
 
-        bool isValid(const Graphe & graphe) const ; // si ce chemin est vaild
+        bool isValid(const Graphe & graphe) const ; // si ce chemin est vaild + doublons
         bool contains(int v) const; // si ce chemin contient la ville v
         bool contains(int v, uint begin, uint end) const; // si ce chemin contient la ville v entre les indices begin et end
 

@@ -20,7 +20,7 @@ class Population
 
     public:
         Population(int p){individus.resize(p);};
-        Population(const Population& p);
+        Population(const Population& p); // constructor par copie
 
         double somme_dist_individus() const;
         //getters and setters
@@ -29,7 +29,6 @@ class Population
 
         int getTaille() const {return individus.size();}
 
-        //TODO si c change, est ce que parents va changer & ?
         void setIndividu(int i, const Chemin& c) {individus[i] = c;}
         void setIndividus(const vector<Chemin>& c);
         void setCheminMin(const Chemin& c) {cheminMin = c;}
@@ -38,6 +37,8 @@ class Population
         const Chemin getCheminMin() const {return cheminMin;}
         const double getMinDistance() const {return cheminMin.getDistance();}
         void update(const Graphe& graphe);
+
+        void checkIndividus(const Graphe& graphe);
 };
 
 /*

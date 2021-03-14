@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "../include/Ville.hpp"
-#include "../include/Chemin.hpp"
+#include "Ville.hpp"
+#include "Chemin.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>

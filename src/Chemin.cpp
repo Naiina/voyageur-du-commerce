@@ -25,21 +25,35 @@ Chemin::Chemin(const Chemin& C)
     }
 }
 
-//TODO test doublon
+// test duplicates and exixtence in graph
 bool Chemin::isValid(const Graphe & graphe) const {
+    bool vaild = true;
+    // test doublons
+    set<int> s(tournee.begin(), tournee.end());
+    if(s.size() != tournee.size()) {
+        cerr << "ERROR this path has duplicated cities!"<<endl;
+        exit(EXIT_FAILURE);
+    }
+
     for (uint i = 0; i < getDim() -1; i++)
     {
         if(!graphe.hasAnEdge(tournee[i], tournee[i+1])){
-            return false;
+            vaild = false;
         }
     }
-    return graphe.hasAnEdge(tournee[getDim()-1], tournee[0]);
+
+    if(!vaild && !graphe.hasAnEdge(tournee[getDim()-1], tournee[0])){
+        cerr << "ERROR this path cannot exist in our graph!"<<endl;
+        exit(EXIT_FAILURE);
+    }else{
+        return vaild;
+    }
 }
 
 
 void Chemin::setDistance(const Graphe & graphe){
     // distance total equals -1 si ce chemin n'est pas tourneeid
-    if(!isValid(graphe)){distance = -1; return;}
+    if(!isValid(graphe)){ distance = -1; return;}
 
     distance = 0.;
     for(uint i = 0; i < getDim()-1; i++)
@@ -64,7 +78,6 @@ bool Chemin::contains(int v, uint begin, uint end) const{
 bool Chemin::contains(int v) const{
     return contains(v, 0, getDim()-1);
 }
-
 
 Chemin& Chemin::operator=(const Chemin& C){
     tournee.resize(0);
@@ -126,8 +139,6 @@ void Chemin::mutation(const Graphe& graphe) // alpha : pourcentage de mutation
 /*
 * foctions de classe
 */
-
-
 
 /**
  * Hybridation sans doublons

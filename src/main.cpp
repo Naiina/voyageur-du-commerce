@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < 4; i++)
     {
-        // initialisation liste des villes et graphe complet
+        // initialisation liste des villes
         vector<Ville> listeVilles;
         if(i==0){ //tets with 10 villes aléatoires
             villes_aleatoires(10, listeVilles);

@@ -40,6 +40,15 @@ void Population::setIndividus(const vector<Chemin>& c){
 
 }
 
+void Population::checkIndividus(const Graphe& graphe){
+    for(Chemin c: individus){
+        if(!c.isValid(graphe)){
+            cerr << "ERROR this population exists a path no vaild!" <<endl;
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
 void Population::initCheminMin(){
     cheminMin = individus[0];
     for (int i = 1; i < getTaille(); i++)

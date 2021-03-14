@@ -1,6 +1,5 @@
 #include "../include/GeneticAlgo.hpp"
 
-
 int series(int n)
 {
     if(n > 1)
@@ -48,6 +47,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     int k=0;
     int count = EVOLUTION;
     const int n = population.getTaille(); // taille initiale
+    population.checkIndividus(graphe); // check if the init population is ok
     cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
 
     string fichierName = "test/" + fname + ".res";
@@ -60,18 +60,21 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
         Population reproducteur = selection(choix, n/2, population);
+        reproducteur.checkIndividus(graphe);
         reproducteur.update(graphe);
-        cout<<"reproducteur: "<<reproducteur<<endl;
+        cout<<"selection reproducteur: "<<reproducteur<<endl;
         int p = reproducteur.getTaille();
 
         // generate population enfants
         Population populationNextTmp(series(p-1)*2);
         permutation(reproducteur, graphe, populationNextTmp);
+        populationNextTmp.checkIndividus(graphe);
         populationNextTmp.update(graphe);
-        cout << "populationNextTmp"<<endl << populationNextTmp<<endl;
+        cout << "permutation populationNextTmp " << populationNextTmp<<endl;
 
         // selection population enfants finale
         Population populationNext = selection_elitiste(n/2, population, populationNextTmp);
+        populationNext.checkIndividus(graphe);
         populationNext.update(graphe);
         cout<<"selection_elitiste populationNext "<<populationNext<<endl;
 
