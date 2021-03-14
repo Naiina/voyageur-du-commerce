@@ -13,11 +13,8 @@ int main(int argc, char const *argv[])
 {
     srand (static_cast <unsigned> (time(0)));
     const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
-    Choix choix = ROULETTE; // EUGENISME the worst; or ROULETTE 
-
-    // initialisation graphe10ligne
-
-    return 0;
+    // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
+    Choix choix = ROULETTE; 
 
     for (int i = 0; i < 4; i++)
     {

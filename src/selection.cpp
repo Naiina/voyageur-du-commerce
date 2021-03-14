@@ -30,6 +30,12 @@ Population selection(Choix choix,int q, const Population & pop){
     case EUGENISME:
         return selection_eugenisme(q,pop);
         break;
+    case RANG:
+        return selection_rang(q,pop);
+        break;
+    case ALEATOIRE:
+        return selection_aleatoire(q,pop);
+        break;
     }
 }
 
@@ -42,24 +48,44 @@ Population selection_eugenisme(int q, const Population & pop){
     return newpop;
 }
 
-
-Population selection_aleatoire(int q, const Population & pop){
-    //q doit etre compris entre 0 et taille_pop
-    int taille_pop=pop.getTaille();
-    Population new_pop(taille_pop);
-    int t=0;
-    for(int i=0;i<q;i++){
-        int k=rand()%taille_pop;
-        new_pop.setIndividu(t++,pop[k]);
+Population selection_rang(int q, const Population & pop){
+    int n = pop.getTaille();
+    int rang = 0;
+    vector<int> ordre = liste_triee_individus(pop);// ordre croissant
+    vector<pair<int, int>> newCmp; // <rang, indice>
+    for (int i = n-1; i >= 0; i--)// partir au dernier
+    {
+        newCmp.push_back(pair<int, int>(++rang, ordre[i])); //de façon décroissant
     }
-    for(int i=q;i<taille_pop;i++){
-        int k=rand()%taille_pop;
-        new_pop.setIndividu(t++,pop[k]);
+    int S = 0;
+    for(pair<int, int> p : newCmp){ S += p.first;}
+    int indice = 0;
+    while(indice < 2){
+        int r = rand()% (S+1) ; // r between 0 et S
+        int pas=0;
+        indice=0;
+        for (; pas < r; indice++){
+            pas += newCmp[indice].first;
+        }
+    }
+    Population new_pop(indice);
+    for (int i = 0; i < indice; i++){
+        new_pop.setIndividu(i, pop[newCmp[i].second]); 
     }
     return new_pop;
 }
 
 
+Population selection_aleatoire(int q, const Population & pop){
+    int taille_pop = pop.getTaille();
+    Population new_pop(q);
+
+    for(int i=0;i<q;i++){
+        int k=rand()%taille_pop;
+        new_pop.setIndividu(i,pop[k]);
+    }
+    return new_pop;
+}
 
 Population selection_elitiste(int q, const Population & popParent, const Population& popEnfant){
     int n = popParent.getTaille();

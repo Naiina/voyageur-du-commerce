@@ -13,13 +13,17 @@
 #include <iomanip>
 #include <algorithm>
 
-enum Choix {ROULETTE, EUGENISME, RANG};
+enum Choix {ROULETTE, EUGENISME, RANG, ALEATOIRE};
 
 Population selection_aleatoire(int q, const Population & pop);
+Population selection_rang(int q, const Population & pop);
 Population selection_roulette(int q, const Population & pop);
 Population selection_eugenisme(int q, const Population & pop);
+
 Population selection_elitiste(int q, const Population & popParent, const Population& popEnfant);
+
 double somme_dist_individus(const Population & pop);
 vector<int> liste_triee_individus(const Population & pop);
+
 Population selection(Choix choix,int q, const Population & pop);
 #endif
