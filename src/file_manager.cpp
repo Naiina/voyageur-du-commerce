@@ -40,7 +40,7 @@ void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles)
     }
 }
 
-// write file *.tsp (for our small random test)
+// write file *.tsp (for our small random test) OK!
 void ecriture_villes(const vector<Ville>& liste_villes, const string& fname, const string& comment){
     string nomFichier = "test/" + fname + to_string(liste_villes.size()) + ".tsp";
     ofstream fichier(nomFichier);
@@ -52,7 +52,8 @@ void ecriture_villes(const vector<Ville>& liste_villes, const string& fname, con
         fichier << "EDGE_WEIGHT_TYPE : " << "EUC_2D" << endl;
         fichier << "NODE_COORD_SECTION" << endl;
         for(uint i = 0; i < liste_villes.size(); i++){
-            fichier << liste_villes[i] << endl;
+            fichier << liste_villes[i].getIdVille() <<" "<<
+            liste_villes[i].getX() <<" "<<liste_villes[i].getY() << endl;
         }
         fichier << eof << endl;
     }else{

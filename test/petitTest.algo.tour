@@ -2,15 +2,15 @@ NAME : petitTest
 TYPE : TOUR
 DIMENSION : 10
 TOUR_SECTION
-7
 2
-10
 1
-3
+10
+5
+7
 4
 9
 8
 6
-5
+3
 -1
 EOF
