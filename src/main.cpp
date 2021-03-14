@@ -31,6 +31,7 @@ int main(int argc, char const *argv[])
         // initialisation population initiale
         Population population = generer_pop_aleatoire(listeVilles, graphe);
         geneticAlgo(population, graphe, choix);
+        ecriture_resultat(population.getCheminMin(), fname[i]);
     }
     return 0;
 }
@@ -38,10 +39,6 @@ int main(int argc, char const *argv[])
 /*
 int main(int argc, char *argv[])
 {
-
-    /// Test ecriture_resultat
-    cout << "test ecriture_resultat" << endl;
-    ecriture_resultat(chemin);
 
     ///Création de 10 villes en rond
     cout << endl << "creation 10 villes en rond" << endl;

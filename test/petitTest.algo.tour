@@ -1,0 +1,16 @@
+NAME : petitTest
+TYPE : TOUR
+DIMENSION : 10
+TOUR_SECTION
+6
+3
+5
+1
+4
+10
+7
+9
+2
+8
+-1
+EOF
