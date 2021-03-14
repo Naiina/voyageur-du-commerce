@@ -1,13 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-
-#define eof "EOF"
-using namespace std;
-
 #include "../include/file_manager.hpp"
-#include "../include/Ville.hpp"
+
 
 void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles)
 {

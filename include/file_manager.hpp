@@ -5,6 +5,14 @@
 
 #include "../include/Ville.hpp"
 #include "../include/Chemin.hpp"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+#define eof "EOF"
+using namespace std;
+
 
 void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles);
 void ecriture_villes(const vector<Ville>& liste_villes, const string& fname, const string& comment);

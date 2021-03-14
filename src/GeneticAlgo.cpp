@@ -31,12 +31,29 @@ void permutation(const Population& population, const Graphe& graphe, Population&
     reproducteurNext.setIndividus(individus);
 }
 
+void writingHeader(ofstream& fichier, const string& fname, const int dim){
+    if(fichier.is_open()){
+        fichier << "NAME : " << fname << endl;
+        fichier << "TYPE : " << "TSP" << endl;
+        fichier << "DIMENSION : " << dim << endl;
+        fichier << "EDGE_WEIGHT_TYPE : " << "EUC_2D" << endl;
+    }else{
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+        exit(-1);
+    }
+}
+
 //TODO population taille combien ? paire ?
-void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix){
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname){
     int k=0;
     int count = EVOLUTION;
     const int n = population.getTaille(); // taille initiale
     cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
+
+    string fichierName = "test/" + fname + to_string(population.getCheminMin().getDim()) + ".res";
+    ofstream fichier(fichierName);
+    writingHeader(fichier, fname, population.getCheminMin().getDim());
+    fichier << population.getMinDistance() <<endl;
 
     while (++k)
     {
@@ -72,6 +89,8 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         // otherwise we continue
         population = populationNext;
         cout<<"k: "<<k<<", dist: "<<populationNext.getMinDistance()<<endl;
+        fichier << population.getMinDistance()<<endl;
     }
-
+    fichier << eof << endl;
+    fichier.close();
 }

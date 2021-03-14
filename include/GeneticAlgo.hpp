@@ -4,6 +4,7 @@
 #include "selection.hpp"
 #include "Chemin.hpp"
 #include <queue>
+#include "file_manager.hpp"
 
 #define MAXIT 10000
 #define EVOLUTION 20
@@ -28,7 +29,7 @@ public:
 */
 
 // the main algorithm runs with the given initial population and a graph complete
-void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix);
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname);
 
 // 
 void permutation(const Population& reproducteur, const Graphe& graphe, Population& reproducteurNext);

@@ -1,6 +1,4 @@
 #include "../include/random_generator.hpp"
-#include "../include/Population.hpp"
-#include "../include/file_manager.hpp"
 #include "GeneticAlgo.hpp"
 
 #include <iostream>
@@ -31,7 +29,9 @@ int main(int argc, char const *argv[])
         Graphe graphe(listeVilles, fname[i]); 
         // initialisation population initiale
         Population population = generer_pop_aleatoire(listeVilles, graphe);
-        geneticAlgo(population, graphe, choix);
+        // run algo !
+        geneticAlgo(population, graphe, choix, fname[i]);
+        // write the final tour found by our algo
         ecriture_resultat(population.getCheminMin(), fname[i]);
     }
     return 0;
