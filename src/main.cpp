@@ -1,5 +1,5 @@
 #include "../include/random_generator.hpp"
-#include "GeneticAlgo.hpp"
+#include "../include/GeneticAlgo.hpp"
 
 #include <iostream>
 #include <fstream>
