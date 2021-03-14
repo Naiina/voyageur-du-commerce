@@ -50,7 +50,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     const int n = population.getTaille(); // taille initiale
     cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
 
-    string fichierName = "test/" + fname + to_string(population.getCheminMin().getDim()) + ".res";
+    string fichierName = "test/" + fname + ".res";
     ofstream fichier(fichierName);
     writingHeader(fichier, fname, population.getCheminMin().getDim());
     fichier << population.getMinDistance() <<endl;
