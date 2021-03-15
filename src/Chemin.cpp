@@ -37,6 +37,10 @@ int& Chemin::operator[](uint i) {
     assert(i < tournee.size());
     return tournee[i];
 }
+bool Chemin::operator<(const Chemin& ch) const
+{
+    return distance_ < ch.distance_;
+}
 void Chemin::setDistance(const Graphe& graphe) {
     // distance total equals -1 si ce chemin n'est pas valide
     if (!isValid(graphe)) {

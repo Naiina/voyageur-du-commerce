@@ -25,5 +25,5 @@ Population selection_elitiste(int q, const Population & popParent, const Populat
 
 vector<int> liste_triee_individus(const Population & pop);
 
-Population selection(Choix choix,int q, const Population & pop);
+Population selection(Choix choix,int q, Population & pop);
 #endif

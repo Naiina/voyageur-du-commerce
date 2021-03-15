@@ -57,7 +57,8 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
 
     while (++k)
     {
-        cout<<"---------------ite: "<<k<<endl;
+        //if(k%10 == 0)
+            cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
         Population reproducteur = selection(choix, n/2, population);
         reproducteur.checkIndividus(graphe);
@@ -91,7 +92,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         if(count<=0) { break;}
         // otherwise we continue
         population = populationNext;
-        //cout<<"k: "<<k<<", dist: "<<populationNext.getMinDistance()<<endl;
+        cout<<"k: "<<k<<", dist: "<<populationNext.minDist()<<endl;
         fichier << population.minDist()<<endl;
     }
     fichier << eof << endl;

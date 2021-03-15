@@ -30,6 +30,8 @@ class Chemin : public Individu
         float distance() const { return distance_; };
         int operator[](uint i) const; ///lecture
         int& operator[](uint i); ///écriture
+        bool operator<(const Chemin& ch) const;
+
         void setDistance(const Graphe& graphe);
 
         bool isValid(const Graphe & graphe) const ; // si ce chemin est valid + doublons

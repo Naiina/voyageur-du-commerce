@@ -37,6 +37,17 @@ class Population
         const Chemin min() const {return cheminMin_;}
         const float minDist() const {return cheminMin_.distance();}
         void checkIndividus(const Graphe& graphe);
+
+        
+
+        Population selection_eugenisme(int p){
+            sort(individus.begin(), individus.end());
+            Population reproducteurs(p);
+            for (int i = 0; i < p; i++) {
+                reproducteurs[i] = individus[i];
+            }
+            return reproducteurs;
+        }
 };
 
 ostream& operator<<(ostream&, const Population&);
