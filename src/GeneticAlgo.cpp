@@ -52,7 +52,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
 
     string fichierName = "test/" + fname + ".res";
     ofstream fichier(fichierName);
-    writingHeader(fichier, fname, population.getCheminMin().getDim());
+    writingHeader(fichier, fname, population.getCheminMin().dim());
     fichier << population.getMinDistance() <<endl;
 
     while (++k)

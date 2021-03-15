@@ -6,6 +6,7 @@
 #include <string>
 #include <cassert>
 #include <cstdlib>
+#include <iostream>
 #include <set>
 
 typedef unsigned int uint;
@@ -16,27 +17,23 @@ class Chemin : public Individu
 {
     private:
         vector<int> tournee; // une tournée
-        float distance; // la distance/ coût total de cette tournée
-        string name;
+        float distance_; // la distance/ coût total de cette tournée
 
     public:
-        /** Default constructor */
-        Chemin(uint n=0, string name_ = string());
-        // Constructor par un vecteur
-        Chemin(const vector<int>& v, string name = string());
-        // Constructor par copie
+        Chemin(uint n=0);
+        Chemin(const vector<int>& v);
         Chemin(const Chemin & C);
+
+        int dim() const { return tournee.size(); };
+        float distance() const { return distance_; };
 
         bool isValid(const Graphe & graphe) const ; // si ce chemin est vaild + doublons
         bool contains(int v) const; // si ce chemin contient la ville v
-        bool contains(int v, uint begin, uint end) const; // si ce chemin contient la ville v entre les indices begin et end
+        bool contains(int v, int begin, int end) const; // si ce chemin contient la ville v entre les indices begin et end
 
         // getters and setters
-        int getDim() const {return tournee.size();};
+        
         void setDistance(const Graphe & graphe); // retourne le coût / distance totale du chemin
-        double getDistance() const {return distance;}; // une première fonction étourneeuation simple
-        string getName()const{return name;};
-        void setVal(int i, int v){ tournee[i] = v;}
 
         // opérateur unitaire
         Chemin& operator=(const Chemin& );

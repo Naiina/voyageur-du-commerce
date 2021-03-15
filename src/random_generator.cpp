@@ -3,12 +3,12 @@
 // Retourne un tableau de n villes
 void villes_aleatoires(int n, vector<Ville> & villes)
 {
-    double X = 100.;
+    float X = 100.;
     // generate n coordonates bewteen 0. and 100.
     for (int i = 0; i < n; i++)
     {
-        double r1 = static_cast <double> (rand()) / (static_cast <double> (RAND_MAX/X));
-        double r2 = static_cast <double> (rand()) / (static_cast <double> (RAND_MAX/X));
+        float r1 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/X));
+        float r2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/X));
         villes.push_back(Ville(r1,r2));
     }
 }
@@ -27,8 +27,8 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
 
 Chemin generer_chemin(const vector<Ville>& villes, const Graphe& graphe){
     vector<int> vectIdVille;
-    for(int i=0; i<villes.size();i++){
-        vectIdVille.push_back(villes[i].getIdVille());
+    for(uint i=0; i<villes.size();i++){
+        vectIdVille.push_back(villes[i].id());
     }
     random_shuffle(vectIdVille.begin()+1, vectIdVille.end());
     Chemin chemin(vectIdVille);

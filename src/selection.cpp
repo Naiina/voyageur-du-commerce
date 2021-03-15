@@ -6,8 +6,8 @@ vector<int> liste_triee_individus(const Population & pop){
     vector<pair<float, int> > to_sort;
     for(int k=0;k<taille;k++){
         int index=k;
-        float tourneeeur =pop[k].getDistance();
-        to_sort.push_back(pair<float, int>(tourneeeur, index));
+        float valeur =pop[k].distance();
+        to_sort.push_back(pair<float, int>(valeur, index));
     }
 
     std::sort(to_sort.begin(), to_sort.end());
@@ -35,6 +35,9 @@ Population selection(Choix choix,int q, const Population & pop){
         break;
     case ALEATOIRE:
         return selection_aleatoire(q,pop);
+        break;
+    default:
+        return Population();
         break;
     }
 }
@@ -108,16 +111,16 @@ Population selection_elitiste(int q, const Population & popParent, const Populat
 
 // return a population of size at least 2
 Population selection_roulette(int q, const Population & pop){
-    double S = pop.somme_dist_individus();
+    float S = pop.somme_dist_individus();
     int indice = 0;
 
     while(indice < 2){
-        double r = static_cast <double> (rand()) / (static_cast <double> (RAND_MAX/S)); // r between 0 et S
-        double pas=0;
+        float r = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/S)); // r between 0 et S
+        float pas=0;
         indice=0;
 
         for (; pas < r; indice++){
-            pas += pop[indice].getDistance();
+            pas += pop[indice].distance();
         }
     }
 

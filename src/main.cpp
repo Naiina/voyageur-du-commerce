@@ -5,8 +5,6 @@
 #include <fstream>
 #include <string>
 
-#define PI 3.14
-
 using namespace std;
 
 int main(int argc, char const *argv[])
@@ -16,6 +14,9 @@ int main(int argc, char const *argv[])
     // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
     Choix choix = ROULETTE; 
 
+
+    return 0;
+    Graphe graphe;
     for (int i = 0; i < 4; i++){
         Ville::nbVille = 0;
         vector<Ville> listeVilles;
@@ -23,12 +24,12 @@ int main(int argc, char const *argv[])
             villes_aleatoires(10, listeVilles);
             ecriture_villes(listeVilles, fname[i], "");
         }else{
-            lecture_villes("test/" + fname[i]+ ".tsp", &listeVilles);
+            
+            lecture_villes("test/" + fname[i]+ ".tsp", &graphe);
         }
-        Graphe graphe(listeVilles, fname[i]); 
         Population population = generer_pop_aleatoire(listeVilles, graphe);
         geneticAlgo(population, graphe, choix, fname[i]);
         ecriture_resultat(population.getCheminMin(), fname[i]);
     }
-    return 0;
+    
 }

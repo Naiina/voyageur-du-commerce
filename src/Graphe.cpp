@@ -1,25 +1,12 @@
 #include "../include/Graphe.hpp"
-/*
-* fonctions membres
-*/
 
-Graphe::Graphe(const string& name_){
-    name = name_;
-}
-
-Graphe::Graphe(const vector<Ville>& listeVilles, const string& name_){
-    name = name_ + to_string(listeVilles.size());
+Graphe::Graphe(const vector<Ville>& listeVilles){
     creation_graphe(listeVilles);
 }
-
-//TODO 
-Graphe::Graphe(uint n, Type type, vector<Ville>& liste_villes, const string& name_){
-    name = name_+ to_string(n);
+Graphe::Graphe(uint n, Type type, vector<Ville>& liste_villes){
     float dd;
     switch(type){
     case ROND:{
-        cout << "ROND" << endl;
-        name += "Rond";
         float r = 10; //rayon du cercle
         dd = 2*PI/n; //écart entre deux angles
         for(uint i = 0; i < n; i++){
@@ -31,9 +18,7 @@ Graphe::Graphe(uint n, Type type, vector<Ville>& liste_villes, const string& nam
         break;
     }
     case LIGNE:{
-        cout << "LIGNE" << endl;
-        name += "Ligne";
-        dd = n;
+        dd = float(n);
         for(uint i = 0; i < n; i++){
             float x = i*dd;
             Ville v(x,0);
@@ -63,24 +48,24 @@ bool Graphe::hasAnEdge(const int u, const int v) const{
 
 void Graphe::addAnEdge(const Ville & v1, const Ville & v2){
     // si l'arrêt a---b existe, on fait rien
-    if( hasAnEdge(v1.getIdVille(), v2.getIdVille()) ) return;
+    if( hasAnEdge(v1.id(), v2.id()) ) return;
 
     // ne pas ajouter l'arrêt à une ville/noeud lui même
     if(v1==v2) return;
 
     // sinon on ajoute {a,b}->distance
-    graphe.insert({{v1.getIdVille(), v2.getIdVille()}, dist(v1, v2)});
+    graphe.insert({{v1.id(), v2.id()}, dist(v1, v2)});
 }
 
-map<pair<int, int>, double>::const_iterator Graphe::begin() const{
+map<pair<int, int>, float>::const_iterator Graphe::begin() const{
     return graphe.begin();
 }
 
-map<pair<int, int>, double>::const_iterator Graphe::end() const{
+map<pair<int, int>, float>::const_iterator Graphe::end() const{
     return graphe.end();
 }
 
-double Graphe::getDistance(const int u, const int v) const{
+float Graphe::distance(const int u, const int v) const{
     auto search = graphe.find({u,v});
     if (search != graphe.end()){
         return search->second;
@@ -92,16 +77,14 @@ double Graphe::getDistance(const int u, const int v) const{
     return -1;
 }
 
-/*
-* foctions de classe
-*/
-
+// fonctions de classe
 ostream& operator<<(ostream& os, const Graphe & graphe){
-    os<<"Graphe " << graphe.getName() << " {" << endl;
-    map<pair<int, int>, double>::const_iterator it;
-    for ( it = graphe.begin(); it != graphe.end(); it++)
-    {
-        os<<it->first.first<<"---"<<it->first.second<<" : "<<it->second<<endl;
+    os << "Graphe {" << endl;
+    map<pair<int, int>, float>::const_iterator it;
+    for ( it = graphe.begin(); it != graphe.end(); it++){
+        os << it->first.first << "---" << it->first.second;
+        os << " : " << it->second << endl;
     }
-    return os<< "}"<<endl;
+    os << "}" << endl;
+    return os;
 }

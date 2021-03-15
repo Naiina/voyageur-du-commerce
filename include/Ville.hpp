@@ -8,42 +8,29 @@
 
 using namespace std;
 typedef unsigned int uint;
-#define PI 3.14
+#define PI float(3.14)
 
 class Ville
 {
     private:
-        string name;
-        double x;
-        double y;
-        int idVille;
+        float x_;
+        float y_;
+        int id_;
 
     public:
         static int nbVille;
-        /** Default constructor */
-        Ville(double x=0., double y=0.,string name=string()):name(name), x(x), y(y){
-            idVille = ++nbVille;
-        };
+  
+        Ville(float x=0., float y=0.);
 
-        // les getters
-        int getIdVille() const;
-        double getX() const;
-        double getY() const;
-        string getName() const;
-
+        int id() const;
+        float x() const;
+        float y() const;
 };
-/*
-* fonctions de classe
-*/
+float dist(const Ville& v1, const Ville& v2);
 
-// la distance entre deux villes
-double dist(const Ville& v1, const Ville& v2);
-
-// affichage
 ostream& operator<<(ostream& , const Ville&);
 ostream& operator<<(ostream&, const vector<Ville>&);
 
-//opérateurs binaires
 bool operator==(const Ville&, const Ville& );
 
 #endif // VILLE_H

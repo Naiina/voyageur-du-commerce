@@ -1,52 +1,34 @@
 #include "../include/Ville.hpp"
 
-/*
-* fonctions membres
-*/
-
 int Ville::nbVille = 0;
 
-int Ville::getIdVille() const
-{
-    return idVille;
-}
+Ville::Ville(float x, float y) :x_(x), y_(y){
+    id_ = ++nbVille;
+};
 
-double Ville::getX() const
-{
-    return x;
-}
+int Ville::id() const { return id_; }
+float Ville::x() const { return x_; }
+float Ville::y() const { return y_; }
 
-double Ville::getY() const
-{
-    return y;
-}
 
-string Ville::getName() const{
-    return name;
-}
-
-/*
-* foctions de la classe
-*/
-
-double dist(const Ville& v1, const Ville& v2)
-{
-    return sqrt(pow(v1.getX()-v2.getX(),2)+pow(v1.getY()-v2.getY(),2));
+float dist(const Ville& v1, const Ville& v2){
+    return float(sqrt(pow(v1.x()-v2.x(),2)+pow(v1.y()-v2.y(),2)));
 }
 
 ostream& operator<<(ostream& os, const Ville& v){
-    return os << "Ville: "<< v.getName() <<", id: "<<v.getIdVille()<<" ("<<v.getX()<<", "<<v.getY()<<") ";
+    os << "Ville " << v.id() << " (" << v.x() << "," << v.y() << ") ";
+    return os;
 }
 
-ostream& operator<<(ostream& os, const vector<Ville>& listeVilles){
-    os << "Liste de " << listeVilles.size() << " villes:" << endl;
-    for(unsigned int i = 0; i<listeVilles.size(); i++){
-        os << listeVilles[i].getIdVille() << ": (" << listeVilles[i].getX() << "," << listeVilles[i].getY() << ")" << endl;
+ostream& operator<<(ostream& os, const vector<Ville>& villes){
+    os << "Liste de " << villes.size() << " villes:" << endl;
+    for(uint i = 0; i<villes.size(); i++){
+        os << villes[i].id() << ": (" << villes[i].x() << "," << villes[i].y() << ")" << endl;
     }
     return os;
 }
 
 //TODO A réfléchir
 bool operator==(const Ville& u, const Ville& v){
-    return u.getIdVille()==v.getIdVille();
+    return u.id() == v.id();
 }

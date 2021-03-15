@@ -1,8 +1,9 @@
 #include "../include/file_manager.hpp"
 
 
-void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles)
+void lecture_villes(const string& nomFichier, Graphe* graphe)
 {
+    vector<Ville> listeVilles;
     /// on ouvre le fichier en lecture
     ifstream fichier(nomFichier, ios::in);
     if(fichier.is_open())  /// si l'ouverture a r�ussi
@@ -13,8 +14,8 @@ void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles)
             fichier >> word;
         }
         /// word = "NODE_COORD_SECTION"
-        double x;
-        double y;
+        float x;
+        float y;
         fichier >> word;
         /// word = id_ville1;
         while(word != eof){
@@ -22,7 +23,7 @@ void lecture_villes(const string& nomFichier, vector<Ville>* listeVilles)
             fichier >> y;
 
             Ville ville(x,y);
-            listeVilles->push_back(ville);
+            listeVilles.push_back(ville);
             fichier >> word;
         }
         fichier.close();  /// on ferme le fichier
@@ -44,8 +45,8 @@ void ecriture_villes(const vector<Ville>& liste_villes, const string& fname, con
         fichier << "EDGE_WEIGHT_TYPE : " << "EUC_2D" << endl;
         fichier << "NODE_COORD_SECTION" << endl;
         for(uint i = 0; i < liste_villes.size(); i++){
-            fichier << liste_villes[i].getIdVille() <<" "<<
-            liste_villes[i].getX() <<" "<<liste_villes[i].getY() << endl;
+            fichier << liste_villes[i].id() <<" "<<
+            liste_villes[i].x() <<" "<<liste_villes[i].y() << endl;
         }
         fichier << eof << endl;
     }else{
@@ -93,9 +94,9 @@ void ecriture_resultat(const Chemin& chs, const string& fname){
         fichier << "NAME : " << fname << endl;
         fichier << "TYPE : " << "TOUR" << endl;
         fichier << "COMMENT :" << "" << endl;
-        fichier << "DIMENSION : " << chs.getDim() << endl;
+        fichier << "DIMENSION : " << chs.dim() << endl;
         fichier << "TOUR_SECTION" << endl;
-        for(uint i = 0; i < chs.getDim(); i++){
+        for(uint i = 0; i < chs.dim(); i++){
             fichier << chs[i] << endl;
         }
         fichier << eof << endl;

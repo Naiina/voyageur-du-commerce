@@ -7,7 +7,7 @@
 // sert à priority_queue
 struct cmp
 {
-bool operator()(const Chemin& c1, const Chemin& c2){ return c1.getDistance()> c2.getDistance();}
+bool operator()(const Chemin& c1, const Chemin& c2){ return c1.distance()> c2.distance();}
 };
 
 
@@ -19,10 +19,10 @@ class Population
         Chemin cheminMin;
 
     public:
-        Population(int p){individus.resize(p);};
+        Population(int p=0){individus.resize(p);};
         Population(const Population& p); // constructor par copie
 
-        double somme_dist_individus() const;
+        float somme_dist_individus() const;
         //getters and setters
         Chemin operator[](int i) const; //lecture
         Chemin& operator[](int i); //écriture
@@ -35,7 +35,7 @@ class Population
 
         void initCheminMin();
         const Chemin getCheminMin() const {return cheminMin;}
-        const double getMinDistance() const {return cheminMin.getDistance();}
+        const float getMinDistance() const {return cheminMin.distance();}
         void update(const Graphe& graphe);
 
         void checkIndividus(const Graphe& graphe);

@@ -9,10 +9,10 @@ Population::Population(const Population& P){
     cheminMin = P.getCheminMin();
 }
 
-double Population::somme_dist_individus() const{
-    double sum=0;
+float Population::somme_dist_individus() const{
+    float sum=0;
     for(int i=0;i<getTaille();i++){
-        sum += individus[i].getDistance();
+        sum += individus[i].distance();
     }
     return sum;
 }
@@ -53,7 +53,7 @@ void Population::initCheminMin(){
     cheminMin = individus[0];
     for (int i = 1; i < getTaille(); i++)
     {
-        if(individus[i].getDistance() < cheminMin.getDistance()){
+        if(individus[i].distance() < cheminMin.distance()){
             cheminMin = individus[i];
         }
     }
