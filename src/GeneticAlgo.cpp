@@ -11,7 +11,7 @@ int series(int n) //=sum_{i=1}^n
 // cross over + mutation
 void permutation(const Population& reproducteurs, const Graphe& graphe, Population& enfants){
     vector<Chemin> individus;
-    int p = reproducteurs.getTaille();
+    int p = reproducteurs.taille();
 
     for (int i = 0; i < p-1; i++)
     {
@@ -27,7 +27,7 @@ void permutation(const Population& reproducteurs, const Graphe& graphe, Populati
             }
         }
     }
-    enfants.setIndividus(individus);
+    enfants.creation_population(individus);
 }
 
 void writingHeader(ofstream& fichier, const string& fname, const int dim){
@@ -46,14 +46,14 @@ void writingHeader(ofstream& fichier, const string& fname, const int dim){
 void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname){
     int k=0;
     int count = EVOLUTION;
-    const int n = population.getTaille(); // taille initiale
+    const int n = population.taille(); // taille initiale
     population.checkIndividus(graphe); // check if the init population is ok
     //cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
 
     string fichierName = "test/" + fname + ".res";
     ofstream fichier(fichierName);
-    writingHeader(fichier, fname, population.getCheminMin().dim());
-    fichier << population.getMinDistance() <<endl;
+    writingHeader(fichier, fname, population.min().dim());
+    fichier << population.minDist() <<endl;
 
     while (++k)
     {
@@ -63,7 +63,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         reproducteur.checkIndividus(graphe);
         reproducteur.update(graphe);
         //cout<<"selection reproducteur: "<<reproducteur<<endl;
-        int p = reproducteur.getTaille();
+        int p = reproducteur.taille();
 
         // generate population enfants
         Population populationNextTmp(series(p-1)*2);
@@ -78,9 +78,9 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         populationNext.update(graphe);
         //cout<<"selection_elitiste populationNext "<<populationNext<<endl;
 
-        if(populationNext.getMinDistance() >= population.getMinDistance()){
+        if(populationNext.minDist() >= population.minDist()){
             count--;
-            populationNext.setIndividu(n-1, population.getCheminMin());
+            populationNext[n-1] = population.min();
             populationNext.update(graphe);
         }else{
             count = EVOLUTION;
@@ -92,7 +92,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         // otherwise we continue
         population = populationNext;
         //cout<<"k: "<<k<<", dist: "<<populationNext.getMinDistance()<<endl;
-        fichier << population.getMinDistance()<<endl;
+        fichier << population.minDist()<<endl;
     }
     fichier << eof << endl;
     fichier.close();

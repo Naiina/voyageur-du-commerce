@@ -1,45 +1,63 @@
 #include "../include/Population.hpp"
 
 Population::Population(const Population& P){
-    individus.resize(P.getTaille());
-    for (int i = 0; i < P.getTaille(); i++)
-    {
+    individus.resize(P.taille());
+    for (int i = 0; i < P.taille(); i++){
         individus[i] = P[i];
     }
-    cheminMin = P.getCheminMin();
+    cheminMin_ = P.min();
 }
 
-float Population::somme_dist_individus() const{
-    float sum=0;
-    for(int i=0;i<getTaille();i++){
-        sum += individus[i].distance();
+Population::Population(const vector<Chemin>& chemins) {
+    individus.resize(chemins.size());
+    individus = chemins;
+}
+Population::~Population()
+{
+    vector<Chemin>::iterator iter(individus.begin());
+    for (; iter != individus.end();)
+        iter = individus.erase(iter);
+}
+
+void Population::creation_population(const vector<Chemin>& chemins) {
+    individus.resize(chemins.size());
+    individus = chemins;
+}
+
+void Population::update(const Graphe& graphe) {
+    for (Chemin c : individus) {
+        c.setDistance(graphe);
     }
-    return sum;
+    updateCheminMin();
+}
+void Population::updateCheminMin() {
+    cheminMin_ = individus[0];
+    for (int i = 1; i < taille(); i++) {
+        if (individus[i].distance() < cheminMin_.distance()) {
+            cheminMin_ = individus[i];
+        }
+    }
 }
 
-Chemin Population::operator[](uint i) const{
-    assert(i<individus.size());
-    return individus[i];
-}
-
-Chemin& Population::operator[](uint i){
+Chemin Population::operator[](uint i) const {
     assert(i < individus.size());
     return individus[i];
 }
 
-void Population::setIndividus(const vector<Chemin>& c){
-    if(c.size() != getTaille()){
-        cerr<< "ERROR the given individus' length "<<c.size()<<" cannot be accepted by this population!"
-        <<getTaille()<<endl;
-        exit(EXIT_FAILURE);
-    }
-    for (int i=0; i < getTaille() ; i++)
-    {
-        individus[i] = c[i];
-    }
-
+Chemin& Population::operator[](uint i) {
+    assert(i < individus.size());
+    return individus[i];
 }
-
+void Population::add(const Chemin& c) {
+    individus.push_back(c);
+}
+float Population::somme_dist_individus() const{
+    float sum=0;
+    for(int i=0;i<taille();i++){
+        sum += individus[i].distance();
+    }
+    return sum;
+}
 void Population::checkIndividus(const Graphe& graphe){
     for(Chemin c: individus){
         if(!c.isValid(graphe)){
@@ -49,33 +67,11 @@ void Population::checkIndividus(const Graphe& graphe){
     }
 }
 
-void Population::initCheminMin(){
-    cheminMin = individus[0];
-    for (int i = 1; i < getTaille(); i++)
-    {
-        if(individus[i].distance() < cheminMin.distance()){
-            cheminMin = individus[i];
-        }
-    }
-}
-
-void Population::update(const Graphe& graphe){
-    for(Chemin c: individus){
-        c.setDistance(graphe);
-    }
-    initCheminMin();
-}
-
-
-/*
-* foctions de classe
-*/
-
 ostream& operator<<(ostream& os, const Population & p){
-    os<< "Population("<< p.getTaille()<< ") {"<< endl;
+    os<< "Population("<< p.taille()<< ") {"<< endl;
 
-    for(int i=0; i<p.getTaille(); i++ ){ os<< p[i];}
+    for(int i=0; i<p.taille(); i++ ){ os<< p[i];}
 
-    return os<<"}"<<endl <<"Tour optimal: "<<p.getCheminMin()<<
-    "Minimum distance: "<<p.getMinDistance() ;
+    return os<<"}"<<endl <<"Tour optimal: "<<p.min()<<
+    "Minimum distance: "<<p.minDist() ;
 }

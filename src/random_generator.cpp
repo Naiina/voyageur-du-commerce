@@ -27,7 +27,6 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
 }
 
 Chemin generer_chemin(const vector<Ville>& villes, const Graphe& graphe){
-    cout << "IN generer_chemin" << endl;
     vector<int> vectIdVille;
     for(uint i=0; i<villes.size();i++){
         vectIdVille.push_back(villes[i].id());
@@ -45,6 +44,6 @@ Population generer_pop_aleatoire(const vector<Ville>& villes, const Graphe& grap
         pop[i] = generer_chemin(villes, graphe);
     }
     pop.update(graphe);
-    pop.initCheminMin();
+    pop.updateCheminMin();
     return pop;
 }

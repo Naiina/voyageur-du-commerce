@@ -1,7 +1,7 @@
 #include "../include/selection.hpp"
 
 vector<int> liste_triee_individus(const Population & pop){
-    int taille=pop.getTaille();
+    int taille=pop.taille();
     //initialisation
     vector<pair<float, int> > to_sort;
     for(int k=0;k<taille;k++){
@@ -46,13 +46,13 @@ Population selection_eugenisme(int q, const Population & pop){
     Population newpop(q);
     vector<int> ordre = liste_triee_individus(pop);
     for(int i=0;i<q;i++){
-        newpop.setIndividu(i, pop[ordre[i]]);
+        newpop[i] =  pop[ordre[i]];
     }
     return newpop;
 }
 
 Population selection_rang(int q, const Population & pop){
-    int n = pop.getTaille();
+    int n = pop.taille();
     int rang = 0;
     vector<int> ordre = liste_triee_individus(pop);// ordre croissant
     vector<pair<int, int>> newCmp; // <rang, indice>
@@ -73,38 +73,38 @@ Population selection_rang(int q, const Population & pop){
     }
     Population new_pop(indice);
     for (int i = 0; i < indice; i++){
-        new_pop.setIndividu(i, pop[newCmp[i].second]); 
+        new_pop[i] = pop[newCmp[i].second]; 
     }
     return new_pop;
 }
 
 
 Population selection_aleatoire(int q, const Population & pop){
-    int taille_pop = pop.getTaille();
+    int taille_pop = pop.taille();
     Population new_pop(q);
 
     for(int i=0;i<q;i++){
         int k=rand()%taille_pop;
-        new_pop.setIndividu(i,pop[k]);
+        new_pop[i] = pop[k];
     }
     return new_pop;
 }
 
 Population selection_elitiste(int q, const Population & popParent, const Population& popEnfant){
-    int n = popParent.getTaille();
+    int n = popParent.taille();
     Population newpop(n);
-    if(popEnfant.getTaille() < n-q){
-        q += n-q-popEnfant.getTaille();
+    if(popEnfant.taille() < n-q){
+        q += n-q-popEnfant.taille();
     }
     // q parents
     vector<int> ordre = liste_triee_individus(popParent);
     for(int i=0;i<q;i++){
-        newpop.setIndividu(i, popParent[ordre[i]]);
+        newpop[i] = popParent[ordre[i]];
     }
     // n-q enfants
     ordre = liste_triee_individus(popEnfant);
     for(int i=0;i<n-q;i++){
-        newpop.setIndividu(i+q,popEnfant[ordre[i]]);
+        newpop[i+q] = popEnfant[ordre[i]];
     }
     return newpop;
 }
@@ -126,7 +126,7 @@ Population selection_roulette(int q, const Population & pop){
 
     Population new_pop(indice);
     for (int i = 0; i < indice; i++){
-        new_pop.setIndividu(i, pop[i]);
+        new_pop[i] = pop[i];
     }
     return new_pop;
 }

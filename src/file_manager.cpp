@@ -3,7 +3,6 @@
 
 void lecture_villes(const string& nomFichier, vector<Ville>& villes, Graphe& graphe)
 {
-    cout << "IN lecture_villes" << endl;
     /// on ouvre le fichier en lecture
     ifstream fichier(nomFichier, ios::in);
     if(fichier.is_open())  /// si l'ouverture a r�ussi
@@ -31,7 +30,6 @@ void lecture_villes(const string& nomFichier, vector<Ville>& villes, Graphe& gra
         cerr << "Impossible d'ouvrir le fichier !" << endl;
         exit(-1);
     }
-    cout << villes << endl;
     graphe.creation_graphe(villes);
 }
 

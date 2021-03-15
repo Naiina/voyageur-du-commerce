@@ -6,7 +6,8 @@
 
 // sert à priority_queue
 struct cmp{
-bool operator()(const Chemin& c1, const Chemin& c2){ return c1.distance()> c2.distance();}
+bool operator()(const Chemin& c1, const Chemin& c2){ 
+    return c1.distance()> c2.distance();}
 };
 
 
@@ -15,37 +16,29 @@ class Population
     private:
         vector<Chemin> individus;
         //priority_queue<Chemin, vector<Chemin>, cmp> individus;
-        Chemin cheminMin;
+        Chemin cheminMin_;
 
     public:
         Population(int p=0){individus.resize(p);};
-        Population(const Population& p); // constructor par copie
+        Population(const Population& p);
+        Population(const vector<Chemin>& chemins);
+        ~Population();
 
-        float somme_dist_individus() const;
-        //getters and setters
+        void creation_population(const vector<Chemin>& chemins);
+
+        void update(const Graphe& graphe);
+        void updateCheminMin();
+
         Chemin operator[](uint i) const; //lecture
         Chemin& operator[](uint i); //écriture
-
-        int getTaille() const {return individus.size();}
-
-        void setIndividu(int i, const Chemin& c) {individus[i] = c;}
-        void setIndividus(const vector<Chemin>& c);
-        void setCheminMin(const Chemin& c) {cheminMin = c;}
-
-        void initCheminMin();
-        const Chemin getCheminMin() const {return cheminMin;}
-        const float getMinDistance() const {return cheminMin.distance();}
-        void update(const Graphe& graphe);
-
+        void add(const Chemin& c);
+        int taille() const { return individus.size(); }
+        float somme_dist_individus() const;
+        const Chemin min() const {return cheminMin_;}
+        const float minDist() const {return cheminMin_.distance();}
         void checkIndividus(const Graphe& graphe);
 };
 
-/*
-* fonctions de classe
-*/
-
 ostream& operator<<(ostream&, const Population&);
-
-
 
 #endif // POPULATION_H

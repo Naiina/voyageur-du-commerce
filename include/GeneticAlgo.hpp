@@ -7,7 +7,7 @@
 #include "file_manager.hpp"
 
 #define MAXIT 10000
-#define EVOLUTION 20
+#define EVOLUTION 50
 
 /*
 class GeneticAlgo
