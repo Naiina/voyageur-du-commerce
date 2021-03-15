@@ -13,9 +13,8 @@ Graphe::Graphe(const vector<Ville>& listeVilles, const string& name_){
 }
 
 //TODO 
-Graphe::Graphe(uint n, Type type, const string& name_){
+Graphe::Graphe(uint n, Type type, vector<Ville>& liste_villes, const string& name_){
     name = name_+ to_string(n);
-    vector<Ville> liste_villes;
     float dd;
     switch(type){
     case ROND:{
@@ -48,7 +47,6 @@ Graphe::Graphe(uint n, Type type, const string& name_){
     }
     }
     creation_graphe(liste_villes);
-    cout << *this << endl;
 }
 
 void Graphe::creation_graphe(const vector<Ville>& liste_villes){

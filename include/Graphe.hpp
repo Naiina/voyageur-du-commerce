@@ -14,7 +14,7 @@ private:
 public:
     Graphe(const string& name_ = string());
     Graphe(const vector<Ville>& listeVilles, const string& name_ = string()); // generate graph complete
-    Graphe(uint n, Type type, const string& name_ = string());
+    Graphe(uint n, Type type, vector<Ville>& liste_villes, const string& name_ = "");
 
     bool hasAnEdge(const int u, const int v) const; // on consid�re (u,v),(v,u) sont �quitourneeentes
     void addAnEdge(const Ville &, const Ville &); // ajout arr�te a---b avec la distance entre a et b
