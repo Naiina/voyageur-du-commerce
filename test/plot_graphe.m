@@ -15,7 +15,7 @@ function plot_graphe(nomGraphe)
     ## === Numéros des villes === ##
     A = mat2cell([1:length(x)],1,repmat(1,1,length(x))); 
     hold on;
-    text(x,y+5,A,'Fontweight','bold','color','b');
+    text(x,y+0.1,A,'Fontweight','bold','color','b');
     pause(1);
 
     ## ====== Fichier Tournée ====== ##

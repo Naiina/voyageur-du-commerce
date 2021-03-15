@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
     // initialisation liste des villes
     vector<Ville> listeVilles;
     //init complete graph
-    Graphe graphe(10,LIGNE,listeVilles,"Test");
+    Graphe graphe(10,ROND,listeVilles,"Test");
     ecriture_villes(listeVilles, graphe.getName(), "");
     // initialisation population initiale
     Population population = generer_pop_aleatoire(listeVilles,graphe);

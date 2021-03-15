@@ -1,4 +1,4 @@
 clear; clc; close('all');
-monGraphe = 'Test10Ligne';
+monGraphe = 'Test10Rond';
 plot_graphe(monGraphe);
 plot_distance(monGraphe);
