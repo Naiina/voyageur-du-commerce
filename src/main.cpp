@@ -15,15 +15,14 @@ int main(int argc, char const *argv[])
     Choix choix = ROULETTE; 
 
     Graphe graphe;
-    for (int i = 0; i < 1; i++){
+    for (int i = 1; i < 2; i++){
         Ville::nbVille = 0;
         vector<Ville> listeVilles;
         if(i==0){ //tets with 10 villes aléatoires
             villes_aleatoires(10, listeVilles,graphe);
             ecriture_villes(listeVilles, fname[i], "");
         }else{
-            
-            lecture_villes("test/" + fname[i]+ ".tsp", graphe);
+            lecture_villes("test/" + fname[i]+ ".tsp",listeVilles, graphe);
         }
         cout << graphe << endl;
         Population population = generer_pop_aleatoire(listeVilles, graphe);
