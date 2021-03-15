@@ -34,7 +34,7 @@ class Population
         void setCheminMin(const Chemin& c) {cheminMin = c;}
 
         void initCheminMin();
-        Chemin getCheminMin() const {return cheminMin;}
+        const Chemin getCheminMin() const {return cheminMin;}
         const double getMinDistance() const {return cheminMin.getDistance();}
         void update(const Graphe& graphe);
 
