@@ -10,17 +10,17 @@ function plot_graphe(nomGraphe,extension)
     hold on;
     text(x,y+0.1,A,'Fontweight','bold','Fontsize',15);
 
-    tour = lecture_tournee(nomGraphe,extension)
+    tour = lecture_tournee(nomGraphe,extension);
     hold on;
     plot([x(tour);x(tour)(1)],[y(tour); y(tour)(1)]);
-    plot(x(tour)(1),y(tour)(1),'rd','MarkerSize',20,'MarkerFaceColor','r');
+    plot(x(tour)(1),y(tour)(1),'rd','MarkerSize',10,'MarkerFaceColor','r');
     quiver(x(tour)(1),y(tour)(1),(x(tour)(2)-x(tour)(1))/2,(y(tour)(2)-y(tour)(1))/2,'r','linewidth',2);
     
-    if extension == '.algo.tour'
+    if strcmp (extension, '.algo.tour')
         distances = lecture_res(nomGraphe);
         title({["Tournée ", nomGraphe,"; distance = ", num2str(distances(length(distances)))]});
-    elseif extension == '.opt.tour'
-        title({["Tournée ", nomGraphe,"trouvée online"]});
+    elseif strcmp (extension, '.opt.tour')
+        title({["Tournée ", nomGraphe," trouvée online"]});
     end
     print([nomGraphe, ".",extension,".jpg"]);
 end

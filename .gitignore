@@ -21,3 +21,4 @@ Debug/voyageur_du_commerce.vcxproj.FileListAbsolute.txt
 *.vcxproj
 *.user
 Debug/voyageur_du_commerce.exe
+test/berlin52.tsp.gz
