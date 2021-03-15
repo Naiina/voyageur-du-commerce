@@ -30,7 +30,7 @@ Chemin generer_chemin(const vector<Ville>& villes, const Graphe& graphe){
     for(int i=0; i<villes.size();i++){
         vectIdVille.push_back(villes[i].getIdVille());
     }
-    random_shuffle(vectIdVille.begin()+1, vectIdVille.end()); //On veut que la tournée commence par la ville 1
+    random_shuffle(vectIdVille.begin(), vectIdVille.end());
     Chemin chemin(vectIdVille);
     chemin.setDistance(graphe);
     return chemin;
