@@ -48,7 +48,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     int count = EVOLUTION;
     const int n = population.getTaille(); // taille initiale
     population.checkIndividus(graphe); // check if the init population is ok
-    cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
+    //cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
 
     string fichierName = "test/" + fname + ".res";
     ofstream fichier(fichierName);
@@ -62,7 +62,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         Population reproducteur = selection(choix, n/2, population);
         reproducteur.checkIndividus(graphe);
         reproducteur.update(graphe);
-        cout<<"selection reproducteur: "<<reproducteur<<endl;
+        //cout<<"selection reproducteur: "<<reproducteur<<endl;
         int p = reproducteur.getTaille();
 
         // generate population enfants
@@ -70,13 +70,13 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         permutation(reproducteur, graphe, populationNextTmp);
         populationNextTmp.checkIndividus(graphe);
         populationNextTmp.update(graphe);
-        cout << "permutation populationNextTmp " << populationNextTmp<<endl;
+        //cout << "permutation populationNextTmp " << populationNextTmp<<endl;
 
         // selection population enfants finale
         Population populationNext = selection_elitiste(n/2, population, populationNextTmp);
         populationNext.checkIndividus(graphe);
         populationNext.update(graphe);
-        cout<<"selection_elitiste populationNext "<<populationNext<<endl;
+        //cout<<"selection_elitiste populationNext "<<populationNext<<endl;
 
         if(populationNext.getMinDistance() >= population.getMinDistance()){
             count--;
@@ -91,7 +91,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         if(count<=0) { break;}
         // otherwise we continue
         population = populationNext;
-        cout<<"k: "<<k<<", dist: "<<populationNext.getMinDistance()<<endl;
+        //cout<<"k: "<<k<<", dist: "<<populationNext.getMinDistance()<<endl;
         fichier << population.getMinDistance()<<endl;
     }
     fichier << eof << endl;

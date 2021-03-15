@@ -49,9 +49,8 @@ class Chemin : public Individu
 /*
 * fonctions de classe
 */
-
-ostream& operator<<(ostream&, const Chemin &);
 vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin & J);
-
+ostream& operator<<(ostream&, const Chemin&);
+ostream& operator<<(ostream& os, const vector<Chemin>& chemins);
 
 #endif // CHEMIN_H

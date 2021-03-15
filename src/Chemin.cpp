@@ -105,15 +105,15 @@ int modulo (int i, int j)
     return (i%j + j);
 }
 
-void Chemin::mutation(const Graphe& graphe) // alpha : pourcentage de mutation
-{
+void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
     int d = getDim();
     // Choix de 2 éléments aléatoires entre 0 et d-1
-    int l = rand()%d;
+    int l;
     int k;
     do{
-        k = rand()%d;
-    }while (k == l);
+        l = rand() % d;
+        k = rand() % d;
+    }while (k == l || k == 0 || l == 0 || k == 1 || l == 1 || l == d-1 || k == d-1);
 
     // On fait la mutation
     do{
@@ -208,5 +208,14 @@ ostream& operator<<(ostream& os, const Chemin& chemin){
             os << ", ";
     }
     os<<"]"<<" dist: "<<chemin.getDistance()<<endl;
+    return os;
+}
+ostream& operator<<(ostream& os, const vector<Chemin>& chemins) {
+    os << chemins.size() << " chemins: {" << endl;
+    for (int i = 0; i < chemins.size(); i++)
+    {
+        os << chemins[i];
+    }
+    os << "}" << endl;
     return os;
 }

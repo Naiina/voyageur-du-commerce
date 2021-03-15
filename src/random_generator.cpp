@@ -30,15 +30,14 @@ Chemin generer_chemin(const vector<Ville>& villes, const Graphe& graphe){
     for(int i=0; i<villes.size();i++){
         vectIdVille.push_back(villes[i].getIdVille());
     }
-    random_shuffle(vectIdVille.begin(), vectIdVille.end());
+    random_shuffle(vectIdVille.begin()+1, vectIdVille.end());
     Chemin chemin(vectIdVille);
     chemin.setDistance(graphe);
     return chemin;
 }
 
-//TODO taille de population initiale (paire: pas forcément)
 Population generer_pop_aleatoire(const vector<Ville>& villes, const Graphe& graphe){
-    int taillePop = 10; //1+rand()%10;
+    int taillePop = 4; //1+rand()%10;
     Population pop(taillePop);
     for(int i=0;i<taillePop;i++){
         pop[i] = generer_chemin(villes, graphe);
