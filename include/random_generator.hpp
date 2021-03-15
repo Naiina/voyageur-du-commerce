@@ -13,12 +13,12 @@
 #include "Population.hpp"
 
 // Retourne un tableau de n villes
-void villes_aleatoires(int n, vector<Ville> & villes);
+void villes_aleatoires(int n, vector<Ville> & villes,Graphe& graphe);
 
 // Retourne un graphe aléatoires
 void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe);
 
-int myrandom(int i);
+//int myrandom(int i);
 
 // Generer un chemin aleatoire à partir d'une liste de villes
 Chemin generer_chemin(const vector<Ville>& ville, const Graphe& graphe);

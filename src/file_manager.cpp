@@ -1,8 +1,9 @@
 #include "../include/file_manager.hpp"
 
 
-void lecture_villes(const string& nomFichier, Graphe* graphe)
+void lecture_villes(const string& nomFichier, Graphe& graphe)
 {
+    cout << "IN lecture_villes" << endl;
     vector<Ville> listeVilles;
     /// on ouvre le fichier en lecture
     ifstream fichier(nomFichier, ios::in);
@@ -31,6 +32,8 @@ void lecture_villes(const string& nomFichier, Graphe* graphe)
         cerr << "Impossible d'ouvrir le fichier !" << endl;
         exit(-1);
     }
+    cout << listeVilles << endl;
+    graphe.creation_graphe(listeVilles);
 }
 
 // write file *.tsp (for our small random test) OK!
