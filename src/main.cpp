@@ -16,6 +16,20 @@ int main(int argc, char const *argv[])
     // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
     Choix choix = ROULETTE; 
 
+    Ville::nbVille = 0;
+    // initialisation liste des villes
+    vector<Ville> listeVilles;
+    //init complete graph
+    Graphe graphe(10,LIGNE,listeVilles,"Test");
+    ecriture_villes(listeVilles, graphe.getName(), "");
+    // initialisation population initiale
+    Population population = generer_pop_aleatoire(listeVilles,graphe);
+    // run algo !
+    geneticAlgo(population, graphe, choix, graphe.getName());
+    // write the final tour found by our algo
+    ecriture_resultat(population.getCheminMin(), graphe.getName());
+
+    return 0;
     for (int i = 0; i < 4; i++)
     {
         Ville::nbVille = 0;
