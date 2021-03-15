@@ -92,12 +92,12 @@ void ecriture_resultat(const Chemin& chs, const string& fname){
     if(fichier.is_open()){
         fichier << "NAME : " << fname << endl;
         fichier << "TYPE : " << "TOUR" << endl;
+        fichier << "COMMENT :" << "" << endl;
         fichier << "DIMENSION : " << chs.getDim() << endl;
         fichier << "TOUR_SECTION" << endl;
         for(uint i = 0; i < chs.getDim(); i++){
             fichier << chs[i] << endl;
         }
-        fichier << "-1" << endl;
         fichier << eof << endl;
     }else{
         cerr << "Impossible d'ouvrir le fichier !" << endl;
