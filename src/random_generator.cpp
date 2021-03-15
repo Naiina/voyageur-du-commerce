@@ -25,26 +25,24 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe){
     }
 }
 
-Chemin generer_chemin_listeVille(const vector<Ville>& ville, const Graphe& graphe){
+Chemin generer_chemin(const vector<Ville>& villes, const Graphe& graphe){
     vector<int> vectIdVille;
-    for(int i=0; i<ville.size();i++){
-        vectIdVille.push_back(ville[i].getIdVille());
+    for(int i=0; i<villes.size();i++){
+        vectIdVille.push_back(villes[i].getIdVille());
     }
-    random_shuffle(vectIdVille.begin(), vectIdVille.end());
+    random_shuffle(vectIdVille.begin()+1, vectIdVille.end()); //On veut que la tournée commence par la ville 1
     Chemin chemin(vectIdVille);
     chemin.setDistance(graphe);
     return chemin;
 }
 
-//TODO taille de population initiale (paire)
-Population generer_pop_aleatoire(const vector<Ville>& ville, const Graphe& graphe){
-    //initialisation
-    int taillePop = 4; //1+rand()%10;
+//TODO taille de population initiale (paire: pas forcément)
+Population generer_pop_aleatoire(const vector<Ville>& villes, const Graphe& graphe){
+    int taillePop = 10; //1+rand()%10;
     Population pop(taillePop);
     for(int i=0;i<taillePop;i++){
-        pop[i] = generer_chemin_listeVille(ville, graphe);
+        pop[i] = generer_chemin(villes, graphe);
     }
-    // calcul chemin minimal
     pop.initCheminMin();
     return pop;
 }
