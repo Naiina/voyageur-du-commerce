@@ -96,7 +96,7 @@ void ecriture_resultat(const Chemin& chs, const string& fname){
         fichier << "COMMENT :" << "" << endl;
         fichier << "DIMENSION : " << chs.dim() << endl;
         fichier << "TOUR_SECTION" << endl;
-        for(uint i = 0; i < chs.dim(); i++){
+        for(int i = 0; i < chs.dim(); i++){
             fichier << chs[i] << endl;
         }
         fichier << eof << endl;

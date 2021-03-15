@@ -5,8 +5,7 @@
 #include <queue>
 
 // sert à priority_queue
-struct cmp
-{
+struct cmp{
 bool operator()(const Chemin& c1, const Chemin& c2){ return c1.distance()> c2.distance();}
 };
 
@@ -24,8 +23,8 @@ class Population
 
         float somme_dist_individus() const;
         //getters and setters
-        Chemin operator[](int i) const; //lecture
-        Chemin& operator[](int i); //écriture
+        Chemin operator[](uint i) const; //lecture
+        Chemin& operator[](uint i); //écriture
 
         int getTaille() const {return individus.size();}
 

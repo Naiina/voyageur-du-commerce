@@ -1,8 +1,6 @@
 #include "../include/Chemin.hpp"
 
-/*
-* fonctions membres
-*/
+
 Chemin::Chemin(uint n):distance_(0){
     tournee.resize(n);
     for (uint i = 0; i < tournee.size(); i++)
@@ -14,19 +12,46 @@ Chemin::Chemin(const vector<int>& v):distance_(0){
         tournee.push_back(v[id]);
     }
 }
-
 Chemin::Chemin(const Chemin& C)
 {
     tournee.resize(0);
     distance_ = C.distance();
-    for(int i=0;i<C.dim();i++){
+    for(int i = 0; i < C.dim(); i++){
         tournee.push_back(C[i]);
     }
 }
+Chemin& Chemin::operator=(const Chemin& C) {
+    tournee.resize(0);
+    distance_ = C.distance();
+    for (int i = 0; i < C.dim(); i++) {
+        tournee.push_back(C[i]);
+    }
+    return *this;
+}
+int Chemin::operator[](uint i) const {
+    assert(i < tournee.size());
+    return tournee[i];
+}
 
+int& Chemin::operator[](uint i) {
+    assert(i < tournee.size());
+    return tournee[i];
+}
+void Chemin::setDistance(const Graphe& graphe) {
+    // distance total equals -1 si ce chemin n'est pas valide
+    if (!isValid(graphe)) {
+        distance_ = -1;
+        return;
+    }
+    distance_ = 0.;
+    for (int i = 0; i < dim() - 1; i++){
+        distance_ += graphe.distance(tournee[i], tournee[i + 1]);
+    }
+    distance_ += graphe.distance(tournee[dim() - 1], tournee[0]);
+}
 // test duplicates and exixtence in graph
 bool Chemin::isValid(const Graphe & graphe) const {
-    bool vaild = true;
+    bool valid = true;
     // test doublons
     set<int> s(tournee.begin(), tournee.end());
     if(s.size() != tournee.size()) {
@@ -37,31 +62,20 @@ bool Chemin::isValid(const Graphe & graphe) const {
     for (int i = 0; i < dim() -1; i++)
     {
         if(!graphe.hasAnEdge(tournee[i], tournee[i+1])){
-            vaild = false;
+            valid = false;
         }
     }
 
-    if(!vaild || !graphe.hasAnEdge(tournee[dim()-1], tournee[0])){
+    if(!valid || !graphe.hasAnEdge(tournee[dim()-1], tournee[0])){
         cerr << "ERROR this path cannot exist in our graph!"<<endl;
         exit(EXIT_FAILURE);
     }else{
-        return vaild;
+        return valid;
     }
 }
-
-
-void Chemin::setDistance(const Graphe & graphe){
-    // distance total equals -1 si ce chemin n'est pas tourneeid
-    if(!isValid(graphe)){ distance_ = -1; return;}
-
-    distance_ = 0.;
-    for(int i = 0; i < dim()-1; i++)
-    {
-        distance_ += graphe.distance(tournee[i], tournee[i+1]);
-    }
-    distance_ += graphe.distance(tournee[dim()-1], tournee[0]);
+bool Chemin::contains(int v) const {
+    return contains(v, 0, dim() - 1);
 }
-
 bool Chemin::contains(int v, int begin, int end) const{
     if(end<=begin || begin<0 || end>dim()-1){
         cerr << "ERROR indic out of range! begin "<<begin<<", end "<<end<<endl;
@@ -74,35 +88,11 @@ bool Chemin::contains(int v, int begin, int end) const{
     return false;
 }
 
-bool Chemin::contains(int v) const{
-    return contains(v, 0, dim()-1);
-}
-
-Chemin& Chemin::operator=(const Chemin& C){
-    tournee.resize(0);
-    distance_ = C.distance();
-    for(uint i=0;i<C.dim();i++){
-        tournee.push_back(C[i]);
-    }
-    return *this;
-}
-
-int Chemin::operator[](uint i) const{
-    assert(i < tournee.size());
-    return tournee[i];
-}
-
-int& Chemin::operator[](uint i){
-    assert(i < tournee.size());
-    return tournee[i];
-}
-
-int modulo (int i, int j)
-{
-    if ((i >= 0) && (j >= 0)) return i%j;
+int modulo (int i, int j){
+    if ((i >= 0) && (j >= 0)) 
+        return i%j;
     return (i%j + j);
 }
-
 void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
     int d = dim();
     // Choix de 2 éléments aléatoires entre 0 et d-1
@@ -111,7 +101,7 @@ void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
     do{
         l = rand() % d;
         k = rand() % d;
-    }while (k == l || k == 0 || l == 0 || k == 1 || l == 1 || l == d-1 || k == d-1);
+    }while (k==l || k==0 || l==0 || k==1 || l==1 || l==d-1 || k==d-1);
 
     // On fait la mutation
     do{
@@ -131,16 +121,8 @@ void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
         if(isValid(graphe)){
             break;
         }
-    }while (true); //tant que J intourneeide, faire mutation
+    }while (true); //tant que J valide, faire mutation
 }
-
-/*
-* foctions de classe
-*/
-
-/**
- * Hybridation sans doublons
- */
 
 void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){
     int dupli = 0, insert = l+1;
@@ -162,7 +144,7 @@ void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){
 }
 
 /**
- * Do cross over until the two new hybrid paths are both vaild
+ * Do cross over until the two new hybrid paths are both valid
  */
 vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin & J){
     if (I.dim() != J.dim()){
@@ -170,7 +152,7 @@ vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin &
         exit(EXIT_FAILURE);
     }
     if(!(I.isValid(graphe) && J.isValid(graphe))){
-        cerr << "ERROR the two input paths should be vaild!"<<endl;
+        cerr << "ERROR the two input paths should be valid!"<<endl;
         exit(EXIT_FAILURE);
     }
     vector<Chemin> deuxChemins;
@@ -195,8 +177,6 @@ vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin &
     return deuxChemins;
 }
 
-
-
 ostream& operator<<(ostream& os, const Chemin& chemin){
     os<<"Chemin("<<chemin.dim()<<") [";
     for (int i=0; i< chemin.dim(); i++)
@@ -210,7 +190,7 @@ ostream& operator<<(ostream& os, const Chemin& chemin){
 }
 ostream& operator<<(ostream& os, const vector<Chemin>& chemins) {
     os << chemins.size() << " chemins: {" << endl;
-    for (int i = 0; i < chemins.size(); i++)
+    for (uint i = 0; i < chemins.size(); i++)
     {
         os << chemins[i];
     }

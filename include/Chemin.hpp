@@ -24,28 +24,21 @@ class Chemin : public Individu
         Chemin(const vector<int>& v);
         Chemin(const Chemin & C);
 
+        Chemin& operator=(const Chemin&);
+
         int dim() const { return tournee.size(); };
         float distance() const { return distance_; };
-
-        bool isValid(const Graphe & graphe) const ; // si ce chemin est vaild + doublons
-        bool contains(int v) const; // si ce chemin contient la ville v
-        bool contains(int v, int begin, int end) const; // si ce chemin contient la ville v entre les indices begin et end
-
-        // getters and setters
-        
-        void setDistance(const Graphe & graphe); // retourne le coût / distance totale du chemin
-
-        // opérateur unitaire
-        Chemin& operator=(const Chemin& );
         int operator[](uint i) const; ///lecture
         int& operator[](uint i); ///écriture
-        void mutation(const Graphe& graphe);
+        void setDistance(const Graphe& graphe);
 
+        bool isValid(const Graphe & graphe) const ; // si ce chemin est valid + doublons
+        bool contains(int v) const; // si ce chemin contient la ville v
+        bool contains(int v, int begin, int end) const; // si ce chemin contient la ville v entre les indices begin et end
+        
+        void mutation(const Graphe& graphe);
 };
 
-/*
-* fonctions de classe
-*/
 vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin & J);
 ostream& operator<<(ostream&, const Chemin&);
 ostream& operator<<(ostream& os, const vector<Chemin>& chemins);

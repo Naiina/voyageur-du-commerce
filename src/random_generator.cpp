@@ -32,7 +32,7 @@ Chemin generer_chemin(const vector<Ville>& villes, const Graphe& graphe){
     }
     random_shuffle(vectIdVille.begin()+1, vectIdVille.end());
     Chemin chemin(vectIdVille);
-    chemin.setDistance(graphe);
+    //chemin.setDistance(graphe);
     return chemin;
 }
 

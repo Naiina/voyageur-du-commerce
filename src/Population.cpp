@@ -17,12 +17,12 @@ float Population::somme_dist_individus() const{
     return sum;
 }
 
-Chemin Population::operator[](int i) const{
+Chemin Population::operator[](uint i) const{
     assert(i<individus.size());
     return individus[i];
 }
 
-Chemin& Population::operator[](int i){
+Chemin& Population::operator[](uint i){
     assert(i < individus.size());
     return individus[i];
 }
@@ -43,7 +43,7 @@ void Population::setIndividus(const vector<Chemin>& c){
 void Population::checkIndividus(const Graphe& graphe){
     for(Chemin c: individus){
         if(!c.isValid(graphe)){
-            cerr << "ERROR this population exists a path no vaild!" <<endl;
+            cerr << "ERROR this population exists a path no valid!" <<endl;
             exit(EXIT_FAILURE);
         }
     }
