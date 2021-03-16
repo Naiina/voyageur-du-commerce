@@ -7,7 +7,7 @@ function strType = str(choix)
         case 2
             strType = "TOURNOI";
         case 3
-            strType = "UGENISME";
+            strType = "EUGENISME";
         case 4
             strType = "ALEATOIRE";
         otherwise
