@@ -28,7 +28,6 @@ ostream& operator<<(ostream& os, const vector<Ville>& villes){
     return os;
 }
 
-//TODO A réfléchir
 bool operator==(const Ville& u, const Ville& v){
     return u.id() == v.id();
 }

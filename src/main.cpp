@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     srand (static_cast <unsigned> (time(0)));
     const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
     // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
-    Choix choix = RANG; 
+    Choix choix = ROULETTE; 
     /*
     vector<Ville> liste_villes;
     Graphe graphe(10, ROND, liste_villes);
@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     for (int i = 1; i < 2; i++){
         Ville::nbVille = 0;
         vector<Ville> listeVilles;
-        if(i==0){ //tets with 10 villes aléatoires
+        if(i==0){ //test with 10 villes aléatoires
             villes_aleatoires(10, listeVilles,graphe);
             ecriture_villes(listeVilles, fname[i] + to_string(choix), "");
         }else{

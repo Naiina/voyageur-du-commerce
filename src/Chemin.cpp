@@ -102,7 +102,7 @@ void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
     do{
         l = rand() % d;
         k = rand() % d;
-    }while (k==l || k==0 || l==0 || k==1 || l==1 || l==d-1 || k==d-1);
+    }while (k==l || k==0 || l==0 || l==1 || k==d-1);
 
     // On fait la mutation
     do{
@@ -114,10 +114,6 @@ void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
         tmp = tournee[modulo(k+1,d)];
         tournee[modulo(k+1,d)] = tournee[modulo(l-1,d)];
         tournee[modulo(l-1,d)] = tmp;
-        // On permute k-1 et l+1
-        tmp = tournee[modulo(k-1,d)];
-        tournee[modulo(k-1,d)] = tournee[modulo(l+1,d)];
-        tournee[modulo(l+1,d)] = tmp;
 
         if(isValid(graphe)){
             break;
