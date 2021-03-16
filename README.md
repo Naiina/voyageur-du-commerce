@@ -16,3 +16,15 @@ RANG not bad
 
 EUGENISME and ALEATOIRE are the worst
 
+
+## exécution
+
+sous linux:
+
+make clean
+
+make
+
+./bin/main
+
+make clean
