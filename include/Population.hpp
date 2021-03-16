@@ -2,54 +2,52 @@
 #define POPULATION_H
 #include "Chemin.hpp"
 #include <assert.h>
-#include <queue>
 
-// sert à priority_queue
-struct cmp{
-bool operator()(const Chemin& c1, const Chemin& c2){ 
-    return c1.distance()> c2.distance();}
+enum Choix{
+    ROULETTE, RANG, TOURNOI, EUGENISME, ALEATOIRE
 };
-
-
-class Population
-{
+class Population{
     private:
         vector<Chemin> individus;
-        //priority_queue<Chemin, vector<Chemin>, cmp> individus;
         Chemin cheminMin_;
 
     public:
         Population(int p=0){individus.resize(p);};
-        Population(const Population& p);
+        Population(const Population& P);
         Population(const vector<Chemin>& chemins);
         ~Population();
 
         void creation_population(const vector<Chemin>& chemins);
-
+        void add(const Chemin& c);
         void update(const Graphe& graphe);
         void updateCheminMin();
 
         Chemin operator[](uint i) const; //lecture
         Chemin& operator[](uint i); //écriture
-        void add(const Chemin& c);
-        int taille() const { return individus.size(); }
-        float somme_dist_individus() const;
-        const Chemin min() const {return cheminMin_;}
-        const float minDist() const {return cheminMin_.distance();}
-        void checkIndividus(const Graphe& graphe);
-
+      
+        const Chemin min() const { return cheminMin_; }
         
+        int taille() const { return individus.size(); }
+        const float minDist() const { return cheminMin_.distance(); }
+        float somme_dist_individus() const;
+        
+        bool contains(Chemin& ch);
+        void checkIndividus(const Graphe& graphe) const;
 
-        Population selection_eugenisme(int p){
-            sort(individus.begin(), individus.end());
-            Population reproducteurs(p);
-            for (int i = 0; i < p; i++) {
-                reproducteurs[i] = individus[i];
-            }
-            return reproducteurs;
-        }
+        /// =================================================== ///
+        /// ============= Fonctions de sélection ============== ///
+        /// =================================================== ///
+        Population roulette(int p,vector<int>& adaptation) ;
+        Population selection_roulette(int p) ;
+        Population selection_rang(int p) ;
+        Population selection_tournoi(int p) ;
+        Population selection_eugenisme(int p) ;
+        Population selection_aleatoire(int p) ;
+
+        Population selection(Choix choix, int p);
+        Population selection_elitiste(int q, Population& popEnfant);
 };
-
+int series(int n);
 ostream& operator<<(ostream&, const Population&);
 
 #endif // POPULATION_H

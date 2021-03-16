@@ -62,14 +62,12 @@ bool Chemin::isValid(const Graphe & graphe) const {
         cerr << "ERROR this path has duplicated cities!"<<endl;
         exit(EXIT_FAILURE);
     }
-
     for (int i = 0; i < dim() -1; i++)
     {
         if(!graphe.hasAnEdge(tournee[i], tournee[i+1])){
             valid = false;
         }
     }
-
     if(!valid || !graphe.hasAnEdge(tournee[dim()-1], tournee[0])){
         cerr << "ERROR this path cannot exist in our graph!"<<endl;
         exit(EXIT_FAILURE);
@@ -200,4 +198,15 @@ ostream& operator<<(ostream& os, const vector<Chemin>& chemins) {
     }
     os << "}" << endl;
     return os;
+}
+
+bool operator==(const Chemin& ch1, const Chemin& ch2){
+    if (ch1.dim() != ch2.dim()) {
+        return false;
+    }
+    for (int i = 0; i < ch1.dim(); i++) {
+        if (ch1[i] != ch2[i])
+            return false;
+    }
+    return true;
 }

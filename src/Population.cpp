@@ -1,4 +1,5 @@
 #include "../include/Population.hpp"
+#include "../include/selection.hpp"
 
 Population::Population(const Population& P){
     individus.resize(P.taille());
@@ -58,7 +59,13 @@ float Population::somme_dist_individus() const{
     }
     return sum;
 }
-void Population::checkIndividus(const Graphe& graphe){
+bool Population::contains(Chemin& ch) {
+    for (uint i = 0; i < individus.size(); i++)
+        if (individus[i] == ch)
+            return true;
+    return false;
+}
+void Population::checkIndividus(const Graphe& graphe) const{
     for(Chemin c: individus){
         if(!c.isValid(graphe)){
             cerr << "ERROR this population exists a path no valid!" <<endl;
@@ -67,6 +74,114 @@ void Population::checkIndividus(const Graphe& graphe){
     }
 }
 
+/// =================================================== ///
+/// ============= Fonctions de sélection ============== ///
+/// =================================================== ///
+Population Population::roulette(int p,vector<int>& adaptation) {
+    int S = 0;
+    for (uint i = 0; i < adaptation.size(); i++) {
+        S += adaptation[i];
+    }
+    Population new_pop(p);
+    for (int i = 0; i < p; i++) {
+        int j = 0;
+        int r = rand() % S; // r between 0 et S
+        for (int sum_indiv = 0; sum_indiv <= r; j++) {
+            sum_indiv += adaptation[j];
+        }
+        S -= adaptation[j-1];
+        adaptation.erase(adaptation.begin() + j-1);
+        while(new_pop.contains(individus[j-1])) {
+            j += 1;
+        }
+        new_pop[i] = individus[j-1];
+    }
+    return new_pop;
+}
+Population Population::selection_roulette(int p) {// return a population of size p
+    vector<int> distances(individus.size());
+    for (uint i = 0; i < individus.size(); i++) {
+        distances[i] = int(individus[i].distance());
+    }
+    return roulette(p,distances);
+}
+Population Population::selection_rang(int p){
+    sort(individus.rbegin(), individus.rend());// ordre décroissant
+    vector<int> rangs(individus.size());
+    for (uint i = 0; i < individus.size(); i++) {
+        rangs[i] = i + 1;
+    }
+    return roulette(p,rangs);
+}
+Population Population::selection_tournoi(int p){
+    return Population();
+}
+Population Population::selection_eugenisme(int p) {
+    sort(individus.begin(), individus.end());
+    Population reproducteurs(p);
+    for (int i = 0; i < p; i++) {
+        reproducteurs[i] = individus[i];
+    }
+    return reproducteurs;
+}
+Population Population::selection_aleatoire(int p){
+    Population new_pop(p);
+    for (int i = 0; i < p; i++) {
+        int k = rand() % individus.size();
+        new_pop[i] = individus[k];
+    }
+    return new_pop;
+}
+Population Population::selection(Choix choix, int p) {
+    cout << "In selection" << endl;
+    switch (choix)
+    {
+    case ROULETTE:
+        return selection_roulette(p);
+        break;
+    case RANG:
+        return selection_rang(p);
+        break;
+    case TOURNOI:
+        return selection_tournoi(p);
+        break;
+    case EUGENISME:
+        return selection_eugenisme(p);
+        break;
+    case ALEATOIRE:
+        return selection_aleatoire(p);
+        break;
+    default:
+        return Population();
+        break;
+    }
+}
+Population Population::selection_elitiste(int q, Population& popEnfant) {//this = pop parent, q = nbre parents séléctionnés
+    uint n = individus.size();
+    Population newpop(n);
+    if (popEnfant.individus.size() < n - q) {
+        q = n - popEnfant.taille();
+    }
+    // q parents
+    sort(individus.begin(), individus.end());
+    for (int i = 0; i < q; i++) {
+        newpop[i] = individus[i];
+    }
+    // n-q enfants
+    sort(popEnfant.individus.begin(), popEnfant.individus.end());
+    for (uint i = 0; i < n - q; i++) {
+        newpop[i + q] = popEnfant.individus[i];
+    }
+    return newpop;
+}
+
+int series(int n) //=sum_{i=1}^n
+{
+    if (n > 1)
+        return n + series(n - 1);
+    else
+        return 1;
+}
 ostream& operator<<(ostream& os, const Population & p){
     os<< "Population("<< p.taille()<< ") {"<< endl;
 

@@ -44,5 +44,5 @@ class Chemin : public Individu
 vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin & J);
 ostream& operator<<(ostream&, const Chemin&);
 ostream& operator<<(ostream& os, const vector<Chemin>& chemins);
-
+bool operator==(const Chemin& ch1, const Chemin& ch2);
 #endif // CHEMIN_H

@@ -1,12 +1,12 @@
 #include "../include/GeneticAlgo.hpp"
-
+/*
 int series(int n) //=sum_{i=1}^n
 {
     if(n > 1)
         return n + series(n - 1);
     else
         return 1;
-}
+}*/
 
 // cross over + mutation
 void permutation(const Population& reproducteurs, const Graphe& graphe, Population& enfants){
@@ -48,7 +48,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     int count = EVOLUTION;
     const int n = population.taille(); // taille initiale
     population.checkIndividus(graphe); // check if the init population is ok
-    //cout<<"k: "<<k<<", dist: "<<population.getMinDistance()<<endl;
+    cout<<"k: "<<k<<", dist: "<<population.minDist()<<endl;
 
     string fichierName = "test/" + fname + ".res";
     ofstream fichier(fichierName);
@@ -60,10 +60,11 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         //if(k%10 == 0)
             cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
-        Population reproducteur = selection(choix, n/2, population);
+        cout << "avant selection:" << population << endl;
+        Population reproducteur = population.selection(choix, n/2);
         reproducteur.checkIndividus(graphe);
         reproducteur.update(graphe);
-        //cout<<"selection reproducteur: "<<reproducteur<<endl;
+        cout<<"selection reproducteur: "<<reproducteur<<endl;
         int p = reproducteur.taille();
 
         // generate population enfants
@@ -71,13 +72,13 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         permutation(reproducteur, graphe, populationNextTmp);
         populationNextTmp.checkIndividus(graphe);
         populationNextTmp.update(graphe);
-        //cout << "permutation populationNextTmp " << populationNextTmp<<endl;
+        cout << "permutation populationNextTmp " << populationNextTmp<<endl;
 
         // selection population enfants finale
-        Population populationNext = selection_elitiste(n/2, population, populationNextTmp);
+        Population populationNext = population.selection_elitiste(n/2, populationNextTmp);
         populationNext.checkIndividus(graphe);
         populationNext.update(graphe);
-        //cout<<"selection_elitiste populationNext "<<populationNext<<endl;
+        cout<<"selection_elitiste populationNext "<<populationNext<<endl;
 
         if(populationNext.minDist() >= population.minDist()){
             count--;
