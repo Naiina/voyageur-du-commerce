@@ -1,5 +1,5 @@
 #include "../include/Population.hpp"
-//using namespace std;
+
 Population::Population(const Population& P){
     individus.resize(P.taille());
     for (int i = 0; i < P.taille(); i++){
@@ -64,6 +64,7 @@ bool Population::contains(Chemin& ch) {
             return true;
     return false;
 }
+
 void Population::checkIndividus(const Graphe& graphe) const{
     for(Chemin c: individus){
         if(!c.isValid(graphe)){
@@ -74,7 +75,7 @@ void Population::checkIndividus(const Graphe& graphe) const{
 }
 
 /// =================================================== ///
-/// ============= Fonctions de sélection ============== ///
+/// ============= Fonctions de sï¿½lection ============== ///
 /// =================================================== ///
 Population Population::roulette(int p,vector<int>& adaptation) {
     int S = 0;
@@ -105,7 +106,7 @@ Population Population::selection_roulette(int p) {// return a population of size
     return roulette(p,distances);
 }
 Population Population::selection_rang(int p){
-    sort(individus.rbegin(), individus.rend());// ordre décroissant
+    sorted();
     vector<int> rangs(individus.size());
     for (uint i = 0; i < individus.size(); i++) {
         rangs[i] = i + 1;
@@ -116,7 +117,7 @@ Population Population::selection_tournoi(int p){
     return Population();
 }
 Population Population::selection_eugenisme(int p) {
-    sort(individus.begin(), individus.end());
+    sorted();
     Population reproducteurs(p);
     for (int i = 0; i < p; i++) {
         reproducteurs[i] = individus[i];
@@ -154,19 +155,19 @@ Population Population::selection(Choix choix, int p) {
         break;
     }
 }
-Population Population::selection_elitiste(int q, Population& popEnfant) {//this = pop parent, q = nbre parents séléctionnés
+Population Population::selection_elitiste(int q, Population& popEnfant) {//this = pop parent, q = nbre parents sï¿½lï¿½ctionnï¿½s
     uint n = individus.size();
     Population newpop(n);
     if (popEnfant.individus.size() < n - q) {
         q = n - popEnfant.taille();
     }
     // q parents
-    sort(individus.begin(), individus.end());
+    sorted();
     for (int i = 0; i < q; i++) {
         newpop[i] = individus[i];
     }
     // n-q enfants
-    sort(popEnfant.individus.begin(), popEnfant.individus.end());
+    popEnfant.sorted();
     for (uint i = 0; i < n - q; i++) {
         newpop[i + q] = popEnfant.individus[i];
     }
@@ -174,8 +175,9 @@ Population Population::selection_elitiste(int q, Population& popEnfant) {//this 
 }
 void Population::permutation(const Graphe& graphe, Population& enfants) {
     vector<Chemin> indiv;
-    int p = individus.size();
+    int p = taille()/2;
 
+    sorted(); // we want the half best individuals
     for (int i = 0; i < p - 1; i++)
     {
         for (int j = i + 1; j < p; j++)

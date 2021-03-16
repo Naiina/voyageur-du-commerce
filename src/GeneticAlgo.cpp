@@ -12,7 +12,6 @@ void writingHeader(ofstream& fichier, const string& fname, const int dim){
     }
 }
 
-//TODO population taille combien ? paire ? (paire non nécessaire)
 void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname){
     int k=0;
     int count = EVOLUTION;

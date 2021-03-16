@@ -34,6 +34,7 @@ class Population{
         
         bool contains(Chemin& ch);
         void checkIndividus(const Graphe& graphe) const;
+        void sorted() { sort(individus.begin(), individus.end());}; // in creasing ordred by oal distance
 
         /// =================================================== ///
         /// ============= Fonctions de sélection ============== ///

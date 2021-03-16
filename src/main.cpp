@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
         Ville::nbVille = 0;
         vector<Ville> listeVilles;
         if(i==0){ //tets with 10 villes aléatoires
-            //villes_aleatoires(10, listeVilles,graphe);
+            villes_aleatoires(10, listeVilles,graphe);
             ecriture_villes(listeVilles, fname[i] + to_string(choix), "");
         }else{
             lecture_villes("test/" + fname[i] + ".tsp",listeVilles, graphe);
