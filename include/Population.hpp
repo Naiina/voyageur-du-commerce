@@ -2,6 +2,7 @@
 #define POPULATION_H
 #include "Chemin.hpp"
 #include <assert.h>
+#include <algorithm>
 
 enum Choix{
     ROULETTE, RANG, TOURNOI, EUGENISME, ALEATOIRE
@@ -46,6 +47,7 @@ class Population{
 
         Population selection(Choix choix, int p);
         Population selection_elitiste(int q, Population& popEnfant);
+        void permutation(const Graphe& graphe, Population& enfants);
 };
 int series(int n);
 ostream& operator<<(ostream&, const Population&);

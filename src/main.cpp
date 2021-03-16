@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     srand (static_cast <unsigned> (time(0)));
     const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
     // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
-    Choix choix = EUGENISME; 
+    Choix choix = RANG; 
     /*
     vector<Ville> liste_villes;
     Graphe graphe(10, ROND, liste_villes);

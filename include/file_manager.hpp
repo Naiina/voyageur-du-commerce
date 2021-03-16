@@ -1,14 +1,11 @@
 #ifndef LECTURE_TOUR_H
 #define LECTURE_TOUR_H
 
-#include <string>
-
 #include "Ville.hpp"
 #include "Chemin.hpp"
+
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
 
 #define eof "EOF"
 using namespace std;

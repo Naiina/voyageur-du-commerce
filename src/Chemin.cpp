@@ -62,8 +62,7 @@ bool Chemin::isValid(const Graphe & graphe) const {
         cerr << "ERROR this path has duplicated cities!"<<endl;
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < dim() -1; i++)
-    {
+    for (int i = 0; i < dim() -1; i++){
         if(!graphe.hasAnEdge(tournee[i], tournee[i+1])){
             valid = false;
         }

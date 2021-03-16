@@ -1,6 +1,5 @@
 #include "../include/Population.hpp"
-#include "../include/selection.hpp"
-
+//using namespace std;
 Population::Population(const Population& P){
     individus.resize(P.taille());
     for (int i = 0; i < P.taille(); i++){
@@ -91,7 +90,7 @@ Population Population::roulette(int p,vector<int>& adaptation) {
         }
         S -= adaptation[j-1];
         adaptation.erase(adaptation.begin() + j-1);
-        while(new_pop.contains(individus[j-1])) {
+        while(new_pop.contains(individus[j-1]) && j<individus.size()) {
             j += 1;
         }
         new_pop[i] = individus[j-1];
@@ -133,7 +132,6 @@ Population Population::selection_aleatoire(int p){
     return new_pop;
 }
 Population Population::selection(Choix choix, int p) {
-    cout << "In selection" << endl;
     switch (choix)
     {
     case ROULETTE:
@@ -173,6 +171,26 @@ Population Population::selection_elitiste(int q, Population& popEnfant) {//this 
         newpop[i + q] = popEnfant.individus[i];
     }
     return newpop;
+}
+void Population::permutation(const Graphe& graphe, Population& enfants) {
+    vector<Chemin> indiv;
+    int p = individus.size();
+
+    for (int i = 0; i < p - 1; i++)
+    {
+        for (int j = i + 1; j < p; j++)
+        {
+            Chemin I = individus[i];
+            Chemin J = individus[j];
+            vector<Chemin> deuxChemins = cross_over(graphe, I, J);
+            for (Chemin c : deuxChemins) {
+                c.mutation(graphe);
+                c.setDistance(graphe);
+                indiv.push_back(c);
+            }
+        }
+    }
+    enfants.creation_population(indiv);
 }
 
 int series(int n) //=sum_{i=1}^n

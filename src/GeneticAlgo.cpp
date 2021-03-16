@@ -1,34 +1,4 @@
 #include "../include/GeneticAlgo.hpp"
-/*
-int series(int n) //=sum_{i=1}^n
-{
-    if(n > 1)
-        return n + series(n - 1);
-    else
-        return 1;
-}*/
-
-// cross over + mutation
-void permutation(const Population& reproducteurs, const Graphe& graphe, Population& enfants){
-    vector<Chemin> individus;
-    int p = reproducteurs.taille();
-
-    for (int i = 0; i < p-1; i++)
-    {
-        for (int j = i+1; j < p; j++)
-        {
-            Chemin I = reproducteurs[i];
-            Chemin J = reproducteurs[j];
-            vector<Chemin> deuxChemins = cross_over(graphe, I, J);
-            for(Chemin c: deuxChemins){
-                c.mutation(graphe);
-                c.setDistance(graphe);
-                individus.push_back(c);
-            }
-        }
-    }
-    enfants.creation_population(individus);
-}
 
 void writingHeader(ofstream& fichier, const string& fname, const int dim){
     if(fichier.is_open()){
@@ -58,27 +28,26 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     while (++k)
     {
         //if(k%10 == 0)
-            cout<<"---------------ite: "<<k<<endl;
+            //cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
-        cout << "avant selection:" << population << endl;
         Population reproducteur = population.selection(choix, n/2);
         reproducteur.checkIndividus(graphe);
         reproducteur.update(graphe);
-        cout<<"selection reproducteur: "<<reproducteur<<endl;
+        //cout<<"selection reproducteur: "<<reproducteur<<endl;
         int p = reproducteur.taille();
 
         // generate population enfants
         Population populationNextTmp(series(p-1)*2);
-        permutation(reproducteur, graphe, populationNextTmp);
+        reproducteur.permutation(graphe, populationNextTmp);
         populationNextTmp.checkIndividus(graphe);
         populationNextTmp.update(graphe);
-        cout << "permutation populationNextTmp " << populationNextTmp<<endl;
+        //cout << "permutation populationNextTmp " << populationNextTmp<<endl;
 
         // selection population enfants finale
         Population populationNext = population.selection_elitiste(n/2, populationNextTmp);
         populationNext.checkIndividus(graphe);
         populationNext.update(graphe);
-        cout<<"selection_elitiste populationNext "<<populationNext<<endl;
+        //cout<<"selection_elitiste populationNext "<<populationNext<<endl;
 
         if(populationNext.minDist() >= population.minDist()){
             count--;
