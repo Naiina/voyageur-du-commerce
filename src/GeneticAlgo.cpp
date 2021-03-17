@@ -50,7 +50,8 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
 
         if(populationNext.minDist() >= population.minDist()){
             count--;
-            populationNext[n-1] = population.min();
+            int m = rand() % n;
+            populationNext[m] = population.min();
             populationNext.update(graphe);
         }else{
             count = EVOLUTION;
