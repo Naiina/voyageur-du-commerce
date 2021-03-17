@@ -12,14 +12,13 @@ void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_vill
         cout << nomParam << " = " << param << endl;
         //Pour un param donné: On charge nbrexp fois la distance minimale dans résultats
         vector<float> resultats;
-        //vector<microseconds> durations;
         for (int i = 0; i < nbexp; i++) {
-            Population population = generer_pop_aleatoire(liste_villes.size(),liste_villes, graphe);
+
+            Population population = generer_pop_aleatoire(param,liste_villes, graphe);
             string filename = "test" + to_string(liste_villes.size()) + type_to_string(type) + "_" + choix_to_string(choix);
             //auto start = high_resolution_clock::now();
-            geneticAlgo(population, graphe, choix, filename);
+            geneticAlgo(population, graphe, choix, filename,i);
             //auto stop = high_resolution_clock::now();
-            //durations.push_back( duration_cast<microseconds>(stop - start) );
             resultats.push_back(population.minDist());
         }
         //calcul du minimum
@@ -33,12 +32,10 @@ void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_vill
 
         //calcul de la moyenne
         float sum = 0.0;
-        //microseconds sum_durations = microseconds(0);
         for (uint j = 0; j < resultats.size(); j++) {
             sum += resultats[j];
         }
         means.push_back(sum / resultats.size());
-        //means_durations.push_back(sum_durations / durations.size());
     }
     
     ofstream fichier(nomFichier);

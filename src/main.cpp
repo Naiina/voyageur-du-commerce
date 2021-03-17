@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     Graphe graphe(n, type, liste_villes);
     ecriture_villes(liste_villes, "test" + to_string(n) + type_to_string(type), "");
 
-    vector<float> dims_pop = { 10, 20, 30, 50 };
+    vector<float> dims_pop = { 10, 20, 30};
 
     test_parametres(choix, nbexp, type, liste_villes, graphe, dims_pop, "DIM_POP");
 

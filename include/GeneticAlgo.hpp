@@ -28,5 +28,5 @@ public:
 */
 
 // the main algorithm runs with the given initial population and a graph complete
-void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname);
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname,int i);
 #endif // !GENETICALGO_H
