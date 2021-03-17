@@ -24,6 +24,6 @@ void graphe_aleatoires(const vector<Ville>& villes, Graphe & graphe);
 Chemin generer_chemin(const vector<Ville>& ville, const Graphe& graphe);
 
 // Generer une population aléatoire à partir d'une liste de villes
-Population generer_pop_aleatoire(const vector<Ville>& ville, const Graphe& graphe);
+Population generer_pop_aleatoire(int taille, const vector<Ville>& ville, const Graphe& graphe);
 
 #endif // RANDOM_GENERATOR_H

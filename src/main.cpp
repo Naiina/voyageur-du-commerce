@@ -1,5 +1,6 @@
 #include "../include/random_generator.hpp"
 #include "../include/GeneticAlgo.hpp"
+#include "../include/test_parametres.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -22,26 +23,28 @@ int main(int argc, char const *argv[])
     Graphe graphe(n, type, liste_villes);
     ecriture_villes(liste_villes, "test" + to_string(n) + type_to_string(type), "");
 
-    vector<float> alphas = { 0.1, 0.25, 0.5, 0.75, 1 };
-    vector<float> means; //mean for each alpha
-    for (float alpha : alphas) {
-        cout << "alpha = " << alpha << endl;
-        //Pour un alpha donné: On charge 5 fois la distance minimale dans résultats
+    vector<float> dims_pop = { 10, 20, 30, 50 };
+
+    test_parametres(choix, nbexp, type, liste_villes, graphe, dims_pop, "DIM_POP");
+
+    /*
+    for (int dim_pop : dims_pop) {
+        cout << "dim_pop = " << dim_pop << endl;
+        //Pour un dim_pop donné: On charge nbexp fois la distance minimale dans résultats
         vector<float> resultats;
         for (int i = 0; i < nbexp; i++) {
-
-            Population population = generer_pop_aleatoire(liste_villes, graphe);
-            geneticAlgo(population, graphe, choix, filename, alpha);
+            Population population = generer_pop_aleatoire(dim_pop,liste_villes, graphe);
+            geneticAlgo(population, graphe, choix, filename);
             resultats.push_back(population.minDist());
         }
         //calcule de la moyenne
         float sum = 0.0;
-        for (int j = 0; j < resultats.size(); j++) {
+        for (uint j = 0; j < resultats.size(); j++) {
             sum += resultats[j];
         }
         means.push_back(sum / resultats.size());
     }
-    string nomFichier = "test/variation alpha_" + choix_to_string(choix) + ".alpha";
+    string nomFichier = "test/variation dim_pop_" + choix_to_string(choix) + ".dim.pop";
     ofstream fichier(nomFichier);
     if (fichier.is_open()) {
         fichier << "NAME : " << "test" + to_string(n) + type_to_string(type) << endl;
@@ -49,9 +52,9 @@ int main(int argc, char const *argv[])
         fichier << "DIMENSION : " << to_string(n) << endl;
         fichier << "NBRE D'EXPERIENCE : " << nbexp << endl << endl;
 
-        fichier << "ALPHA MEAN_DIST" << endl;
-        for (int i = 0; i < means.size(); i++) {
-            fichier << alphas[i] << " " << means[i] << endl;
+        fichier << "DIM_POP MEAN_DIST" << endl;
+        for (uint i = 0; i < means.size(); i++) {
+            fichier << dims_pop[i] << " " << means[i] << endl;
         }
         fichier << eof << endl;
     }
@@ -60,6 +63,7 @@ int main(int argc, char const *argv[])
         exit(-1);
     }
     fichier.close();
+    */
     /*
     Graphe graphe;
     for (int i = 1; i < 2; i++){

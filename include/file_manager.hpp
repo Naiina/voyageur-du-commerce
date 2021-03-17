@@ -1,5 +1,5 @@
-#ifndef LECTURE_TOUR_H
-#define LECTURE_TOUR_H
+#ifndef FILE_MANAGER_H
+#define FILE_MANAGER_H
 
 #include "Ville.hpp"
 #include "Chemin.hpp"
@@ -15,4 +15,4 @@ void lecture_villes(const string& nomFichier, vector<Ville>& villes, Graphe& gra
 void ecriture_villes(const vector<Ville>& liste_villes, const string& fname, const string& comment);
 Chemin lecture_tour(const string& nomFichier);
 void ecriture_resultat(const Chemin& chs, const string& fname);
-#endif // LECTURE_TOUR_H
+#endif

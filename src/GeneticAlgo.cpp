@@ -12,12 +12,12 @@ void writingHeader(ofstream& fichier, const string& fname, const int dim){
     }
 }
 
-void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname, float alpha){
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname){
     int k=0;
     int count = EVOLUTION;
     const int n = population.taille(); // taille initiale
     population.checkIndividus(graphe); // check if the init population is ok
-    cout<<"k: "<<k<<", dist: "<<population.minDist()<<endl;
+    //cout<<"k: "<<k<<", dist: "<<population.minDist()<<endl;
 
     string fichierName = "test/" + fname + ".res";
     ofstream fichier(fichierName);
@@ -37,7 +37,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
 
         // generate population enfants
         Population populationNextTmp(series(p-1)*2);
-        reproducteur.permutation(graphe, populationNextTmp,alpha);
+        reproducteur.permutation(graphe, populationNextTmp,ALPHA);
         populationNextTmp.checkIndividus(graphe);
         populationNextTmp.update(graphe);
         //cout << "permutation populationNextTmp " << populationNextTmp<<endl;
@@ -62,10 +62,11 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         if(count<=0) { break;}
         // otherwise we continue
         population = populationNext;
-        if (k % 10 == 0)
-            cout<<"k: "<<k<<", dist: "<<populationNext.minDist()<<endl;
+        //if (k % 10 == 0)
+            //cout<<"k: "<<k<<", dist: "<<populationNext.minDist()<<endl;
         fichier << population.minDist()<<endl;
     }
     fichier << eof << endl;
     fichier.close();
+    cout << "k: " << k << ", dist: " << population.minDist() << endl;
 }
