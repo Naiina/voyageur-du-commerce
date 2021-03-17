@@ -12,7 +12,7 @@ void writingHeader(ofstream& fichier, const string& fname, const int dim){
     }
 }
 
-void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname,int i,int q){
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname){
     int k=0;
     int count = EVOLUTION;
     const int n = population.taille(); // taille initiale
@@ -42,7 +42,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         populationNextTmp.update(graphe);
         //cout << "permutation populationNextTmp " << populationNextTmp<<endl;
 
-        //int q = n / 2;
+        int q = 8;
         // selection population enfants finale
         Population populationNext = population.selection_elitiste(q, populationNextTmp);
         populationNext.checkIndividus(graphe);
@@ -69,5 +69,5 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     }
     fichier << eof << endl;
     fichier.close();
-    cout << "i: " << i << ", nbit=" << k<< ", dist: " << population.minDist() << endl;
+    cout << " nbit=" << k<< ", dist: " << population.minDist() << endl;
 }

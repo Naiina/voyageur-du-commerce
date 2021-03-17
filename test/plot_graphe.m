@@ -17,6 +17,9 @@ function plot_graphe(nomGraphe,extension,choix=5)
     text(x,y+0.1,A,'Fontweight','bold','Fontsize',13);
     
     distances = lecture_res(nomGraphe,choix);
-    title({["Tournée ", nomGraphe, " - distance = ", num2str(distances(length(distances))), " - ", str(choix)]});
+    if choix < 5
+        title({["Tournée ", nomGraphe, " - distance = ", num2str(distances(length(distances))), " - ", str(choix)]});
+    else
+        title({["Tournée ", nomGraphe, " - distance = ", num2str(7542)]});
     print([nomGraphe,"_",str(choix),".jpg"]);
 end

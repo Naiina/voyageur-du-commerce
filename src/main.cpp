@@ -13,21 +13,25 @@ int main(int argc, char const *argv[])
     srand (static_cast <unsigned> (time(0)));
     const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
     // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
-    Choix choix = ALEATOIRE; 
-    int nbexp = 20;
-    
-    int n = 10;
+    Choix choix = RANG; 
+    /*
     Type type = ROND;
-    string filename = "test" + to_string(n) + type_to_string(type) + "_" + choix_to_string(choix);
+    
+    int nbexp = 20;
+    int n = 10;
+    
     vector<Ville> liste_villes;
     Graphe graphe(n, type, liste_villes);
     ecriture_villes(liste_villes, "test" + to_string(n) + type_to_string(type), "");
 
+    
+
     vector<float> nb_reproduteurs = { 2, 4, 6, 8, 10 };
     vector<float> nb_parents = { 0, 2, 4, 6, 8, 10 };
+    vector<Choix> selections = { ROULETTE, RANG, EUGENISME, ALEATOIRE };
 
-    test_parametres(choix, nbexp, type, liste_villes, graphe, nb_parents, "NBRE_PARENTS");
-
+    test_parametres(nbexp, type, liste_villes, graphe, selections, "SELECTION");
+    */
     /*
     for (int dim_pop : dims_pop) {
         cout << "dim_pop = " << dim_pop << endl;
@@ -65,7 +69,7 @@ int main(int argc, char const *argv[])
     }
     fichier.close();
     */
-    /*
+    
     Graphe graphe;
     for (int i = 1; i < 2; i++){
         Ville::nbVille = 0;
@@ -76,11 +80,13 @@ int main(int argc, char const *argv[])
         }else{
             lecture_villes("test/" + fname[i] + ".tsp",listeVilles, graphe);
         }
-        Population population = generer_pop_aleatoire(listeVilles, graphe);
+        int taille_pop = 10;
+        Population population = generer_pop_aleatoire(taille_pop,listeVilles, graphe);
         cout << population << endl;
-        geneticAlgo(population, graphe, choix, fname[i]);
+        string filename = fname[i] + "_" + choix_to_string(choix);
+        geneticAlgo(population, graphe, choix, filename);
         cout << population << endl;
         ecriture_resultat(population.min(), fname[i] + to_string(choix));
-    }*/
+    }
     return 0;
 }

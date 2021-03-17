@@ -1,22 +1,24 @@
 #include "../include/test_parametres.hpp"
 
-void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_villes, Graphe graphe, vector<float> params, string nomParam ) {
+void test_parametres(int nbexp, Type type, vector<Ville> liste_villes, Graphe graphe, vector<Choix> params, string nomParam ) {
     //vector<microseconds> means_durations;
     vector<float> means;
 
-    string nomFichier = "test/variation_" + nomParam + "_" + choix_to_string(choix) + "." + nomParam;
-    string filename = "test" + to_string(liste_villes.size()) + type_to_string(type) + "_" + choix_to_string(choix);
+    string nomFichier = "test/variation_" + nomParam + ".txt";//"_" + choix_to_string(choix) + "." + nomParam;
+    //string filename = "test" + to_string(liste_villes.size()) + type_to_string(type) + ".txt"; //+ "_" + choix_to_string(choix);
+    ofstream fichier(nomFichier);
 
-    for (float param : params) {
+    for (Choix param : params) {
         cout << nomParam << " = " << param << endl;
+
         //Pour un param donné: On charge nbrexp fois la distance minimale dans résultats
         vector<float> resultats;
         for (int i = 0; i < nbexp; i++) {
             int taille_pop = 10;
             Population population = generer_pop_aleatoire(taille_pop,liste_villes, graphe);
-            string filename = "test" + to_string(liste_villes.size()) + type_to_string(type) + "_" + choix_to_string(choix);
+            string filename = "test" + to_string(liste_villes.size()) + type_to_string(type) + "_" + choix_to_string(param);
             //auto start = high_resolution_clock::now();
-            geneticAlgo(population, graphe, choix, filename,i,param);
+            geneticAlgo(population, graphe, param, filename);
             //auto stop = high_resolution_clock::now();
             resultats.push_back(population.minDist());
         }
@@ -28,15 +30,16 @@ void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_vill
         }
         means.push_back(sum / resultats.size());
     }
-    
-    ofstream fichier(nomFichier);
+    for (uint j = 0; j < means.size(); j++) {
+        cout << choix_to_string(params[j]) << " " << means[j] << endl;
+    }
     if (fichier.is_open()) {
         fichier << "NAME : " << "test" << liste_villes.size() << type_to_string(type) << endl;
-        fichier << "SELECTION : " << choix_to_string(choix) << endl;
+        //fichier << "SELECTION : " << choix_to_string(param) << endl;
         fichier << "DIMENSION : " << liste_villes.size() << endl;
         fichier << "NBRE D'EXPERIENCE : " << nbexp << endl << endl;
 
-        fichier << nomParam << " MEAN_DIST MIN_DIST" << endl;
+        fichier << nomParam << " MEAN_DIST " << endl;
         for (int i = 0; i < means.size(); i++) {
             fichier << params[i] << " " << means[i] << endl;
         }

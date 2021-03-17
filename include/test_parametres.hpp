@@ -6,6 +6,6 @@
 #include "GeneticAlgo.hpp"
 #include "random_generator.hpp"
 
-void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_villes, Graphe graphe, vector<float> params, string nomParam);
+void test_parametres(int nbexp, Type type, vector<Ville> liste_villes, Graphe graphe, vector<Choix> params, string nomParam);
 #endif
 
