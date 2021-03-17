@@ -94,31 +94,35 @@ int modulo (int i, int j){
         return i%j;
     return (i%j + j);
 }
-void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
-    int d = dim();
-    // Choix de 2 éléments aléatoires entre 0 et d-1
-    int l;
-    int k;
-    do{
-        l = rand() % d;
-        k = rand() % d;
-    }while (k==l || k==0 || l==0 || l==1 || k==d-1);
+void Chemin::mutation(const Graphe& graphe, float alpha){ // alpha : pourcentage de mutation
+    float random = ( float(rand()) / float(RAND_MAX) ) * 100.0;
+    if (random < alpha) {
+        int d = dim();
+        // Choix de 2 éléments aléatoires entre 0 et d-1
+        int l;
+        int k;
+        do {
+            l = rand() % d;
+            k = rand() % d;
+        } while (k == l || k == 0 || l == 0 || l == 1 || k == d - 1);
 
-    // On fait la mutation
-    do{
-        //On permute k et l
-        int tmp = tournee[k];
-        tournee[k] = tournee[l];
-        tournee[l] = tmp;
-        // On permute k+1 et l-1
-        tmp = tournee[modulo(k+1,d)];
-        tournee[modulo(k+1,d)] = tournee[modulo(l-1,d)];
-        tournee[modulo(l-1,d)] = tmp;
+        // On fait la mutation
+        do {
+            //On permute k et l
+            int tmp = tournee[k];
+            tournee[k] = tournee[l];
+            tournee[l] = tmp;
+            // On permute k+1 et l-1
+            tmp = tournee[modulo(k + 1, d)];
+            tournee[modulo(k + 1, d)] = tournee[modulo(l - 1, d)];
+            tournee[modulo(l - 1, d)] = tmp;
 
-        if(isValid(graphe)){
-            break;
-        }
-    }while (true); //tant que J non valide, faire mutation
+            if (isValid(graphe)) {
+                break;
+            }
+        } while (true); //tant que J non valide, faire mutation
+    }
+
 }
 
 void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){

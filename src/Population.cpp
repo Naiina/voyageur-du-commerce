@@ -173,7 +173,7 @@ Population Population::selection_elitiste(int q, Population& popEnfant) {//this 
     }
     return newpop;
 }
-void Population::permutation(const Graphe& graphe, Population& enfants) {
+void Population::permutation(const Graphe& graphe, Population& enfants,float alpha) {
     vector<Chemin> indiv;
     int m = taille()/2; //m couples
 
@@ -184,7 +184,7 @@ void Population::permutation(const Graphe& graphe, Population& enfants) {
             Chemin J = individus[j];
             vector<Chemin> deuxChemins = cross_over(graphe, I, J);
             for (Chemin c : deuxChemins) {
-                c.mutation(graphe);
+                c.mutation(graphe,alpha);
                 c.setDistance(graphe);
                 indiv.push_back(c);
             }

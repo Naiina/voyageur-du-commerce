@@ -48,7 +48,7 @@ class Population{
 
         Population selection(Choix choix, int p);
         Population selection_elitiste(int q, Population& popEnfant);
-        void permutation(const Graphe& graphe, Population& enfants);
+        void permutation(const Graphe& graphe, Population& enfants, float alpha);
 };
 int series(int n);
 ostream& operator<<(ostream&, const Population&);

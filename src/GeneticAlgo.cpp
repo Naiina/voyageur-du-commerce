@@ -37,7 +37,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
 
         // generate population enfants
         Population populationNextTmp(series(p-1)*2);
-        reproducteur.permutation(graphe, populationNextTmp);
+        reproducteur.permutation(graphe, populationNextTmp,ALPHA);
         populationNextTmp.checkIndividus(graphe);
         populationNextTmp.update(graphe);
         //cout << "permutation populationNextTmp " << populationNextTmp<<endl;

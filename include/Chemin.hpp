@@ -37,7 +37,7 @@ class Chemin : public Individu
         bool contains(int v) const; // si ce chemin contient la ville v
         bool contains(int v, int begin, int end) const; // si ce chemin contient la ville v entre les indices begin et end
         
-        void mutation(const Graphe& graphe);
+        void mutation(const Graphe& graphe,float alpha);
 };
 
 vector<Chemin> cross_over(const Graphe& graphe, const Chemin & I, const Chemin & J);
