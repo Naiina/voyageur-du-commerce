@@ -208,3 +208,42 @@ ostream& operator<<(ostream& os, const Population & p){
     return os<<"}"<<endl <<"Tour optimal: "<<p.min()<<
     "Minimum distance: "<<p.minDist() ;
 }
+string choix_to_string(Choix choix) {
+    switch (choix)
+    {
+    case ROULETTE:
+        return "ROULETTE";
+        break;
+    case RANG:
+        return "RANG";
+        break;
+    case TOURNOI:
+        return "TOURNOI";
+        break;
+    case EUGENISME:
+        return "EUGENISME";
+        break;
+    case ALEATOIRE:
+        return "ALEATOIRE";
+        break;
+    default:
+        return "";
+        break;
+    }
+}
+
+string type_to_string(Type type)
+{
+    switch (type)
+    {
+    case ROND:
+        return "ROND";
+        break;
+    case LIGNE:
+        return "LIGNE";
+        break;
+    default:
+        return "";
+        break;
+    }
+}

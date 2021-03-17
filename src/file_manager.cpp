@@ -106,4 +106,3 @@ void ecriture_resultat(const Chemin& chs, const string& fname){
     }
     fichier.close();
 }
-

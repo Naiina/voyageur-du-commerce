@@ -12,7 +12,7 @@ void writingHeader(ofstream& fichier, const string& fname, const int dim){
     }
 }
 
-void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname){
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname, float alpha){
     int k=0;
     int count = EVOLUTION;
     const int n = population.taille(); // taille initiale
@@ -37,7 +37,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
 
         // generate population enfants
         Population populationNextTmp(series(p-1)*2);
-        reproducteur.permutation(graphe, populationNextTmp,ALPHA);
+        reproducteur.permutation(graphe, populationNextTmp,alpha);
         populationNextTmp.checkIndividus(graphe);
         populationNextTmp.update(graphe);
         //cout << "permutation populationNextTmp " << populationNextTmp<<endl;

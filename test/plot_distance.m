@@ -1,5 +1,5 @@
 function plot_distance(nomGraphe,choix=5)
-    [distances,nbIt] = lecture_res(nomGraphe);
+    [distances,nbIt] = lecture_res(nomGraphe,choix);
     
     figure('Name',["Tournée ", nomGraphe,"_distances"]);
     title({["Tournée ", nomGraphe," - ", num2str(nbIt), " itérations - ",str(choix)]});

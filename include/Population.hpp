@@ -52,5 +52,6 @@ class Population{
 };
 int series(int n);
 ostream& operator<<(ostream&, const Population&);
-
+string choix_to_string(Choix choix);
+string type_to_string(Type type);
 #endif // POPULATION_H
