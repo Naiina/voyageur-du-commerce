@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
     // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
     Choix choix = ALEATOIRE; 
-    int nbexp = 100;
+    int nbexp = 20;
     
     int n = 10;
     Type type = ROND;
@@ -23,9 +23,10 @@ int main(int argc, char const *argv[])
     Graphe graphe(n, type, liste_villes);
     ecriture_villes(liste_villes, "test" + to_string(n) + type_to_string(type), "");
 
-    vector<float> dims_pop = { 10, 20, 30};
+    vector<float> nb_reproduteurs = { 2, 4, 6, 8, 10 };
+    vector<float> nb_parents = { 0, 2, 4, 6, 8, 10 };
 
-    test_parametres(choix, nbexp, type, liste_villes, graphe, dims_pop, "DIM_POP");
+    test_parametres(choix, nbexp, type, liste_villes, graphe, nb_parents, "NBRE_PARENTS");
 
     /*
     for (int dim_pop : dims_pop) {

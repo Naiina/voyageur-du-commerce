@@ -12,7 +12,7 @@ void writingHeader(ofstream& fichier, const string& fname, const int dim){
     }
 }
 
-void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname,int i){
+void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname,int i,int q){
     int k=0;
     int count = EVOLUTION;
     const int n = population.taille(); // taille initiale
@@ -29,7 +29,7 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         //if(k%10 == 0)
             //cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
-        int p = 2 * (n / 4); //on veut p pair
+        int p = 10; // 2 * (n / 4); //on veut p pair
         Population reproducteur = population.selection(choix, p);
         reproducteur.checkIndividus(graphe);
         reproducteur.update(graphe);
@@ -42,8 +42,9 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         populationNextTmp.update(graphe);
         //cout << "permutation populationNextTmp " << populationNextTmp<<endl;
 
+        //int q = n / 2;
         // selection population enfants finale
-        Population populationNext = population.selection_elitiste(p, populationNextTmp);
+        Population populationNext = population.selection_elitiste(q, populationNextTmp);
         populationNext.checkIndividus(graphe);
         populationNext.update(graphe);
         //cout<<"selection_elitiste populationNext "<<populationNext<<endl;
@@ -68,5 +69,5 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     }
     fichier << eof << endl;
     fichier.close();
-    cout << "i: " << i << "nbit=" << k<< ", dist: " << population.minDist() << endl;
+    cout << "i: " << i << ", nbit=" << k<< ", dist: " << population.minDist() << endl;
 }

@@ -3,7 +3,6 @@
 void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_villes, Graphe graphe, vector<float> params, string nomParam ) {
     //vector<microseconds> means_durations;
     vector<float> means;
-    vector<float> minimums;
 
     string nomFichier = "test/variation_" + nomParam + "_" + choix_to_string(choix) + "." + nomParam;
     string filename = "test" + to_string(liste_villes.size()) + type_to_string(type) + "_" + choix_to_string(choix);
@@ -13,22 +12,14 @@ void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_vill
         //Pour un param donné: On charge nbrexp fois la distance minimale dans résultats
         vector<float> resultats;
         for (int i = 0; i < nbexp; i++) {
-
-            Population population = generer_pop_aleatoire(param,liste_villes, graphe);
+            int taille_pop = 10;
+            Population population = generer_pop_aleatoire(taille_pop,liste_villes, graphe);
             string filename = "test" + to_string(liste_villes.size()) + type_to_string(type) + "_" + choix_to_string(choix);
             //auto start = high_resolution_clock::now();
-            geneticAlgo(population, graphe, choix, filename,i);
+            geneticAlgo(population, graphe, choix, filename,i,param);
             //auto stop = high_resolution_clock::now();
             resultats.push_back(population.minDist());
         }
-        //calcul du minimum
-        float min = resultats[0];
-        for (int i = 0; i < resultats.size(); i++) {
-            if (resultats[i] < min) {
-                min = resultats[i];
-            }
-        }
-        minimums.push_back(min);
 
         //calcul de la moyenne
         float sum = 0.0;
@@ -47,7 +38,7 @@ void test_parametres(Choix choix, int nbexp, Type type, vector<Ville> liste_vill
 
         fichier << nomParam << " MEAN_DIST MIN_DIST" << endl;
         for (int i = 0; i < means.size(); i++) {
-            fichier << params[i] << " " << means[i] << " " << minimums[i] << endl;
+            fichier << params[i] << " " << means[i] << endl;
         }
         fichier << eof << endl;
     }
