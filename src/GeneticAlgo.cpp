@@ -27,10 +27,8 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     Chemin indivMin = population.min();
     while (++k)
     {
-        //if(k%10 == 0)
-            //cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
-        int p = 6; // 2 * (n / 4); //on veut p pair
+        int p = 6;
         Population reproducteur = population.selection(choix, p);
         population.shuffle();
         reproducteur.checkIndividus(graphe);
@@ -44,26 +42,25 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         populationNextTmp.update(graphe);
         //cout << "permutation populationNextTmp " << populationNextTmp<<endl;
 
-        int q = 8;
+        
         // selection population enfants finale
+        int q = 8;
         Population populationNext = population.selection_elitiste(q, populationNextTmp);
         populationNext.checkIndividus(graphe);
         populationNext.update(graphe);
-        cout<<"selection_elitiste populationNext "<<populationNext<<endl;
+        //cout<<"selection_elitiste populationNext "<<populationNext.minDist() <<endl;
 
         if(populationNext.minDist() >= indivMin.distance()){
             count--;
-            //int m = rand() % n;
-            //populationNext[m] = population.min();
-            //populationNext.update(graphe);
-            indivMin = population.min();
         }else{
             count = EVOLUTION;
+            indivMin = populationNext.min();
         }
 
         // test d'arrêt
         if(k>=MAXIT){ break;}
         if(count<=0) { break;}
+
         // otherwise we continue
         population = populationNext;
         population.shuffle();

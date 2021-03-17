@@ -6,7 +6,7 @@
 
 #define MAXIT 10000
 #define EVOLUTION 100
-#define ALPHA float(0.05)
+#define ALPHA float(0.85)
 
 /*
 class GeneticAlgo
