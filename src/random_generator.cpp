@@ -38,7 +38,7 @@ Chemin generer_chemin(const vector<Ville>& villes, const Graphe& graphe){
 }
 
 Population generer_pop_aleatoire(const vector<Ville>& villes, const Graphe& graphe){
-    int taillePop = 4; //1+rand()%10;
+    int taillePop = 5; //1+rand()%10;
     Population pop(taillePop);
     for(int i=0;i<taillePop;i++){
         pop[i] = generer_chemin(villes, graphe);

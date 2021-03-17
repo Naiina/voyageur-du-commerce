@@ -118,7 +118,7 @@ void Chemin::mutation(const Graphe& graphe){ // alpha : pourcentage de mutation
         if(isValid(graphe)){
             break;
         }
-    }while (true); //tant que J valide, faire mutation
+    }while (true); //tant que J non valide, faire mutation
 }
 
 void hybrid_no_duplicates(Chemin& IJ, const Chemin& J, int l, int n){

@@ -175,13 +175,11 @@ Population Population::selection_elitiste(int q, Population& popEnfant) {//this 
 }
 void Population::permutation(const Graphe& graphe, Population& enfants) {
     vector<Chemin> indiv;
-    int p = taille()/2;
+    int m = taille()/2; //m couples
 
     sorted(); // we want the half best individuals
-    for (int i = 0; i < p - 1; i++)
-    {
-        for (int j = i + 1; j < p; j++)
-        {
+    for (int i = 0; i < m; i++){
+        for (int j = i + 1; j < taille(); j++){
             Chemin I = individus[i];
             Chemin J = individus[j];
             vector<Chemin> deuxChemins = cross_over(graphe, I, J);
