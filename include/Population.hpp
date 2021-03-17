@@ -3,6 +3,7 @@
 #include "Chemin.hpp"
 #include <assert.h>
 #include <algorithm>
+#include <random>
 
 enum Choix{
     ROULETTE, RANG, TOURNOI, EUGENISME, ALEATOIRE
@@ -35,6 +36,7 @@ class Population{
         bool contains(Chemin& ch);
         void checkIndividus(const Graphe& graphe) const;
         void sorted() { sort(individus.begin(), individus.end());}; // in creasing ordred by oal distance
+        void shuffle();
 
         /// =================================================== ///
         /// ============= Fonctions de sélection ============== ///

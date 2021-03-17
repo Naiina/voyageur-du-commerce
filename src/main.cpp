@@ -13,19 +13,26 @@ int main(int argc, char const *argv[])
     srand (static_cast <unsigned> (time(0)));
     const string fname [4]= {"petitTest", "berlin52", "eil101", "kroA100"};
     // EUGENISME and ALEATOIRE are the worst; or ROULETTE the best; or RANG not bad;
-    Choix choix = RANG; 
-    /*
+    Choix choix = ALEATOIRE; 
+    
     Type type = ROND;
     
-    int nbexp = 20;
-    int n = 10;
+    //int nbexp = 20;
+    int n = 20;
     
     vector<Ville> liste_villes;
     Graphe graphe(n, type, liste_villes);
     ecriture_villes(liste_villes, "test" + to_string(n) + type_to_string(type), "");
 
-    
+    int taille_pop = 100;
+    Population population = generer_pop_aleatoire(taille_pop, liste_villes, graphe);
+    cout << population << endl;
+    string filename = "test20Rond_" + choix_to_string(choix);
+    geneticAlgo(population, graphe, choix, filename);
+    cout << population << endl;
+    ecriture_resultat(population.min(), "test10Rond_" + to_string(choix));
 
+    /*
     vector<float> nb_reproduteurs = { 2, 4, 6, 8, 10 };
     vector<float> nb_parents = { 0, 2, 4, 6, 8, 10 };
     vector<Choix> selections = { ROULETTE, RANG, EUGENISME, ALEATOIRE };
@@ -70,8 +77,9 @@ int main(int argc, char const *argv[])
     fichier.close();
     */
     
-    Graphe graphe;
-    for (int i = 1; i < 2; i++){
+    //Graphe graphe;
+    /*
+    for (int i = 0; i < 1; i++){
         Ville::nbVille = 0;
         vector<Ville> listeVilles;
         if(i==0){ //test with 10 villes aléatoires
@@ -80,7 +88,7 @@ int main(int argc, char const *argv[])
         }else{
             lecture_villes("test/" + fname[i] + ".tsp",listeVilles, graphe);
         }
-        int taille_pop = 10;
+        int taille_pop = 100;
         Population population = generer_pop_aleatoire(taille_pop,listeVilles, graphe);
         cout << population << endl;
         string filename = fname[i] + "_" + choix_to_string(choix);
@@ -88,5 +96,5 @@ int main(int argc, char const *argv[])
         cout << population << endl;
         ecriture_resultat(population.min(), fname[i] + to_string(choix));
     }
-    return 0;
+    return 0;*/
 }

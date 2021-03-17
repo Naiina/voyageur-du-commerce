@@ -1,0 +1,26 @@
+NAME : test10Rond_1
+TYPE : TOUR
+COMMENT :
+DIMENSION : 20
+TOUR_SECTION
+1
+5
+6
+11
+12
+14
+18
+16
+17
+15
+13
+10
+9
+8
+7
+3
+4
+2
+19
+20
+EOF

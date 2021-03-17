@@ -74,6 +74,11 @@ void Population::checkIndividus(const Graphe& graphe) const{
     }
 }
 
+void Population::shuffle()
+{
+    random_shuffle(individus.begin(), individus.end());
+}
+
 /// =================================================== ///
 /// ============= Fonctions de s�lection ============== ///
 /// =================================================== ///
@@ -106,7 +111,7 @@ Population Population::selection_roulette(int p) {// return a population of size
     return roulette(p,distances);
 }
 Population Population::selection_rang(int p){
-    sorted();
+    sort(individus.rbegin(),individus.rend()); //ordre décroissant
     vector<int> rangs(individus.size());
     for (uint i = 0; i < individus.size(); i++) {
         rangs[i] = i + 1;
@@ -177,7 +182,6 @@ void Population::permutation(const Graphe& graphe, Population& enfants,float alp
     vector<Chemin> indiv;
     int m = taille()/2; //m couples
 
-    sorted(); // we want the half best individuals
     for (int i = 0; i < m; i++){
         for (int j = i + 1; j < taille(); j++){
             Chemin I = individus[i];

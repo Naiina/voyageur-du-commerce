@@ -5,7 +5,7 @@
 #include "file_manager.hpp"
 
 #define MAXIT 10000
-#define EVOLUTION 200
+#define EVOLUTION 100
 #define ALPHA float(0.05)
 
 /*

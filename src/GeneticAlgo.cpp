@@ -1,5 +1,5 @@
 #include "../include/GeneticAlgo.hpp"
-
+using namespace std;
 void writingHeader(ofstream& fichier, const string& fname, const int dim){
     if(fichier.is_open()){
         fichier << "NAME : " << fname << endl;
@@ -13,6 +13,7 @@ void writingHeader(ofstream& fichier, const string& fname, const int dim){
 }
 
 void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix, const string& fname){
+    
     int k=0;
     int count = EVOLUTION;
     const int n = population.taille(); // taille initiale
@@ -23,14 +24,15 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
     ofstream fichier(fichierName);
     writingHeader(fichier, fname, population.min().dim());
     fichier << population.minDist() <<endl;
-
+    Chemin indivMin = population.min();
     while (++k)
     {
         //if(k%10 == 0)
             //cout<<"---------------ite: "<<k<<endl;
         // choix de reproducteur
-        int p = 10; // 2 * (n / 4); //on veut p pair
+        int p = 6; // 2 * (n / 4); //on veut p pair
         Population reproducteur = population.selection(choix, p);
+        population.shuffle();
         reproducteur.checkIndividus(graphe);
         reproducteur.update(graphe);
         //cout<<"selection reproducteur: "<<reproducteur<<endl;
@@ -47,13 +49,14 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         Population populationNext = population.selection_elitiste(q, populationNextTmp);
         populationNext.checkIndividus(graphe);
         populationNext.update(graphe);
-        //cout<<"selection_elitiste populationNext "<<populationNext<<endl;
+        cout<<"selection_elitiste populationNext "<<populationNext<<endl;
 
-        if(populationNext.minDist() >= population.minDist()){
+        if(populationNext.minDist() >= indivMin.distance()){
             count--;
-            int m = rand() % n;
-            populationNext[m] = population.min();
-            populationNext.update(graphe);
+            //int m = rand() % n;
+            //populationNext[m] = population.min();
+            //populationNext.update(graphe);
+            indivMin = population.min();
         }else{
             count = EVOLUTION;
         }
@@ -63,8 +66,11 @@ void geneticAlgo(Population& population, const Graphe& graphe, const Choix choix
         if(count<=0) { break;}
         // otherwise we continue
         population = populationNext;
-        //if (k % 10 == 0)
-            //cout<<"k: "<<k<<", dist: "<<populationNext.minDist()<<endl;
+        population.shuffle();
+        if (k % 10 == 0) {
+            cout << "k: " << k << ", dist: " << populationNext.minDist() << endl;
+        }
+            
         fichier << population.minDist()<<endl;
     }
     fichier << eof << endl;

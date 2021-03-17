@@ -1,0 +1,16 @@
+NAME : petitTest1
+TYPE : TOUR
+COMMENT :
+DIMENSION : 10
+TOUR_SECTION
+1
+9
+4
+10
+7
+2
+3
+5
+6
+8
+EOF
